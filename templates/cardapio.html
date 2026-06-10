@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Cardápio - Hamburgueria Calabreso</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Cardapio.css">
+    <link rel="stylesheet" href="/static/css/Carrinho.css">
+    <link rel="stylesheet" href="/static/css/Status.css">
+</head>
+<body>
+
+    <header id="cabecalho">
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+
+        <nav id="navegacao">
+
+            <button id="botaoMenu" onclick="window.location.href='/menu'">
+                Menu
+            </button>
+
+            <button id="botaoCarrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+
+            <div id="statusLoja">
+                <span id="bolinhaStatus"></span>
+                <span id="textoStatus">Aberto</span>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <section id="secaoCardapio">
+
+            <div id="cabecalhoCardapio">
+                <span class="cardapio-subtitulo">Tudo que preparamos com amor</span>
+                <h1>Nosso Cardápio</h1>
+                <p>Faça o seu pédido e se perca no sabor</p>
+            </div>
+
+            <div id="filtrosCardapio">
+                <button class="btnFiltro ativo" data-categoria="todos">
+                    <i class="fa-solid fa-border-all"></i>
+                    <span>Todos</span>
+                </button>
+                <button class="btnFiltro" data-categoria="Hamburguer">
+                    <i class="fa-solid fa-burger"></i>
+                    <span>Hambúrgueres</span>
+                </button>
+                <button class="btnFiltro" data-categoria="Frango">
+                    <i class="fa-solid fa-drumstick-bite"></i>
+                    <span>Frango</span>
+                </button>
+                <button class="btnFiltro" data-categoria="Vegano">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span>Vegano</span>
+                </button>
+                <button class="btnFiltro" data-categoria="Bebida">
+                    <i class="fa-solid fa-mug-saucer"></i>
+                    <span>Bebidas</span>
+                </button>
+                <button class="btnFiltro" data-categoria="Sobremesa">
+                    <i class="fa-solid fa-ice-cream"></i>
+                    <span>Sobremesas</span>
+                </button>
+                <button class="btnFiltro" data-categoria="Combo">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span>Combos</span>
+                </button>
+            </div>
+
+            <div id="gradeCardapio">
+
+                <div id="loadingCardapio">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <span>Carregando cardápio...</span>
+                </div>
+
+                <div id="semResultados" class="escondido">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Nenhum item encontrado nessa categoria.</span>
+                </div>
+
+                <div id="erroCardapio" class="escondido">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Não foi possível carregar o cardápio. Tente novamente.</span>
+                </div>
+
+            </div>
+
+            <template id="templateCard">
+                <div class="cardItem">
+                    <div class="cardItem-corpo">
+                        <span class="cardItem-badge"></span>
+                        <div class="cardItem-texto">
+                            <h3 class="cardItem-nome"></h3>
+                            <p class="cardItem-descricao"></p>
+                        </div>
+                        <div class="cardItem-rodape">
+                            <div class="cardItem-infos">
+                                <span class="cardItem-preco"></span>
+                                <span class="cardItem-tempo">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <span class="cardItem-tempoTexto"></span>
+                                </span>
+                                <span class="tag-indisponivel escondido">Indisponível</span>
+                            </div>
+                            <button class="btnAdicionar" title="Adicionar ao carrinho">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+        </section>
+    </main>
+
+    <footer id="rodapePrincipal">
+
+        <div class="efeito-luz"></div>
+
+        <div class="rodapeContainer">
+
+            <div class="rodapeColuna">
+                <h2 class="rodapeLogo">🍔 CALABRESO</h2>
+                <p class="rodapeTexto">
+                    Hambúrgueres artesanais preparados com ingredientes selecionados,
+                    carnes de primeira e muito sabor.
+                </p>
+                <div class="redesSociais">
+                    <a href="https://www.instagram.com/lucas_c_d1/" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/lucas-da-cruz-dias" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Lucaslcz" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://lucaslcz.github.io/PORTIFOLIO/" class="iconeSocial" target="_blank">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Acesso Rápido</h3>
+                <a href="/">Home</a>
+                <a href="/cardapio">Cardápio</a>
+                <a href="/promocoes">Promoções</a>
+                <a href="/login">Login</a>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Horários</h3>
+                <p>Seg - Qui: 18h às 23h</p>
+                <p>Sex - Sáb: 18h às 01h</p>
+                <p>Domingo: 18h às 23h</p>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Contato</h3>
+                <p>📞 (31) 99999-9999</p>
+                <p>📍 Contagem - MG</p>
+                <p>✉ contato@calabreso.com</p>
+            </div>
+
+        </div>
+
+        <div class="rodapeInferior">
+            <p>© 2026 Hamburgueria Calabreso • Todos os direitos reservados</p>
+        </div>
+
+    </footer>
+
+    <div id="overlayCarrinho"></div>
+
+    <aside id="painelCarrinho">
+        <div id="cabecalhoCarrinho">
+            <h2>Carrinho</h2>
+
+            <button id="fecharCarrinho">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="conteudoCarrinho">
+            <p id="mensagemCarrinhoVazio" class="escondido">
+                Seu carrinho está vazio.
+            </p>
+        </div>
+
+        <div id="rodapeCarrinho">
+            <div id="linhaTotal">
+                <span>Total</span>
+                <span id="valorTotal">R$ 0,00</span>
+            </div>
+            <a href="/finalizar" id="btnFinalizarCarrinho">
+                <i class="fa-solid fa-bag-shopping"></i> Finalizar Compra
+            </a>
+        </div>
+    </aside>
+
+    <div id="overlayFechado"></div>
+
+    <div id="popupFechado">
+        <div id="iconeFechado">
+            <i class="fa-solid fa-store-slash"></i>
+        </div>
+        <h2 id="tituloFechado">Estabelecimento Fechado</h2>
+        <p id="subtituloFechado">No momento estamos fechados. Volte mais tarde!</p>
+        <button id="btnVoltarFechado" onclick="window.location.href='/menu'">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao Menu
+        </button>
+    </div>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Cardapio.js"></script>
+    <script src="/static/js/Carrinho.js"></script>
+    <script src="/static/js/Status.js"></script>
+</body>
+</html>

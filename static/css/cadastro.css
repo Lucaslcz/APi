@@ -1,0 +1,184 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#121212;
+    overflow:hidden;
+}
+
+#efeitoParticulas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+}
+
+#cartaoCadastro{
+    width:420px;
+    padding:40px;
+    border-radius:25px;
+    background:rgba(35,35,35,0.9);
+    backdrop-filter:blur(15px);
+    box-shadow:
+    0 0 40px rgba(255,213,79,.15),
+    0 0 80px rgba(76,175,80,.1);
+    animation:animacaoEntrada 1s ease;
+}
+
+#logoHamburgueria{
+    width:90px;
+    height:90px;
+    margin:auto;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:45px;
+    background:linear-gradient(
+    135deg,
+    #ffd54f,
+    #4caf50
+    );
+    box-shadow:0 0 25px #ffd54f;
+}
+
+#tituloHamburgueria{
+    text-align:center;
+    color:white;
+    margin-top:20px;
+}
+
+#subtituloCadastro{
+    text-align:center;
+    color:#bdbdbd;
+    margin-bottom:30px;
+}
+
+.campoCadastro{
+    position:relative;
+    margin-bottom:18px;
+}
+
+.campoCadastro i{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#ffd54f;
+}
+
+.campoCadastro input{
+    width:100%;
+    height:55px;
+    padding-left:45px;
+    border:none;
+    outline:none;
+    border-radius:14px;
+    background:#202020;
+    color:white;
+    transition:.3s;
+}
+
+.campoCadastro input:focus{
+    box-shadow:
+    0 0 10px #ffd54f,
+    0 0 20px #4caf50;
+}
+
+#botaoCriarConta{
+    width:100%;
+    height:55px;
+    border:none;
+    cursor:pointer;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:bold;
+    color:#121212;
+    background:linear-gradient(
+    135deg,
+    #ffd54f,
+    #4caf50
+    );
+    transition:.3s;
+}
+
+#botaoCriarConta:hover{
+    transform:translateY(-3px);
+    box-shadow:
+    0 0 20px #ffd54f,
+    0 0 30px #4caf50;
+}
+
+#areaLogin{
+    text-align:center;
+    margin-top:20px;
+    color:white;
+}
+
+@keyframes animacaoEntrada{
+    from{
+        opacity:0;
+        transform:translateY(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.particulaHamburgueria{
+    position:absolute;
+    border-radius:50%;
+    pointer-events:none;
+}
+
+
+
+
+
+
+/* Posiciona o emoji do macaco */
+#visualizarSenha,
+#visualizarConfirmacaoSenha{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    cursor:pointer;
+    font-size:24px;
+    user-select:none;
+    transition:.3s;
+}
+
+#visualizarSenha:hover,
+#visualizarConfirmacaoSenha:hover{
+    transform:translateY(-50%) scale(1.2);
+}
+
+
+
+
+
+/* Mensagem de sucesso ao cadastrar */
+#mensagemSucesso {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 14px;
+    border-radius: 10px;
+    background-color: rgba(76, 175, 80, 0.15);
+    border: 1px solid #4CAF50;
+    margin-top: 10px;
+}

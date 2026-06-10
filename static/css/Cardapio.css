@@ -1,0 +1,389 @@
+/* SEÇÃO PRINCIPAL */
+#secaoCardapio {
+    min-height: calc(100vh - 250px);
+    background: #111111;
+    padding: 80px 40px;
+}
+
+/* CABEÇALHO */
+#cabecalhoCardapio {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.cardapio-subtitulo {
+    color: #ffa500;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+#cabecalhoCardapio h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+#cabecalhoCardapio h1::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #00e676;
+    border-radius: 2px;
+}
+
+#cabecalhoCardapio p {
+    color: #bdbdbd;
+    font-size: 1.1rem;
+    margin-top: 25px;
+}
+
+/* FILTROS */
+#filtrosCardapio {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 60px;
+}
+
+.btnFiltro {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    border: 1px solid #2a2a2a;
+    border-radius: 50px;
+    background: transparent;
+    color: #bdbdbd;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnFiltro:hover {
+    border-color: #ffa500;
+    color: #ffa500;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.15);
+}
+
+.btnFiltro.ativo {
+    background: #ffa500;
+    border-color: #ffa500;
+    color: #111111;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+}
+
+/* GRADE */
+#gradeCardapio {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+/* ESTADOS (loading, erro, sem resultados) */
+#loadingCardapio,
+#semResultados,
+#erroCardapio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 80px;
+    color: #666;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+#loadingCardapio i {
+    font-size: 2rem;
+    color: #ffa500;
+}
+
+#semResultados i,
+#erroCardapio i {
+    font-size: 3rem;
+    color: #333;
+}
+
+.escondido {
+    display: none !important;
+}
+
+/* SEÇÃO DE CATEGORIA */
+.secaoCategoria {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    animation: fadeInCard 0.4s ease both;
+}
+
+.tituloCategoria {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #2a2a2a;
+    position: relative;
+}
+
+.tituloCategoria::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: #ffa500;
+}
+
+.listaCategoria {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* CARD */
+.cardItem {
+    background: linear-gradient(145deg, #1b1b1b, #131313);
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    overflow: hidden;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    animation: fadeInCard 0.4s ease both;
+}
+
+@keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cardItem:hover {
+    transform: translateX(6px);
+    border-color: #ffa500;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 165, 0, 0.1);
+}
+
+.cardItem.indisponivel {
+    opacity: 0.45;
+    filter: grayscale(60%);
+    pointer-events: none;
+}
+
+/* CORPO DO CARD — linha horizontal */
+.cardItem-corpo {
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* BADGE DE CATEGORIA */
+.cardItem-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.badge-Hamburguer { background: rgba(255, 107, 53, 0.2); color: #ff6b35; }
+.badge-Frango     { background: rgba(252, 177, 3, 0.2);  color: #fcb103; }
+.badge-Vegano     { background: rgba(0, 230, 118, 0.2);  color: #00e676; }
+.badge-Bebida     { background: rgba(33, 150, 243, 0.2); color: #2196f3; }
+.badge-Sobremesa  { background: rgba(233, 30, 99, 0.2);  color: #e91e63; }
+.badge-Combo      { background: rgba(156, 39, 176, 0.2); color: #9c27b0; }
+
+/* TEXTOS */
+.cardItem-texto {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.cardItem-nome {
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.cardItem-descricao {
+    color: #888888;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* RODAPÉ DO CARD */
+.cardItem-rodape {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.cardItem-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.cardItem-preco {
+    color: #ffa500;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.cardItem-tempo {
+    color: #666666;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tag-indisponivel {
+    display: inline-block;
+    background: rgba(255, 82, 82, 0.2);
+    color: #ff5252;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* BOTÃO ADICIONAR */
+.btnAdicionar {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: #00e676;
+    color: #111111;
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.btnAdicionar:hover {
+    background: #ffa500;
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
+}
+
+.btnAdicionar.adicionado {
+    background: #00e676;
+    transform: scale(1.1);
+}
+
+/* BOTÃO INÍCIO */
+#botaoInicio {
+    padding: 10px 18px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#botaoInicio:hover {
+    border-color: #ffa500;
+    color: #ffa500;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+
+    #secaoCardapio {
+        padding: 50px 20px;
+    }
+
+    #cabecalhoCardapio h1 {
+        font-size: 2.2rem;
+    }
+
+    #filtrosCardapio {
+        gap: 8px;
+    }
+
+    .btnFiltro {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    .cardItem-descricao {
+        display: none;
+    }
+
+    .cardItem-badge {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #cabecalhoCardapio h1 {
+        font-size: 1.8rem;
+    }
+
+    .btnFiltro span {
+        display: none;
+    }
+
+    .btnFiltro {
+        padding: 10px 14px;
+    }
+
+    .cardItem-corpo {
+        padding: 16px;
+        gap: 12px;
+    }
+}

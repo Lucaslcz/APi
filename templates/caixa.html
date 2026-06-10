@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Caixa Registradora — Hamburgueria Calabreso</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Caixa.css">
+</head>
+<body>
+
+    <canvas id="efeitoParticulas"></canvas>
+
+    <header id="cabecalho">
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+        <nav id="navegacao">
+            <div id="statusLoja">
+                <span id="bolinhaStatus"></span>
+                <span id="textoStatus">Aberto</span>
+            </div>
+            <button id="botaoMenu">← Menu</button>
+        </nav>
+    </header>
+
+    <main id="mainCaixa">
+
+        <div id="cabecalhoCaixa">
+            <div id="iconeTituloCaixa">
+                <i class="fa-solid fa-cash-register"></i>
+            </div>
+            <div>
+                <h1 id="tituloCaixa">Caixa Registradora</h1>
+                <p id="subtituloCaixa">Resumo financeiro e histórico de pedidos</p>
+            </div>
+        </div>
+
+        <div id="contadoresPagamento">
+            <div class="cardContador" id="cardPix">
+                <div class="contadorIcone">
+                    <i class="fa-brands fa-pix"></i>
+                </div>
+                <div class="contadorInfo">
+                    <span class="contadorNumero" id="qtdPix">0</span>
+                    <span class="contadorLabel">Pagamentos PIX</span>
+                    <span class="contadorValor" id="valorPix">R$ 0,00</span>
+                </div>
+            </div>
+
+            <div class="cardContador" id="cardCredito">
+                <div class="contadorIcone">
+                    <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <div class="contadorInfo">
+                    <span class="contadorNumero" id="qtdCredito">0</span>
+                    <span class="contadorLabel">Cartão de Crédito</span>
+                    <span class="contadorValor" id="valorCredito">R$ 0,00</span>
+                </div>
+            </div>
+
+            <div class="cardContador" id="cardBoleto">
+                <div class="contadorIcone">
+                    <i class="fa-solid fa-barcode"></i>
+                </div>
+                <div class="contadorInfo">
+                    <span class="contadorNumero" id="qtdBoleto">0</span>
+                    <span class="contadorLabel">Boleto Bancário</span>
+                    <span class="contadorValor" id="valorBoleto">R$ 0,00</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="cardTotalGeral">
+            <div id="totalGeralEsquerda">
+                <i class="fa-solid fa-sack-dollar"></i>
+                <span>Total Arrecadado</span>
+            </div>
+            <span id="valorTotalGeral">R$ 0,00</span>
+        </div>
+
+        <div id="secaoHistoricoCaixa">
+            <div id="cabecalhoHistoricoCaixa">
+                <h2><i class="fa-solid fa-list"></i> Todos os Pedidos</h2>
+                <div id="campoBuscaCaixa">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="inputBuscaCaixa" placeholder="Buscar por código, cliente ou descrição...">
+                </div>
+            </div>
+
+            <div id="tabelaPedidos">
+                <div id="loadingCaixa">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <span>Carregando pedidos...</span>
+                </div>
+                <div id="erroCaixa" class="escondido">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <p>Não foi possível carregar os pedidos.</p>
+                </div>
+                <table id="tabelaHistorico" class="escondido">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Cliente</th>
+                            <th>Descrição</th>
+                            <th>Endereço</th>
+                            <th>Pagamento</th>
+                            <th>Valor</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaHistorico"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Caixa.js"></script>
+</body>
+</html>

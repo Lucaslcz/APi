@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Promoções - Hamburgueria Calabreso</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Promocoes.css">
+    <link rel="stylesheet" href="/static/css/Carrinho.css">
+    <link rel="stylesheet" href="/static/css/Status.css">
+</head>
+<body>
+
+    <header id="cabecalho">
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+
+        <nav id="navegacao">
+
+            <button id="botaoMenu" onclick="window.location.href='/menu'">
+                Menu
+            </button>
+
+            <button id="botaoCarrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+
+            <div id="statusLoja">
+                <span id="bolinhaStatus"></span>
+                <span id="textoStatus">Aberto</span>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="heroBanner">
+            <div id="heroBannerConteudo">
+                <span class="heroTag">
+                    <i class="fa-solid fa-bolt"></i>
+                    Só por hoje
+                </span>
+                <h1>Promoções <span class="heroDestaque">Imperdíveis</span></h1>
+                <p>Aproveite nossas ofertas exclusivas e monte o pedido agora</p>
+                <a href="#promocoesGrid" class="heroBotao">
+                    <i class="fa-solid fa-arrow-down"></i>
+                    Ver todas as promoções
+                </a>
+            </div>
+            <div id="heroBannerDecoracao">
+                <div class="circuloDecorativo circulo1"></div>
+                <div class="circuloDecorativo circulo2"></div>
+                <div class="circuloDecorativo circulo3"></div>
+            </div>
+        </section>
+
+        <section id="contadorSection">
+            <div id="contadorContainer">
+                <div class="contadorItem">
+                    <i class="fa-solid fa-tags"></i>
+                    <span class="contadorNumero" data-alvo="12">0</span>
+                    <span class="contadorLabel">Promoções ativas</span>
+                </div>
+                <div class="contadorDivisor"></div>
+                <div class="contadorItem">
+                    <i class="fa-solid fa-percent"></i>
+                    <span class="contadorNumero" data-alvo="25">0</span>
+                    <span class="contadorLabel">Até % de desconto</span>
+                </div>
+                <div class="contadorDivisor"></div>
+                <div class="contadorItem">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span class="contadorNumero" data-alvo="2">0</span>
+                    <span class="contadorLabel">Com frete grátis</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="promocoesGrid">
+
+            <div id="promocoesContainer">
+
+                <div id="cabecalhoPromocoes">
+                    <h2>Todas as Promoções</h2>
+                    <p>Ofertas selecionadas para você hoje</p>
+                </div>
+
+                <div id="filtrosPromocoes">
+                    <button class="btnFiltroPromo ativo" data-filtro="todos">Todos</button>
+                    <button class="btnFiltroPromo" data-filtro="desconto">
+                        <i class="fa-solid fa-percent"></i> Desconto
+                    </button>
+                    <button class="btnFiltroPromo" data-filtro="frete">
+                        <i class="fa-solid fa-truck-fast"></i> Frete Grátis
+                    </button>
+                    <button class="btnFiltroPromo" data-filtro="leve2">
+                        <i class="fa-solid fa-gift"></i> Leve 2 Pague 1
+                    </button>
+                    <button class="btnFiltroPromo" data-filtro="combo">
+                        <i class="fa-solid fa-box-open"></i> Combo
+                    </button>
+                </div>
+
+                <div id="gradePromocoes">
+
+                    <div id="loadingPromocoes" class="escondido">
+                        <i class="fa-solid fa-spinner fa-spin"></i>
+                        <span>Carregando promoções...</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <template id="templateCardPromo">
+        <div class="cardPromo">
+            <div class="cardPromo-topo">
+                <span class="cardPromo-tag"></span>
+                <div class="cardPromo-imagem">
+                    <i class="cardPromo-icone"></i>
+                </div>
+            </div>
+            <div class="cardPromo-corpo">
+                <h3 class="cardPromo-nome"></h3>
+                <p class="cardPromo-descricao"></p>
+                <div class="cardPromo-rodape">
+                    <div class="cardPromo-precos">
+                        <span class="cardPromo-precoAntigo"></span>
+                        <span class="cardPromo-precoAtual"></span>
+                    </div>
+                    <button class="btnAdicionarPromo" title="Adicionar ao carrinho">
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <footer id="rodapePrincipal">
+
+        <div class="efeito-luz"></div>
+
+        <div class="rodapeContainer">
+
+            <div class="rodapeColuna">
+                <h2 class="rodapeLogo">🍔 CALABRESO</h2>
+                <p class="rodapeTexto">
+                    Hambúrgueres artesanais preparados com ingredientes selecionados,
+                    carnes de primeira e muito sabor.
+                </p>
+                <div class="redesSociais">
+                    <a href="https://www.instagram.com/lucas_c_d1/" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/lucas-da-cruz-dias" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Lucaslcz" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://lucaslcz.github.io/PORTIFOLIO/" class="iconeSocial" target="_blank">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Acesso Rápido</h3>
+                <a href="/">Home</a>
+                <a href="/cardapio">Cardápio</a>
+                <a href="/promocoes">Promoções</a>
+                <a href="/login">Login</a>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Horários</h3>
+                <p>Seg - Qui: 18h às 23h</p>
+                <p>Sex - Sáb: 18h às 01h</p>
+                <p>Domingo: 18h às 23h</p>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Contato</h3>
+                <p>📞 (31) 99999-9999</p>
+                <p>📍 Contagem - MG</p>
+                <p>✉ contato@calabreso.com</p>
+            </div>
+
+        </div>
+
+        <div class="rodapeInferior">
+            <p>© 2026 Hamburgueria Calabreso • Todos os direitos reservados</p>
+        </div>
+
+    </footer>
+
+    <div id="overlayCarrinho"></div>
+
+    <aside id="painelCarrinho">
+        <div id="cabecalhoCarrinho">
+            <h2>Carrinho</h2>
+
+            <button id="fecharCarrinho">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="conteudoCarrinho">
+            <p id="mensagemCarrinhoVazio" class="escondido">
+                Seu carrinho está vazio.
+            </p>
+        </div>
+
+        <div id="rodapeCarrinho">
+            <div id="linhaTotal">
+                <span>Total</span>
+                <span id="valorTotal">R$ 0,00</span>
+            </div>
+            <a href="/finalizar" id="btnFinalizarCarrinho">
+                <i class="fa-solid fa-bag-shopping"></i> Finalizar Compra
+            </a>
+        </div>
+    </aside>
+
+    <div id="overlayFechado"></div>
+
+    <div id="popupFechado">
+        <div id="iconeFechado">
+            <i class="fa-solid fa-store-slash"></i>
+        </div>
+        <h2 id="tituloFechado">Estabelecimento Fechado</h2>
+        <p id="subtituloFechado">No momento estamos fechados. Volte mais tarde!</p>
+        <button id="btnVoltarFechado" onclick="window.location.href='/menu'">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao Menu
+        </button>
+    </div>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Promocoes.js"></script>
+    <script src="/static/js/Carrinho.js"></script>
+    <script src="/static/js/Status.js"></script>
+</body>
+</html>

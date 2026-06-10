@@ -1,0 +1,316 @@
+#overlayConfiguracoes {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 9000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+#overlayConfiguracoes.visivel {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#modalConfiguracoes {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.97);
+    width: 90%;
+    max-width: 680px;
+    max-height: 85vh;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 24px;
+    z-index: 9001;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+#modalConfiguracoes.visivel {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* HEADER */
+#headerModalConfiguracoes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    border-bottom: 1px solid #222;
+    flex-shrink: 0;
+}
+
+#tituloModalConfiguracoes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#iconeConfiguracoes {
+    font-size: 1.4rem;
+}
+
+#headerModalConfiguracoes h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#fecharModalConfiguracoes {
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #2a2a2a;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#fecharModalConfiguracoes:hover {
+    background: #3a3a3a;
+    transform: scale(1.08);
+}
+
+/* PERFIL */
+#perfilModal {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 28px;
+    background: linear-gradient(135deg, rgba(76,175,80,0.1), rgba(255,213,79,0.05));
+    border-bottom: 1px solid #1e1e1e;
+    flex-shrink: 0;
+}
+
+#avatarModal {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4caf50, #00e676);
+    color: #121212;
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#infoPerfilModal {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#nomePerfilModal {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+#tagPerfilModal {
+    color: #777;
+    font-size: 0.82rem;
+}
+
+/* CORPO SCROLLÁVEL */
+#corpoModalConfiguracoes {
+    overflow-y: auto;
+    flex: 1;
+    padding: 8px 0;
+}
+
+#corpoModalConfiguracoes::-webkit-scrollbar {
+    width: 4px;
+}
+
+#corpoModalConfiguracoes::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#corpoModalConfiguracoes::-webkit-scrollbar-thumb {
+    background: #2f2f2f;
+    border-radius: 4px;
+}
+
+/* SEÇÕES */
+.secaoModal {
+    padding: 20px 28px 8px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.tituloSecaoModal {
+    display: block;
+    color: #555;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+/* ITENS */
+.itemModal {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 12px;
+    border-radius: 14px;
+    gap: 16px;
+    margin-bottom: 4px;
+    transition: background 0.2s;
+}
+
+.itemModalClicavel {
+    cursor: pointer;
+}
+
+.itemModalClicavel:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.itemModalPerigo:hover {
+    background: rgba(255, 82, 82, 0.07) !important;
+}
+
+.itemModalPerigo .itemModalNome {
+    color: #ff5252 !important;
+}
+
+.itemModalEsquerda {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.itemModalIcone {
+    font-size: 1.4rem;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.itemModalTexto {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.itemModalNome {
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.itemModalDesc {
+    color: #555;
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.setaModal {
+    color: #3a3a3a;
+    font-size: 1.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+/* SELETOR DE TEMA */
+#seletorTema {
+    display: flex;
+    background: #1e1e1e;
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.btnTema {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #555;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.btnTema.ativo {
+    background: #2a2a2a;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* TOGGLE */
+.toggle {
+    position: relative;
+    width: 48px;
+    height: 27px;
+    flex-shrink: 0;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.sliderToggle {
+    position: absolute;
+    inset: 0;
+    background: #2a2a2a;
+    border-radius: 27px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sliderToggle::before {
+    content: '';
+    position: absolute;
+    width: 21px;
+    height: 21px;
+    left: 3px;
+    top: 3px;
+    background: #555;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.toggle input:checked + .sliderToggle {
+    background: rgba(76, 175, 80, 0.25);
+}
+
+.toggle input:checked + .sliderToggle::before {
+    background: #4caf50;
+    transform: translateX(21px);
+}
+
+/* RODAPÉ DO MODAL */
+#rodapeModalConfiguracoes {
+    padding: 16px 28px;
+    border-top: 1px solid #1e1e1e;
+    color: #2f2f2f;
+    font-size: 0.8rem;
+    text-align: center;
+    flex-shrink: 0;
+}

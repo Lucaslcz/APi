@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburgueria Calabreso</title>
+
+    <link rel="shortcut icon" href="/static/img/cadastro.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <button id="botaoVoltar">
+        ← Inicio
+    </button>
+
+    <div id="efeitoParticulas"></div>
+        <div id="cartaoCadastro">
+            <div id="logoHamburgueria">
+            🍔
+        </div>
+
+        <h1 id="tituloHamburgueria">
+            Hamburgueria Calabreso
+        </h1>
+
+        <p id="subtituloCadastro">
+            Crie sua conta e faça seus pedidos
+        </p>
+
+        <form id="formularioCadastro" action="cadastrar" method="POST">
+
+            <div class="campoCadastro">
+                <i class="fa-solid fa-user"></i>
+                <input name="nome" id="nomeCliente" type="text" placeholder="Nome completo">
+            </div>
+
+            <div class="campoCadastro">
+                <i class="fa-solid fa-envelope"></i>
+                <input name="email" id="emailCliente" type="email" placeholder="E-mail">
+            </div>
+
+            <div class="campoCadastro">
+                <i class="fa-solid fa-lock"></i>
+                <input name="senha" id="senhaCliente" type="password" placeholder="Senha">
+                <span id="visualizarSenha">
+                    🙈
+                </span>
+            </div>
+
+            <div class="campoCadastro">
+                <i class="fa-solid fa-lock"></i>
+                <input id="confirmacaoSenhaCliente" type="password" placeholder="Confirmar senha">
+                <span id="visualizarConfirmacaoSenha">
+                    🙈
+                </span>
+            </div>
+
+            <button id="botaoCriarConta" type="submit">
+                Criar Conta
+            </button>
+
+            <div id="mensagemSucesso" style="display:none;">
+                ✅ Cadastro realizado com sucesso!
+            </div>
+
+        </form>
+
+        <div id="areaLogin">
+            Já possui conta?
+            <a id="botaoLogar" href="/login">
+                Entrar
+            </a>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cadastro.js') }}"></script>
+
+</body>
+</html>

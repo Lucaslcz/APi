@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Histórico de Pedidos — Hamburgueria Calabreso</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Historico.css">
+</head>
+<body>
+
+    <canvas id="efeitoParticulas"></canvas>
+
+    <header id="cabecalho">
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+        <nav id="navegacao">
+            <button id="botaoVoltar">← Voltar</button>
+        </nav>
+    </header>
+
+    <main id="mainHistorico">
+
+        <div id="cabecalhoHistorico">
+            <div id="iconeTituloHistorico">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <div>
+                <h1 id="tituloHistorico">Histórico de Pedidos</h1>
+                <p id="subtituloHistorico">Todos os seus pedidos em um só lugar</p>
+            </div>
+        </div>
+
+        <div id="statsHistorico">
+            <div class="statCard">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <div>
+                    <span class="statValor" id="statTotalPedidos">0</span>
+                    <span class="statLabel">Pedidos</span>
+                </div>
+            </div>
+            <div class="statCard">
+                <i class="fa-solid fa-calendar-day"></i>
+                <div>
+                    <span class="statValor" id="statUltimoPedido">—</span>
+                    <span class="statLabel">Último pedido</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="filtrosHistorico">
+            <div id="campoBusca">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="inputBusca" placeholder="Buscar por pedido, item ou endereço...">
+            </div>
+        </div>
+
+        <div id="listaHistorico">
+            <div id="loadingHistorico">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <span>Carregando histórico...</span>
+            </div>
+            <div id="historicoVazio" class="escondido">
+                <i class="fa-solid fa-bowl-food"></i>
+                <p>Você ainda não fez nenhum pedido.</p>
+                <a href="/cardapio" id="btnIrCardapio">Ver cardápio</a>
+            </div>
+            <div id="erroHistorico" class="escondido">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Não foi possível carregar o histórico.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <template id="templateCard">
+        <div class="cardHistorico">
+            <div class="cardHistorico-topo">
+                <div class="cardHistorico-codigo">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span class="codigoPedido"></span>
+                </div>
+                <span class="cardHistorico-data"></span>
+            </div>
+            <div class="cardHistorico-descricao">
+                <i class="fa-solid fa-burger"></i>
+                <p class="descricaoPedido"></p>
+            </div>
+            <div class="cardHistorico-endereco">
+                <i class="fa-solid fa-location-dot"></i>
+                <span class="enderecoPedido"></span>
+            </div>
+            <div class="cardHistorico-pagamento">
+                <i class="fa-solid fa-credit-card"></i>
+                <span class="pagamentoPedido"></span>
+            </div>
+        </div>
+    </template>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Historico.js"></script>
+</body>
+</html>

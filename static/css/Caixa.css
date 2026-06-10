@@ -1,0 +1,323 @@
+#mainCaixa {
+    padding: 50px 40px;
+    max-width: 1400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+/* CABEÇALHO */
+#cabecalhoCaixa {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#iconeTituloCaixa {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #ffa500, #ff6b00);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #000;
+    box-shadow: 0 0 25px rgba(255, 165, 0, 0.4);
+    flex-shrink: 0;
+}
+
+#tituloCaixa {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+#subtituloCaixa {
+    color: #9c9c9c;
+    font-size: 1rem;
+    margin-top: 4px;
+}
+
+/* CONTADORES */
+#contadoresPagamento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.cardContador {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 18px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.cardContador:hover {
+    transform: translateY(-4px);
+}
+
+#cardPix        { border-top: 3px solid #00b4d8; }
+#cardCredito    { border-top: 3px solid #ffa500; }
+#cardBoleto     { border-top: 3px solid #00e676; }
+
+#cardPix:hover      { border-color: #00b4d8; box-shadow: 0 8px 25px rgba(0,180,216,.15); }
+#cardCredito:hover  { border-color: #ffa500; box-shadow: 0 8px 25px rgba(255,165,0,.15); }
+#cardBoleto:hover   { border-color: #00e676; box-shadow: 0 8px 25px rgba(0,230,118,.15); }
+
+.contadorIcone {
+    width: 55px;
+    height: 55px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+#cardPix    .contadorIcone { background: rgba(0,180,216,.15);  color: #00b4d8; }
+#cardCredito .contadorIcone { background: rgba(255,165,0,.15); color: #ffa500; }
+#cardBoleto .contadorIcone { background: rgba(0,230,118,.15);  color: #00e676; }
+
+.contadorInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contadorNumero {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.contadorLabel {
+    font-size: 0.85rem;
+    color: #9c9c9c;
+    font-weight: 500;
+}
+
+.contadorValor {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffa500;
+    margin-top: 4px;
+}
+
+/* TOTAL GERAL */
+#cardTotalGeral {
+    background: linear-gradient(135deg, #1a1a1a, #111);
+    border: 1px solid #ffa500;
+    border-radius: 18px;
+    padding: 28px 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 30px rgba(255, 165, 0, 0.1);
+}
+
+#totalGeralEsquerda {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#totalGeralEsquerda i {
+    font-size: 1.8rem;
+    color: #ffa500;
+}
+
+#valorTotalGeral {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #00e676;
+}
+
+/* HISTÓRICO */
+#secaoHistoricoCaixa {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#cabecalhoHistoricoCaixa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #2a2a2a;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#cabecalhoHistoricoCaixa h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#cabecalhoHistoricoCaixa h2 i {
+    color: #ffa500;
+}
+
+#campoBuscaCaixa {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 10px 16px;
+    min-width: 280px;
+    transition: border-color 0.3s;
+}
+
+#campoBuscaCaixa:focus-within {
+    border-color: #ffa500;
+}
+
+#campoBuscaCaixa i {
+    color: #666;
+}
+
+#inputBuscaCaixa {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+#inputBuscaCaixa::placeholder {
+    color: #555;
+}
+
+/* LOADING E ERRO */
+#loadingCaixa,
+#erroCaixa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px;
+    color: #666;
+    font-size: 1rem;
+}
+
+#loadingCaixa i,
+#erroCaixa i {
+    font-size: 2rem;
+    color: #ffa500;
+}
+
+/* TABELA */
+#tabelaPedidos {
+    overflow-x: auto;
+}
+
+#tabelaHistorico {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabelaHistorico thead tr {
+    background: #111;
+    border-bottom: 2px solid #ffa500;
+}
+
+#tabelaHistorico th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ffa500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+#tabelaHistorico tbody tr {
+    border-bottom: 1px solid #222;
+    transition: background 0.2s;
+}
+
+#tabelaHistorico tbody tr:hover {
+    background: rgba(255, 165, 0, 0.05);
+}
+
+#tabelaHistorico td {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    color: #cccccc;
+    vertical-align: middle;
+}
+
+.tdDescricao {
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tdValor {
+    color: #00e676 !important;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.codigoBadge {
+    background: rgba(255, 165, 0, 0.12);
+    color: #ffa500;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.pagamentoBadge {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.pagamento-pix     { background: rgba(0,180,216,.15);  color: #00b4d8; }
+.pagamento-credito { background: rgba(255,165,0,.15);  color: #ffa500; }
+.pagamento-boleto  { background: rgba(0,230,118,.15);  color: #00e676; }
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+    #contadoresPagamento {
+        grid-template-columns: 1fr;
+    }
+
+    #mainCaixa {
+        padding: 30px 20px;
+    }
+
+    #cabecalhoHistoricoCaixa {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #campoBuscaCaixa {
+        min-width: 100%;
+    }
+}

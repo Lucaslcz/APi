@@ -1,0 +1,536 @@
+/* BANNER */
+#heroBanner {
+    position: relative;
+    min-height: 420px;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a0d 50%, #0d1a0d 100%);
+    display: flex;
+    align-items: center;
+    padding: 80px 10%;
+    overflow: hidden;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+#heroBannerConteudo {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.heroTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 165, 0, 0.15);
+    border: 1px solid rgba(255, 165, 0, 0.4);
+    color: #ffa500;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    width: fit-content;
+}
+
+#heroBannerConteudo h1 {
+    color: #ffffff;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.heroDestaque {
+    color: #ffa500;
+    position: relative;
+}
+
+.heroDestaque::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #ffa500, #00e676);
+    border-radius: 2px;
+}
+
+#heroBannerConteudo p {
+    color: #bdbdbd;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.heroBotao {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    background: linear-gradient(135deg, #ffa500, #ff6b00);
+    color: #111111;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border-radius: 50px;
+    width: fit-content;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 25px rgba(255, 165, 0, 0.3);
+}
+
+.heroBotao:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 165, 0, 0.5);
+}
+
+/* Círculos decorativos do hero */
+#heroBannerDecoracao {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.circuloDecorativo {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 165, 0, 0.08);
+}
+
+.circulo1 {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(255, 165, 0, 0.06) 0%, transparent 70%);
+}
+
+.circulo2 {
+    width: 250px;
+    height: 250px;
+    bottom: -80px;
+    right: 200px;
+    border-color: rgba(0, 230, 118, 0.08);
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.04) 0%, transparent 70%);
+}
+
+.circulo3 {
+    width: 150px;
+    height: 150px;
+    top: 40px;
+    right: 350px;
+    border-color: rgba(255, 165, 0, 0.06);
+}
+
+
+/* SEÇÃO DE CONTADORES */
+#contadorSection {
+    background: #0d0d0d;
+    border-bottom: 1px solid #1f1f1f;
+    padding: 40px 20px;
+}
+
+#contadorContainer {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+}
+
+.contadorItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 20px;
+}
+
+.contadorItem i {
+    font-size: 1.5rem;
+    color: #ffa500;
+    margin-bottom: 4px;
+}
+
+.contadorNumero {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.contadorLabel {
+    color: #666666;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.contadorDivisor {
+    width: 1px;
+    height: 60px;
+    background: #2a2a2a;
+}
+
+
+/* SEÇÃO DE PROMOÇÕES */
+#promocoesGrid {
+    background: #111111;
+    padding: 80px 40px;
+}
+
+#promocoesContainer {
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+#cabecalhoPromocoes {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#cabecalhoPromocoes h2 {
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+#cabecalhoPromocoes h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 4px;
+    background: #ffa500;
+    border-radius: 2px;
+}
+
+#cabecalhoPromocoes p {
+    color: #888888;
+    font-size: 1rem;
+    margin-top: 20px;
+}
+
+
+/* FILTROS */
+#filtrosPromocoes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 50px;
+}
+
+.btnFiltroPromo {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 20px;
+    border: 1px solid #2a2a2a;
+    border-radius: 50px;
+    background: transparent;
+    color: #bdbdbd;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnFiltroPromo:hover {
+    border-color: #ffa500;
+    color: #ffa500;
+    transform: translateY(-2px);
+}
+
+.btnFiltroPromo.ativo {
+    background: #ffa500;
+    border-color: #ffa500;
+    color: #111111;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+}
+
+
+/* GRADE E CARDS DE PROMOÇÃO */
+#gradePromocoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+#loadingPromocoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 80px;
+    color: #666;
+    font-size: 1.1rem;
+    grid-column: 1 / -1;
+}
+
+#loadingPromocoes i {
+    font-size: 2rem;
+    color: #ffa500;
+}
+
+.escondido {
+    display: none !important;
+}
+
+.cardPromo {
+    background: linear-gradient(145deg, #1b1b1b, #141414);
+    border: 1px solid #2a2a2a;
+    border-radius: 20px;
+    overflow: hidden;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    animation: entrarCard 0.4s ease both;
+}
+
+@keyframes entrarCard {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cardPromo:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #ffa500;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 165, 0, 0.12);
+}
+
+/* Topo do card com ícone e tag */
+.cardPromo-topo {
+    position: relative;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.cardPromo-topo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.08), rgba(0, 230, 118, 0.05));
+}
+
+.cardPromo-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+
+.tag-desconto {
+    background: #ffa500;
+    color: #111111;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
+}
+
+.tag-frete {
+    background: #00e676;
+    color: #111111;
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+}
+
+.tag-leve2 {
+    background: linear-gradient(135deg, #9c27b0, #e91e63);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+}
+
+.tag-combo {
+    background: linear-gradient(135deg, #2196f3, #00bcd4);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+}
+
+.cardPromo-icone {
+    font-size: 4rem;
+    opacity: 0.3;
+    transition: all 0.4s ease;
+}
+
+.cardPromo:hover .cardPromo-icone {
+    opacity: 0.6;
+    transform: scale(1.15) rotate(8deg);
+}
+
+/* Corpo do card */
+.cardPromo-corpo {
+    padding: 24px;
+}
+
+.cardPromo-nome {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.cardPromo-descricao {
+    color: #888888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 22px;
+    min-height: 54px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cardPromo-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.cardPromo-precos {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cardPromo-precoAntigo {
+    color: #555555;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: line-through;
+}
+
+.cardPromo-precoAtual {
+    color: #ffa500;
+    font-size: 1.7rem;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.btnAdicionarPromo {
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #00e676;
+    color: #111111;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.btnAdicionarPromo:hover {
+    background: #ffa500;
+    transform: scale(1.15) rotate(15deg);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+}
+
+.btnAdicionarPromo.adicionado {
+    background: #00e676;
+    transform: scale(1.1);
+}
+
+
+/* BOTÃO INÍCIO */
+#botaoMenu {
+    padding: 10px 18px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+#botaoMenu:hover {
+    border-color: #ffa500;
+    color: #ffa500;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+
+    #heroBanner {
+        padding: 60px 25px;
+        min-height: auto;
+    }
+
+    #heroBannerConteudo h1 {
+        font-size: 2.4rem;
+    }
+
+    #contadorContainer {
+        gap: 0;
+    }
+
+    .contadorNumero {
+        font-size: 1.8rem;
+    }
+
+    #promocoesGrid {
+        padding: 50px 20px;
+    }
+
+    #cabecalhoPromocoes h2 {
+        font-size: 1.8rem;
+    }
+
+    #gradePromocoes {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+
+    #heroBannerConteudo h1 {
+        font-size: 2rem;
+    }
+
+    .contadorDivisor {
+        display: none;
+    }
+
+    #contadorContainer {
+        flex-wrap: wrap;
+    }
+
+    .btnFiltroPromo span {
+        display: none;
+    }
+}

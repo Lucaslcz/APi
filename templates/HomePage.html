@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Hamburgueria Calabreso</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/HomePage.css">
+    <link rel="stylesheet" href="/static/css/Carrinho.css">
+    <link rel="stylesheet" href="/static/css/Configuracoes.css">
+    <link rel="stylesheet" href="/static/css/PedidoStatus.css">
+</head>
+<body>
+
+    <header id="cabecalho">
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+
+        <div id="badgePedidoAtivo" style="display:none;">
+            <div id="badgePedidoInner">
+                <span id="badgeIconStatus"></span>
+                <div id="badgeTextos">
+                    <span id="badgeLabel">Pedido #<strong id="badgeCodigo"></strong></span>
+                    <span id="badgeStatus"></span>
+                </div>
+            </div>
+        </div>
+
+        <nav id="navegacao">
+
+            <button id="botaoMenu">Menu</button>
+
+            <button id="botaoCarrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+
+            <div id="statusLoja">
+                <span id="bolinhaStatus"></span>
+                <span id="textoStatus">Aberto</span>
+            </div>
+
+            <button id="botaoLogin">Login</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="banner-principal">
+            <div class="banner-conteudo">
+                <span class="badge-tag">O MAIS SUCULENTO DA REGIÃO</span>
+                
+                <h2 class="banner-titulo">HAMBURGUERIA<br>CALABRESO</h2>
+                
+                <p class="banner-descricao">
+                    O verdadeiro sabor do hambúrguer artesanal com aquele toque especial que você já conhece. 
+                    Ingredientes selecionados, variedade de opções e carnes de primeira!
+                </p>
+                
+                <div class="banner-botoes">
+                    <a href="/cardapio" class="btn-banner btn-laranja">VER O CARDÁPIO</a>
+                    <a href="/promocoes" class="btn-banner btn-verde">PROMOÇÕES DO DIA</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao-promocoes">
+            <div class="promocoes-container">
+                <h2 class="promocoes-titulo">Principais Promoções de Hoje</h2>
+                
+                <div class="promocoes-grid">
+                    <div class="card-promocao" data-tilt>
+                        <div class="tag-desconto">20% OFF</div>
+                        <div class="wrapper-imagem">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" alt="Burger">
+                        </div>
+                        <div class="card-info">
+                            <h3>Combo Brabo Supremo</h3>
+                            <p>Duas carnes de 100g cobertos com cheddar cremoso, farofa de bacon crocante e uma maionese especial da casa.</p>
+                            <div class="card-valores">
+                                <span class="preco-antigo">R$ 49,90</span>
+                                <span class="preco-atual">R$ 39,90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-promocao" data-tilt>
+                        <div class="tag-desconto">Frete Grátis</div>
+                        <div class="wrapper-imagem">
+                            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=500&q=80" alt="Burger">
+                        </div>
+                        <div class="card-info">
+                            <h3>Cheddar Flood Duplo</h3>
+                            <p>Dois hambúrgueres estilo smash, com muita salada de (alface freca, tomate e cebola) e dois refrigerantes gelados.</p>
+                            <div class="card-valores">
+                                <span class="preco-antigo">R$ 38,90</span>
+                                <span class="preco-atual">R$ 32,90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-promocao" data-tilt>
+                        <div class="tag-desconto">Leve 2 Pague 1</div>
+                        <div class="wrapper-imagem">
+                            <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=500&q=80" alt="Burger">
+                        </div>
+                        <div class="card-info">
+                            <h3>Double Smash Classic</h3>
+                            <p>Hambúrguer artesanal de costela, salada de alface fresca e uma porção de batata rústica crocante.</p>
+                            <div class="card-valores">
+                                <span class="preco-antigo">R$ 59,80</span>
+                                <span class="preco-atual">R$ 29,90</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wrapper-botao-ver-todas">
+                    <a href="/promocoes" class="btn-ver-todas">Ver Todas as Promoções</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="secaoHistoria">
+            <div class="historiaContainer">
+                <div class="historiaTexto">
+                    <span class="historiaSubtitulo">Nossa História</span>
+
+                    <h2 class="historiaTitulo">
+                        Hamburgueria Calabreso
+                    </h2>
+
+                    <p>
+                        Tudo começou em 2020, quando um grupo de amigos apaixonados por
+                        hambúrgueres decidiu transformar os encontros de fim de semana
+                        em algo maior. O que era apenas uma churrasqueira improvisada e
+                        receitas feitas por diversão rapidamente conquistou vizinhos,
+                        amigos e toda a região.
+                    </p>
+                    <p>
+                        Com ingredientes selecionados, carnes de primeira e muito capricho,
+                        a Hamburgueria Calabreso nasceu com a missão de entregar sabor,
+                        qualidade e uma experiência inesquecível para cada cliente.
+                    </p>
+                    <p>
+                        Hoje continuamos com o mesmo objetivo do primeiro dia:
+                        preparar hambúrgueres incríveis e fazer cada pedido chegar
+                        com a qualidade que gostaríamos de receber.
+                    </p>
+                </div>
+
+                <div class="historiaImagem">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80" alt="Hamburgueria Calabreso">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="rodapePrincipal">
+
+        <div class="efeito-luz"></div>
+
+        <div class="rodapeContainer">
+
+            <div class="rodapeColuna">
+                <h2 class="rodapeLogo">🍔 CALABRESO</h2>
+
+                <p class="rodapeTexto">
+                    Hambúrgueres artesanais preparados com ingredientes selecionados,
+                    carnes de primeira e muito sabor.
+                </p>
+
+                <div class="redesSociais">
+                    <a href="https://www.instagram.com/lucas_c_d1/" class="iconeSocial" title="Instagram" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/lucas-da-cruz-dias" class="iconeSocial" title="LinkedIn" target="_blank">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                    <a href="https://github.com/Lucaslcz" class="iconeSocial" title="GitHub" target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <a href="https://lucaslcz.github.io/PORTIFOLIO/" class="iconeSocial" title="Portfólio" target="_blank">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Acesso Rápidos</h3>
+
+                <a href="/">Home</a>
+                <a href="cardapio">Cardápio</a>
+                <a href="promocoes">Promoções</a>
+                <a href="login">Login</a>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Horários</h3>
+
+                <p>Seg - Qui: 18h às 23h</p>
+                <p>Sex - Sáb: 18h às 01h</p>
+                <p>Domingo: 18h às 23h</p>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Contato</h3>
+
+                <p>📞 (31) 99999-9999</p>
+                <p>📍 Contagem - MG</p>
+                <p>✉ contato@calabreso.com</p>
+            </div>
+
+        </div>
+
+        <div class="rodapeInferior">
+            <p>© 2026 Hamburgueria Calabreso • Todos os direitos reservados</p>
+        </div>
+
+    </footer>
+
+
+    <div id="overlayCarrinho"></div>
+
+    <aside id="painelCarrinho">
+        <div id="cabecalhoCarrinho">
+            <h2>Carrinho</h2>
+
+            <button id="fecharCarrinho">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="conteudoCarrinho">
+            <p id="mensagemCarrinhoVazio" class="escondido">
+                Seu carrinho está vazio.
+            </p>
+        </div>
+
+        <div id="rodapeCarrinho">
+            <div id="linhaTotal">
+                <span>Total</span>
+                <span id="valorTotal">R$ 0,00</span>
+            </div>
+            <a href="/finalizar" id="btnFinalizarCarrinho">
+                <i class="fa-solid fa-bag-shopping"></i> Finalizar Compra
+            </a>
+        </div>
+    </aside>
+
+
+    <div id="overlayConfiguracoes"></div>
+
+    <div id="modalConfiguracoes">
+
+        <div id="headerModalConfiguracoes">
+            <div id="tituloModalConfiguracoes">
+                <span id="iconeConfiguracoes">⚙️</span>
+                <h2>Configurações</h2>
+            </div>
+            <button id="fecharModalConfiguracoes">✕</button>
+        </div>
+
+        <div id="perfilModal">
+            <div id="avatarModal"></div>
+            <div id="infoPerfilModal">
+                <span id="nomePerfilModal"></span>
+                <span id="tagPerfilModal">Membro Calabreso 🍔</span>
+            </div>
+        </div>
+
+        <div id="corpoModalConfiguracoes">
+
+            <div class="secaoModal">
+                <span class="tituloSecaoModal">🎨 Aparência</span>
+
+                <div class="itemModal">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">🌙</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Tema</span>
+                            <span class="itemModalDesc">Alterne entre o modo escuro e claro da interface</span>
+                        </div>
+                    </div>
+                    <div id="seletorTema">
+                        <button class="btnTema ativo" data-tema="escuro">🌙 Escuro</button>
+                        <button class="btnTema" data-tema="claro">☀️ Claro</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secaoModal">
+                <span class="tituloSecaoModal">🔔 Notificações</span>
+
+                <div class="itemModal">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">📣</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Promoções e ofertas</span>
+                            <span class="itemModalDesc">Receba alertas sobre promoções e ofertas especiais do dia</span>
+                        </div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="togglePromocoes" checked>
+                        <span class="sliderToggle"></span>
+                    </label>
+                </div>
+
+                <div class="itemModal">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">🛵</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Status do pedido</span>
+                            <span class="itemModalDesc">Acompanhe em tempo real a situação da sua entrega</span>
+                        </div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="togglePedido" checked>
+                        <span class="sliderToggle"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="secaoModal">
+                <span class="tituloSecaoModal">🛒 Pedidos</span>
+
+                <div class="itemModal">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">⚡</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Pedido rápido</span>
+                            <span class="itemModalDesc">Repita seu último pedido com apenas um clique</span>
+                        </div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="togglePedidoRapido">
+                        <span class="sliderToggle"></span>
+                    </label>
+                </div>
+
+                <div class="itemModal">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">📍</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Salvar endereço</span>
+                            <span class="itemModalDesc">Guardar endereço de entrega para os próximos pedidos</span>
+                        </div>
+                    </div>
+                    <label class="toggle">
+                        <input type="checkbox" id="toggleEndereco" checked>
+                        <span class="sliderToggle"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="secaoModal">
+                <span class="tituloSecaoModal">🔐 Conta</span>
+
+                <div class="itemModal itemModalClicavel" id="btnAlterarSenha">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">🔑</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Alterar senha</span>
+                            <span class="itemModalDesc">Atualize sua senha de acesso à conta</span>
+                        </div>
+                    </div>
+                    <span class="setaModal">›</span>
+                </div>
+
+                <div class="itemModal itemModalClicavel" id="btnHistoricoPedidos">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">📋</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Histórico de pedidos</span>
+                            <span class="itemModalDesc">Veja todos os pedidos que você já realizou</span>
+                        </div>
+                    </div>
+                    <span class="setaModal">›</span>
+                </div>
+
+                <div class="itemModal itemModalClicavel itemModalPerigo" id="btnExcluirConta">
+                    <div class="itemModalEsquerda">
+                        <span class="itemModalIcone">🗑️</span>
+                        <div class="itemModalTexto">
+                            <span class="itemModalNome">Excluir conta</span>
+                            <span class="itemModalDesc">Remove permanentemente sua conta e todos os seus dados</span>
+                        </div>
+                    </div>
+                    <span class="setaModal">›</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="rodapeModalConfiguracoes">
+            Hamburgueria Calabreso • v1.0
+        </div>
+    </div>
+
+    <div id="overlayStatusPedido">
+        <div id="caixaStatusPedido">
+            <button id="btnFecharStatus"><i class="fa-solid fa-xmark"></i></button>
+            <div id="statusCheckIcon">
+                <svg viewBox="0 0 100 100">
+                    <circle id="statusCirculo" cx="50" cy="50" r="45"/>
+                    <polyline id="statusTick" points="25,52 42,68 75,34"/>
+                </svg>
+            </div>
+            <h2 id="statusTitulo">Pedido em Preparo</h2>
+            <p id="statusSubtitulo"></p>
+            <div id="statusNumeroPedido">
+                <span>Pedido #</span>
+                <strong id="statusCodigoValor"></strong>
+            </div>
+            <div id="statusEtapas">
+                <div class="statusEtaItem" id="setapa0"><div class="statusEtaIcone"><i class="fa-solid fa-check"></i></div><span>Confirmado</span></div>
+                <div class="statusEtaLinha" id="slinha0"></div>
+                <div class="statusEtaItem" id="setapa1"><div class="statusEtaIcone"><i class="fa-solid fa-fire-burner"></i></div><span>Preparando</span></div>
+                <div class="statusEtaLinha" id="slinha1"></div>
+                <div class="statusEtaItem" id="setapa2"><div class="statusEtaIcone"><i class="fa-solid fa-motorcycle"></i></div><span>A caminho</span></div>
+                <div class="statusEtaLinha" id="slinha2"></div>
+                <div class="statusEtaItem" id="setapa3"><div class="statusEtaIcone"><i class="fa-solid fa-house-chimney"></i></div><span>Entregue</span></div>
+            </div>
+            <button id="btnFecharStatusBottom"><i class="fa-solid fa-xmark"></i> Fechar</button>
+        </div>
+    </div>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/HomePage.js"></script>
+    <script src="/static/js/Carrinho.js"></script>
+    <script src="/static/js/Configuracoes.js"></script>
+    <script src="/static/js/PedidoStatus.js"></script>
+</body>
+</html>

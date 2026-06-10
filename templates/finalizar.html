@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Finalizar Compra — Hamburgueria Calabreso</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Finalizar.css">
+    <link rel="stylesheet" href="/static/css/Status.css">
+</head>
+<body>
+
+    <canvas id="efeitoParticulas"></canvas>
+
+    <header id="cabecalho">
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+        <nav id="navegacao">
+            <button id="botaoVoltar">← Voltar</button>
+        </nav>
+    </header>
+
+    <main id="mainFinalizar">
+
+        <div id="barraProgresso">
+            <div class="etapa concluida">
+                <div class="bolhaEtapa"><i class="fa-solid fa-cart-shopping"></i></div>
+                <span>Carrinho</span>
+            </div>
+            <div class="linhaEtapa concluida"></div>
+            <div class="etapa ativa">
+                <div class="bolhaEtapa"><i class="fa-solid fa-credit-card"></i></div>
+                <span>Pagamento</span>
+            </div>
+            <div class="linhaEtapa"></div>
+            <div class="etapa" id="etapaConfirmacao">
+                <div class="bolhaEtapa"><i class="fa-solid fa-check"></i></div>
+                <span>Confirmação</span>
+            </div>
+        </div>
+
+        <div id="layoutFinalizar">
+
+            <section id="resumoPedido">
+                <div class="secaoTitulo">
+                    <i class="fa-solid fa-receipt"></i>
+                    <h2>Resumo do Pedido</h2>
+                </div>
+
+                <div id="listaItensPedido"></div>
+
+                <div id="divisorResumo"></div>
+
+                <div id="totaisResumo">
+                    <div class="linhaTotal">
+                        <span>Subtotal</span>
+                        <span id="valorSubtotal">R$ 119,70</span>
+                    </div>
+                    <div class="linhaTotal">
+                        <span>Taxa de entrega</span>
+                        <span id="valorEntrega" class="verde">Grátis</span>
+                    </div>
+                    <div class="linhaTotal destaque">
+                        <span>Total</span>
+                        <span id="valorTotalFinal">R$ 119,70</span>
+                    </div>
+                </div>
+
+                <div id="blocoEndereco">
+                    <div class="secaoTitulo">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <h3>Endereço de Entrega</h3>
+                    </div>
+                    <div id="camposEndereco">
+                        <input class="inputFinalizar" type="text" placeholder="Rua / Avenida" id="inputRua">
+                        <div class="grupoInput">
+                            <input class="inputFinalizar" type="text" placeholder="Número" id="inputNumero">
+                            <input class="inputFinalizar" type="text" placeholder="Complemento" id="inputComplemento">
+                        </div>
+                        <input class="inputFinalizar" type="text" placeholder="Bairro" id="inputBairro">
+                    </div>
+                </div>
+            </section>
+
+            <section id="secaoPagamento">
+                <div class="secaoTitulo">
+                    <i class="fa-solid fa-lock"></i>
+                    <h2>Forma de Pagamento</h2>
+                </div>
+
+                <div id="abasPagamento">
+                    <button class="abaPagamento ativa" data-metodo="pix">
+                        <i class="fa-brands fa-pix"></i>
+                        <span>PIX</span>
+                    </button>
+                    <button class="abaPagamento" data-metodo="credito">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <span>Crédito</span>
+                    </button>
+                    <button class="abaPagamento" data-metodo="boleto">
+                        <i class="fa-solid fa-barcode"></i>
+                        <span>Boleto</span>
+                    </button>
+                </div>
+
+                <div class="painelPagamento ativo" id="painelPix">
+                    <div class="iconePagamentoGrande">
+                        <div class="circleIcon pix">
+                            <i class="fa-brands fa-pix"></i>
+                        </div>
+                    </div>
+                    <h3 class="tituloPainel">Pagamento via PIX</h3>
+                    <p class="descPainel">Escaneie o QR Code ou acesse o Instagram para obter a chave PIX e confirmar seu pagamento.</p>
+
+                    <div id="qrCodeFake">
+                        <div id="qrInner">
+                            <div class="qrDot" style="--r:0;--c:0"></div>
+                        </div>
+                        <div id="qrLabel">Chave PIX</div>
+                    </div>
+
+                    <div class="chavePix">
+                        <span id="textoChavePix">@lucas_c_d21</span>
+                        <button id="btnCopiarPix" title="Copiar chave"><i class="fa-regular fa-copy"></i></button>
+                    </div>
+
+                    <a href="https://www.instagram.com/lucas_c_d1/" target="_blank" id="btnInstagram" class="btnSocial">
+                        <i class="fa-brands fa-instagram"></i>
+                        Abrir Instagram para pagar
+                    </a>
+
+                    <button class="btnConfirmarPagamento" id="btnConfirmarPix">
+                        <i class="fa-solid fa-check-circle"></i>
+                        Confirmar Pagamento
+                    </button>
+                </div>
+
+                <!-- PAINEL CRÉDITO -->
+                <div class="painelPagamento" id="painelCredito">
+                    <div class="iconePagamentoGrande">
+                        <div class="circleIcon credito">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                    </div>
+                    <h3 class="tituloPainel">Cartão de Crédito</h3>
+                    <p class="descPainel">Insira os dados do seu cartão ou acesse o LinkedIn para processar o pagamento.</p>
+
+                    <div id="cartaoVisual">
+                        <div id="cartaoFrente">
+                            <div id="chipCartao"></div>
+                            <div id="numeroCartao">•••• •••• •••• ••••</div>
+                            <div id="infoCartao">
+                                <span id="nomeCartao">NOME DO TITULAR</span>
+                                <span id="validadeCartao">MM/AA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="camposCartao">
+                        <input class="inputFinalizar" type="text" placeholder="Número do Cartão" id="inputNumCartao" maxlength="19">
+                        <input class="inputFinalizar" type="text" placeholder="Nome no Cartão" id="inputNomeCartao">
+                        <div class="grupoInput">
+                            <input class="inputFinalizar" type="text" placeholder="Validade MM/AA" id="inputValidade" maxlength="5">
+                            <input class="inputFinalizar" type="text" placeholder="CVV" id="inputCvv" maxlength="3">
+                        </div>
+                        <div id="seletorParcelas">
+                            <label>Parcelas</label>
+                            <select id="selectParcelas">
+                                <option value="1">1x de R$ 119,90 sem juros</option>
+                                <option value="2">2x de R$ 59,90 sem juros</option>
+                                <option value="3">3x de R$ 39,90 sem juros</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <a href="https://www.linkedin.com/in/lucas-da-cruz-dias" target="_blank" id="btnLinkedin" class="btnSocial">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        Processar via LinkedIn
+                    </a>
+
+                    <button class="btnConfirmarPagamento" id="btnConfirmarCredito">
+                        <i class="fa-solid fa-lock"></i>
+                        Confirmar Pagamento
+                    </button>
+                </div>
+
+                <!-- PAINEL BOLETO -->
+                <div class="painelPagamento" id="painelBoleto">
+                    <div class="iconePagamentoGrande">
+                        <div class="circleIcon boleto">
+                            <i class="fa-solid fa-barcode"></i>
+                        </div>
+                    </div>
+                    <h3 class="tituloPainel">Boleto Bancário</h3>
+                    <p class="descPainel">Seu boleto será gerado após a confirmação. Acesse o GitHub para visualizar e pagar em qualquer banco.</p>
+
+                    <div id="boletoVisual">
+                        <div class="boletoLinha"></div>
+                        <div class="boletoLinha fino"></div>
+                        <div class="boletoLinha"></div>
+                        <div class="boletoLinha fino"></div>
+                        <div class="boletoLinha largo"></div>
+                        <div class="boletoLinha fino"></div>
+                        <div class="boletoLinha"></div>
+                        <div class="boletoLinha largo"></div>
+                        <div class="boletoLinha fino"></div>
+                        <div class="boletoLinha"></div>
+                    </div>
+
+                    <div id="infoBoleto">
+                        <div class="linhaBoleto">
+                            <span>Vencimento:</span>
+                            <strong id="vencimentoBoleto"></strong>
+                        </div>
+                        <div class="linhaBoleto">
+                            <span>Valor:</span>
+                            <strong>R$ 119,70</strong>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/Lucaslcz" target="_blank" id="btnGithub" class="btnSocial">
+                        <i class="fa-brands fa-github"></i>
+                        Ver boleto no GitHub
+                    </a>
+
+                    <button class="btnConfirmarPagamento" id="btnConfirmarBoleto">
+                        <i class="fa-solid fa-file-invoice"></i>
+                        Confirmar e Gerar Boleto
+                    </button>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- POPUP DE SUCESSO -->
+    <div id="overlayAprovado">
+        <div id="caixaAprovado">
+            <div id="animacaoCheck">
+                <svg id="svgCheck" viewBox="0 0 100 100">
+                    <circle id="circuloCheck" cx="50" cy="50" r="45"/>
+                    <polyline id="tickCheck" points="25,52 42,68 75,34"/>
+                </svg>
+                <div id="particlesBurst"></div>
+            </div>
+            <h2 id="tituloAprovado">Transação Aprovada!</h2>
+            <p id="subtituloAprovado">Seu pedido foi confirmado com sucesso. Prepare-se para o melhor hambúrguer da região! 🍔</p>
+            <div id="numeroPedido">
+                <span>Pedido #</span>
+                <strong id="numPedidoValor"></strong>
+            </div>
+            <div id="etaStatusPedido">
+                <div class="etaItem ativa">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Confirmado</span>
+                </div>
+                <div class="etaLinha"></div>
+                <div class="etaItem">
+                    <i class="fa-solid fa-fire-burner"></i>
+                    <span>Preparando</span>
+                </div>
+                <div class="etaLinha"></div>
+                <div class="etaItem">
+                    <i class="fa-solid fa-motorcycle"></i>
+                    <span>A caminho</span>
+                </div>
+            </div>
+            <button id="btnVoltarInicio">
+                <i class="fa-solid fa-house"></i>
+                Voltar ao Início
+            </button>
+        </div>
+    </div>
+
+    <div id="overlayFechado"></div>
+
+    <div id="popupFechado">
+        <div id="iconeFechado">
+            <i class="fa-solid fa-store-slash"></i>
+        </div>
+        <h2 id="tituloFechado">Estabelecimento Fechado</h2>
+        <p id="subtituloFechado">No momento estamos fechados. Volte mais tarde!</p>
+        <button id="btnVoltarFechado" onclick="window.location.href='/menu'">
+            <i class="fa-solid fa-arrow-left"></i> Voltar ao Menu
+        </button>
+    </div>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Finalizar.js"></script>
+    <script src="/static/js/Status.js"></script>
+</body>
+</html>

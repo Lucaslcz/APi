@@ -1,0 +1,308 @@
+/* OVERLAY */
+#overlayClientes {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#overlayClientes.visivel {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* MODAL */
+#modalClientes {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 85vh;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+#modalClientes.visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%);
+}
+
+/* HEADER DO MODAL */
+#headerModalClientes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    border-bottom: 1px solid #2a2a2a;
+    flex-shrink: 0;
+}
+
+#tituloModalClientes {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+#iconeModalClientes {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #ffa500, #ff6b00);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+    flex-shrink: 0;
+}
+
+#tituloModalClientes h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+#tituloModalClientes p {
+    color: #9c9c9c;
+    font-size: 0.85rem;
+    margin-top: 3px;
+}
+
+#fecharModalClientes {
+    width: 40px;
+    height: 40px;
+    background: #1f1f1f;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    color: #9c9c9c;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#fecharModalClientes:hover {
+    background: #ff4d4d;
+    border-color: #ff4d4d;
+    color: #fff;
+}
+
+/* FILTROS E STATS */
+#filtrosModalClientes {
+    padding: 20px 30px;
+    border-bottom: 1px solid #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+#campoBuscaClientes {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 12px 18px;
+    transition: border-color 0.3s;
+}
+
+#campoBuscaClientes:focus-within {
+    border-color: #ffa500;
+}
+
+#campoBuscaClientes i {
+    color: #555;
+}
+
+#inputBuscaClientes {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-size: 0.95rem;
+    width: 100%;
+}
+
+#inputBuscaClientes::placeholder {
+    color: #444;
+}
+
+#statsClientes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.statClienteBadge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: #1f1f1f;
+    border: 1px solid #2a2a2a;
+    color: #9c9c9c;
+}
+
+.statChefe      { border-color: #ffa500; color: #ffa500; background: rgba(255,165,0,.08); }
+.statFuncionario { border-color: #00b4d8; color: #00b4d8; background: rgba(0,180,216,.08); }
+.statCliente    { border-color: #00e676; color: #00e676; background: rgba(0,230,118,.08); }
+
+/* CORPO DA TABELA */
+#corpoModalClientes {
+    overflow-y: auto;
+    flex: 1;
+}
+
+#loadingClientes,
+#erroClientes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 60px;
+    color: #555;
+    font-size: 1rem;
+}
+
+#loadingClientes i,
+#erroClientes i {
+    font-size: 2rem;
+    color: #ffa500;
+}
+
+/* TABELA */
+#tabelaClientes {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tabelaClientes thead tr {
+    background: #0f0f0f;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+#tabelaClientes th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #ffa500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    border-bottom: 2px solid #ffa500;
+}
+
+#tabelaClientes tbody tr {
+    border-bottom: 1px solid #1f1f1f;
+    transition: background 0.2s;
+}
+
+#tabelaClientes tbody tr:hover {
+    background: rgba(255, 165, 0, 0.04);
+}
+
+#tabelaClientes td {
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    color: #cccccc;
+    vertical-align: middle;
+}
+
+.idBadge {
+    background: rgba(255, 165, 0, 0.1);
+    color: #ffa500;
+    padding: 3px 10px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.nomeCliente {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #ffffff !important;
+}
+
+.avatarCliente {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ffa500, #ff6b00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #000;
+    flex-shrink: 0;
+}
+
+.emailCliente {
+    color: #9c9c9c !important;
+    font-size: 0.85rem !important;
+}
+
+.cargoBadge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.cargo-chefe       { background: rgba(255,165,0,.15);  color: #ffa500; }
+.cargo-funcionario { background: rgba(0,180,216,.15);  color: #00b4d8; }
+.cargo-cliente     { background: rgba(0,230,118,.15);  color: #00e676; }
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+    #modalClientes {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    #headerModalClientes,
+    #filtrosModalClientes {
+        padding: 18px 20px;
+    }
+
+    #tabelaClientes th,
+    #tabelaClientes td {
+        padding: 12px 14px;
+    }
+
+    #statsClientes {
+        gap: 8px;
+    }
+}

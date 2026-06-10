@@ -1,0 +1,395 @@
+/* ── BADGE NO HEADER ── */
+#badgePedidoAtivo {
+    cursor: pointer;
+    margin-left: auto;
+}
+
+#badgePedidoInner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px 8px 12px;
+    border-radius: 50px;
+    border: 1.5px solid #2f2f2f;
+    background: #111;
+    transition: all .3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#badgePedidoInner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.03), transparent);
+    animation: badgeShine 3s linear infinite;
+}
+
+@keyframes badgeShine {
+    from { transform: translateX(-100%); }
+    to   { transform: translateX(100%); }
+}
+
+#badgePedidoAtivo:hover #badgePedidoInner {
+    border-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,.4);
+}
+
+#badgeIconStatus {
+    font-size: 1.2rem;
+    line-height: 1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .4s ease;
+}
+
+/* Cores do ponto de status */
+#badgePedidoAtivo.status-preparando #badgeIconStatus {
+    background: rgba(255, 213, 79, .15);
+    animation: pulsarBadge 1.8s ease-in-out infinite;
+}
+#badgePedidoAtivo.status-preparando #badgeIconStatus::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffd54f;
+    box-shadow: 0 0 8px #ffd54f;
+    display: block;
+}
+
+#badgePedidoAtivo.status-rota #badgeIconStatus {
+    background: rgba(33, 150, 243, .15);
+    animation: pulsarBadge 1.8s ease-in-out infinite;
+}
+#badgePedidoAtivo.status-rota #badgeIconStatus::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2196f3;
+    box-shadow: 0 0 8px #2196f3;
+    display: block;
+}
+
+#badgePedidoAtivo.status-entregue #badgeIconStatus {
+    background: rgba(76, 175, 80, .15);
+}
+#badgePedidoAtivo.status-entregue #badgeIconStatus::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4caf50;
+    box-shadow: 0 0 8px #4caf50;
+    display: block;
+}
+
+@keyframes pulsarBadge {
+    0%,100% { transform: scale(1); }
+    50%      { transform: scale(1.12); }
+}
+
+#badgeTextos {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1.3;
+}
+
+#badgeLabel {
+    color: #ccc;
+    font-size: .78rem;
+    font-weight: 500;
+}
+
+#badgeLabel strong {
+    color: #ffd54f;
+    font-size: .82rem;
+}
+
+#badgeStatus {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    transition: color .4s;
+}
+
+#badgePedidoAtivo.status-preparando #badgeStatus { color: #ffd54f; }
+#badgePedidoAtivo.status-rota       #badgeStatus { color: #2196f3; }
+#badgePedidoAtivo.status-entregue   #badgeStatus { color: #4caf50; }
+
+
+/* ── POPUP DE STATUS ── */
+#overlayStatusPedido {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.85);
+    backdrop-filter: blur(6px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .4s ease, visibility .4s;
+}
+
+#overlayStatusPedido.visivel {
+    opacity: 1;
+    visibility: visible;
+}
+
+#caixaStatusPedido {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 24px;
+    padding: 40px 36px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    transform: scale(.85) translateY(20px);
+    transition: transform .4s cubic-bezier(.175,.885,.32,1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+#overlayStatusPedido.visivel #caixaStatusPedido {
+    transform: scale(1) translateY(0);
+}
+
+#caixaStatusPedido::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
+    pointer-events: none;
+    transition: background .5s ease;
+}
+
+/* Fundo do popup muda com status */
+#overlayStatusPedido.status-preparando #caixaStatusPedido::before {
+    background: radial-gradient(circle, rgba(255,213,79,.12), transparent 70%);
+}
+#overlayStatusPedido.status-rota #caixaStatusPedido::before {
+    background: radial-gradient(circle, rgba(33,150,243,.12), transparent 70%);
+}
+#overlayStatusPedido.status-entregue #caixaStatusPedido::before {
+    background: radial-gradient(circle, rgba(76,175,80,.15), transparent 70%);
+}
+
+/* Botão fechar topo */
+#btnFecharStatus {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: #1a1a1a;
+    border: 1px solid #2f2f2f;
+    color: #888;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: .9rem;
+    transition: all .2s;
+    font-family: inherit;
+}
+
+#btnFecharStatus:hover { color: #fff; border-color: #555; }
+
+/* SVG Check do popup */
+#statusCheckIcon {
+    width: 80px;
+    height: 80px;
+}
+
+#statusCheckIcon svg {
+    width: 80px;
+    height: 80px;
+}
+
+#statusCirculo {
+    fill: none;
+    stroke-width: 4;
+    stroke-dasharray: 283;
+    stroke-dashoffset: 0;
+    transition: stroke .5s ease;
+}
+
+#statusTick {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 0;
+    transition: stroke .5s ease;
+}
+
+/* Cores do SVG por status */
+#overlayStatusPedido.status-preparando #statusCirculo,
+#overlayStatusPedido.status-preparando #statusTick { stroke: #ffd54f; }
+
+#overlayStatusPedido.status-rota #statusCirculo,
+#overlayStatusPedido.status-rota #statusTick { stroke: #2196f3; }
+
+#overlayStatusPedido.status-entregue #statusCirculo,
+#overlayStatusPedido.status-entregue #statusTick { stroke: #4caf50; }
+
+#statusTitulo {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+#statusSubtitulo {
+    color: #9c9c9c;
+    font-size: .88rem;
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+#statusNumeroPedido {
+    background: #1a1a1a;
+    border: 1px solid #2f2f2f;
+    border-radius: 10px;
+    padding: 10px 20px;
+    color: #888;
+    font-size: .85rem;
+}
+
+#statusCodigoValor {
+    color: #ffd54f;
+    font-size: 1.1rem;
+    font-family: 'Bebas Neue', 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+/* Etapas do popup de status */
+#statusEtapas {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 4px 0;
+}
+
+.statusEtaItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 64px;
+}
+
+.statusEtaIcone {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 2px solid #2f2f2f;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .85rem;
+    color: #555;
+    transition: all .5s ease;
+}
+
+.statusEtaItem span {
+    font-size: .65rem;
+    font-weight: 600;
+    color: #555;
+    transition: color .4s;
+    text-align: center;
+}
+
+/* Etapa ativa amarela (preparando) */
+.statusEtaItem.ativa-preparando .statusEtaIcone {
+    background: linear-gradient(135deg, #ffd54f, #ff9800);
+    border-color: #ffd54f;
+    color: #121212;
+    box-shadow: 0 0 14px rgba(255,213,79,.45);
+}
+.statusEtaItem.ativa-preparando span { color: #ffd54f; }
+
+/* Etapa ativa azul (rota) */
+.statusEtaItem.ativa-rota .statusEtaIcone {
+    background: linear-gradient(135deg, #2196f3, #1565c0);
+    border-color: #2196f3;
+    color: #fff;
+    box-shadow: 0 0 14px rgba(33,150,243,.45);
+}
+.statusEtaItem.ativa-rota span { color: #2196f3; }
+
+/* Etapa ativa verde (entregue / concluído) */
+.statusEtaItem.ativa-entregue .statusEtaIcone {
+    background: linear-gradient(135deg, #4caf50, #00e676);
+    border-color: #4caf50;
+    color: #121212;
+    box-shadow: 0 0 14px rgba(76,175,80,.45);
+}
+.statusEtaItem.ativa-entregue span { color: #4caf50; }
+
+/* Etapa concluída (cinza com check) */
+.statusEtaItem.concluida .statusEtaIcone {
+    background: #1f1f1f;
+    border-color: #3f3f3f;
+    color: #4caf50;
+}
+.statusEtaItem.concluida span { color: #666; }
+
+.statusEtaLinha {
+    flex: 1;
+    height: 2px;
+    background: #2f2f2f;
+    max-width: 40px;
+    margin-bottom: 24px;
+    transition: background .5s ease;
+}
+
+.statusEtaLinha.ativa { background: #ffd54f; }
+.statusEtaLinha.azul  { background: #2196f3; }
+.statusEtaLinha.verde { background: #4caf50; }
+
+/* Botão fechar rodapé */
+#btnFecharStatusBottom {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #2f2f2f;
+    border-radius: 14px;
+    background: #1a1a1a;
+    color: #aaa;
+    font-size: .9rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all .3s ease;
+    margin-top: 4px;
+}
+
+#btnFecharStatusBottom:hover {
+    background: #222;
+    border-color: #555;
+    color: #fff;
+}

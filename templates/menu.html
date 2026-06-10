@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Menu - Hamburgueria Calabreso</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/static/img/menu.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Menu.css">
+    <link rel="stylesheet" href="/static/css/Carrinho.css">
+    <link rel="stylesheet" href="/static/css/Clientes.css">
+    <link rel="stylesheet" href="/static/css/Status.css">
+</head>
+<body>
+
+    <header id="cabecalho">
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+
+        <nav id="navegacao">
+
+            <button id="botaoInicio" onclick="window.location.href='/'">
+                Início
+            </button>
+
+            <button id="botaoCarrinho">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </button>
+
+            <div id="statusLoja">
+                <span id="bolinhaStatus"></span>
+                <span id="textoStatus">Aberto</span>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        <section id="secaoMenu">
+
+            <div id="cabecalhoMenu">
+                <h1>Menu Principal</h1>
+                <p>Escolha uma opção para continuar</p>
+            </div>
+
+            <div id="gradeMenu">
+
+                <button id="botaoCardapio" class="cartaoMenu">
+                    <i class="fa-solid fa-burger"></i>
+                    <span>Cardápio</span>
+                </button>
+
+                <button id="botaoPromocoes" class="cartaoMenu">
+                    <i class="fa-solid fa-tags"></i>
+                    <span>Promoções</span>
+                </button>
+
+                <button id="botaoHistorico" class="cartaoMenu">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Histórico de Compras</span>
+                </button>
+
+                <button id="botaoFinalizar" class="cartaoMenu">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Finalizar Compra</span>
+                </button>
+
+                <button id="botaoCaixa" class="cartaoMenu cartaoFuncionario escondido">
+                    <i class="fa-solid fa-cash-register"></i>
+                    <span>Caixa Registradora</span>
+                </button>
+
+                <button id="botaoRegistroClientes" class="cartaoMenu cartaoChefe escondido">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Registro de Usuários</span>
+                </button>
+
+                <button id="botaoEmpresa" class="cartaoMenu cartaoChefe escondido">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Empresa</span>
+                </button>
+
+                <button id="botaoFecharEstabelecimento" class="cartaoMenu cartaoFuncionario escondido">
+                    <i class="fa-solid fa-store"></i>
+                    <span>Status do Estabelecimento</span>
+                </button>
+            </div>
+        </section>
+
+        <!--Registro de usuarios-->
+        <div id="overlayClientes"></div>
+
+        <div id="modalClientes">
+
+            <div id="headerModalClientes">
+                <div id="tituloModalClientes">
+                    <div id="iconeModalClientes">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <h2>Registro de Usuários</h2>
+                        <p>Todos os usuários cadastrados na plataforma</p>
+                    </div>
+                </div>
+                <button id="fecharModalClientes">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="filtrosModalClientes">
+                <div id="campoBuscaClientes">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="inputBuscaClientes" placeholder="Buscar por nome, e-mail ou cargo...">
+                </div>
+                <div id="statsClientes">
+                    <span class="statClienteBadge" id="statTotalClientes">
+                        <i class="fa-solid fa-users"></i>
+                        <span id="numTotalClientes">0</span> Total
+                    </span>
+                    <span class="statClienteBadge statChefe" id="statChefes">
+                        <i class="fa-solid fa-crown"></i>
+                        <span id="numChefes">0</span> Chefe
+                    </span>
+                    <span class="statClienteBadge statFuncionario" id="statFuncionarios">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span id="numFuncionarios">0</span> Funcionário
+                    </span>
+                    <span class="statClienteBadge statCliente" id="statClientes">
+                        <i class="fa-solid fa-user"></i>
+                        <span id="numClientes">0</span> Cliente
+                    </span>
+                </div>
+            </div>
+
+            <div id="corpoModalClientes">
+
+                <div id="loadingClientes">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <span>Carregando usuários...</span>
+                </div>
+
+                <div id="erroClientes" class="escondido">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <p>Não foi possível carregar os usuários.</p>
+                </div>
+
+                <table id="tabelaClientes" class="escondido">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Cargo</th>
+                            <th>Cadastrado em</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaClientes"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--Status estabelecimento-->
+        <div id="overlayStatus"></div>
+
+        <div id="modalStatus">
+
+            <div id="headerModalStatus">
+                <div id="tituloModalStatus">
+                    <div id="iconeModalStatus">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <div>
+                        <h2>Status do Estabelecimento</h2>
+                        <p>Controle o funcionamento do site para os clientes</p>
+                    </div>
+                </div>
+                <button id="fecharModalStatus">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div id="corpoModalStatus">
+
+                <div id="statusAtualDisplay">
+                    <span id="statusAtualLabel">Carregando...</span>
+                    <div id="statusAtualIndicador"></div>
+                </div>
+
+                <div id="botoesStatus">
+                    <button id="btnAbrirEstabelecimento" class="btnStatusOpcao btnAberto">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Aberto</span>
+                        <p>O site funciona normalmente para todos os clientes</p>
+                    </button>
+
+                    <button id="btnFecharEstabelecimento" class="btnStatusOpcao btnFechado">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                        <span>Fechado</span>
+                        <p>Cardápio, promoções e finalizar ficam bloqueados para clientes e funcionários</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="rodapePrincipal">
+
+        <div class="efeito-luz"></div>
+
+        <div class="rodapeContainer">
+
+            <div class="rodapeColuna">
+                <h2 class="rodapeLogo">🍔 CALABRESO</h2>
+
+                <p class="rodapeTexto">
+                    Hambúrgueres artesanais preparados com ingredientes selecionados,
+                    carnes de primeira e muito sabor.
+                </p>
+
+                <div class="redesSociais">
+
+                    <a href="https://www.instagram.com/lucas_c_d1/" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <a href="https://www.linkedin.com/in/lucas-da-cruz-dias" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                    <a href="https://github.com/Lucaslcz" class="iconeSocial" target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <a href="https://lucaslcz.github.io/PORTIFOLIO/" class="iconeSocial" target="_blank">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Acesso Rápido</h3>
+
+                <a href="/">Home</a>
+                <a href="/cardapio">Cardápio</a>
+                <a href="/promocoes">Promoções</a>
+                <a href="/login">Login</a>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Horários</h3>
+
+                <p>Seg - Qui: 18h às 23h</p>
+                <p>Sex - Sáb: 18h às 01h</p>
+                <p>Domingo: 18h às 23h</p>
+            </div>
+
+            <div class="rodapeColuna">
+                <h3>Contato</h3>
+
+                <p>📞 (31) 99999-9999</p>
+                <p>📍 Contagem - MG</p>
+                <p>✉ contato@calabreso.com</p>
+            </div>
+
+        </div>
+
+        <div class="rodapeInferior">
+            <p>© 2026 Criado por Lucas Da Cruz • Todos os direitos reservados</p>
+        </div>
+
+    </footer>
+
+    <div id="overlayCarrinho"></div>
+
+    <aside id="painelCarrinho">
+        <div id="cabecalhoCarrinho">
+            <h2>Carrinho</h2>
+
+            <button id="fecharCarrinho">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div id="conteudoCarrinho">
+            <p id="mensagemCarrinhoVazio" class="escondido">
+                Seu carrinho está vazio.
+            </p>
+        </div>
+
+        <div id="rodapeCarrinho">
+            <div id="linhaTotal">
+                <span>Total</span>
+                <span id="valorTotal">R$ 0,00</span>
+            </div>
+            <a href="/finalizar" id="btnFinalizarCarrinho">
+                <i class="fa-solid fa-bag-shopping"></i> Finalizar Compra
+            </a>
+        </div>
+    </aside>
+
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Menu.js"></script>
+    <script src="/static/js/Carrinho.js"></script>
+    <script src="/static/js/Clientes.js"></script>
+    <script src="/static/js/Status.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Hamburgueria Calabreso</title>
+
+    <link rel="shortcut icon" href="/static/img/login.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <button id="botaoVoltar">
+        ← Inicio
+    </button>
+
+    <div id="containerLogin">
+        <div id="efeitoParticulas"></div>
+        <div id="cartaoLogin">
+            
+            <div id="logoHamburgueria">
+                🍔
+            </div>
+
+            <h1 id="tituloHamburgueria">
+                Hamburgueria Calabreso
+            </h1>
+
+            <p id="subtituloLogin">
+                Entre na sua conta
+            </p>
+
+            <form id="formularioLogin" action="/logar" method="POST">
+
+                <div class="campoLogin">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input name="email" id="emailCliente" type="email" placeholder="E-mail">
+                </div>
+
+                <div class="campoLogin">
+                    <i class="fa-solid fa-lock"></i>
+                    <input name="senha" id="senhaCliente" type="password" placeholder="Senha">
+                    <span id="visualizarSenha">🙈</span>
+                </div>
+
+                <div id="mensagemErro" style="display:none;"></div>
+
+                <button id="botaoEntrar" type="submit">
+                    Entrar
+                </button>
+
+            </form>
+
+            <div id="areaCadastro">
+                Não possui conta?
+                <a id="botaoCadastrar" href="/cadastro">
+                    Criar conta
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/Global.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>

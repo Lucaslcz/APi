@@ -1,0 +1,319 @@
+/* BANNER */
+.banner-principal {
+    position: relative;
+    width: 100%;
+    min-height: 550px;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/static/img/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.banner-conteudo {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.badge-tag {
+    background-color: #fcb103;
+    color: #000000;
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.banner-titulo {
+    color: #ffffff;
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+}
+
+.banner-descricao {
+    color: #e0e0e0;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.banner-botoes {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-banner {
+    display: inline-block;
+    padding: 15px 32px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.btn-banner:hover {
+    transform: scale(1.04);
+    filter: brightness(1.1);
+}
+
+.btn-laranja {
+    background-color: #fcb103;
+    color: #000000;
+}
+
+.btn-verde {
+    background-color: #00e676;
+    color: #ffffff;
+}
+
+
+
+
+
+/* HISTÓRIA */
+.secaoHistoria {
+    background-color: #0d0d0d;
+    padding: 100px 40px;
+}
+
+.historiaContainer {
+    max-width: 1300px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.historiaTexto {
+    flex: 1;
+}
+
+.historiaSubtitulo {
+    color: #ffa500;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.historiaTitulo {
+    color: #00e676;
+    font-size: 3rem;
+    margin: 15px 0 30px;
+}
+
+.historiaTexto p {
+    color: #bdbdbd;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.historiaImagem {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 25px;
+    position: relative;
+}
+
+.historiaImagem img {
+    width: 100%;
+    display: block;
+
+    border-radius: 25px;
+
+    filter: grayscale(100%);
+    transition:
+        transform .7s ease,
+        filter .7s ease;
+}
+
+.historiaImagem:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.08);
+}
+
+
+
+
+
+/* PROMOÇÕES */
+.secao-promocoes {
+    padding: 80px 20px;
+    background-color: #111111;
+}
+
+.promocoes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.promocoes-titulo {
+    font-size: 2.5rem;
+    color: #ffffff;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.promocoes-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: #00e676;
+    border-radius: 2px;
+}
+
+.promocoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+    perspective: 1000px;
+    margin-bottom: 60px;
+}
+
+.card-promocao {
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+    position: relative;
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --rx: 0deg;
+    --ry: 0deg;
+    transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card-promocao:hover {
+    transform: rotateX(var(--rx)) rotateY(var(--ry)) scale(1.03);
+    border-color: #ffa500;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(255, 165, 0, 0.15);
+    transition: transform 0s, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tag-desconto {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #00e676;
+    color: #111111;
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 6px 16px;
+    border-radius: 30px;
+    text-transform: uppercase;
+    z-index: 5;
+    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+}
+
+.wrapper-imagem {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+}
+
+.wrapper-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-promocao:hover .wrapper-imagem img {
+    transform: scale(1.15);
+}
+
+.card-info {
+    padding: 30px;
+    transform: translateZ(35px);
+}
+
+.card-info h3 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.card-info p {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    height: 75px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-valores {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.preco-antigo {
+    color: #666666;
+    text-decoration: line-through;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.preco-atual {
+    color: #ffa500;
+    font-size: 1.8rem;
+    font-weight: 800;
+}
+
+.wrapper-botao-ver-todas {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-ver-todas {
+    display: inline-block;
+    padding: 16px 40px;
+    background-color: transparent;
+    color: #ffa500;
+    border: 2px solid #ffa500;
+    border-radius: 50px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 rgba(255, 165, 0, 0);
+}
+
+.btn-ver-todas:hover {
+    background-color: #ffa500;
+    color: #111111;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(255, 165, 0, 0.3);
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel da Empresa</title>
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Empresa.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <canvas id="efeitoParticulas"></canvas>
+
+    <header id="cabecalho">
+        <div id="logoArea">
+            <h1 id="nomeHamburgueria">CALABRESO</h1>
+        </div>
+        <nav id="navegacao">
+            <div id="statusLoja">
+                <div id="bolinhaStatus"></div>
+                <span id="textoStatus">Carregando...</span>
+            </div>
+            <div id="wrapperUsuario">
+                <button id="botaoUsuario" style="display:none;"></button>
+                <div id="dropdownUsuario">
+                    <button id="btnConfiguracoes">⚙️ Configurações</button>
+                    <div id="separadorDropdown"></div>
+                    <button id="btnSair">Sair</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main id="painelPrincipal">
+
+        <div id="painelTopo">
+            <div id="painelTopoEsquerda">
+                <span id="labelPainel">PAINEL DA EMPRESA</span>
+                <h2 id="tituloPainel">Visão Geral</h2>
+            </div>
+            <div id="painelTopoDireita">
+                <span id="dataHojeTexto"></span>
+            </div>
+        </div>
+
+        <section id="secaoCards">
+            <div class="cardMetrica" id="cardPedidosHoje">
+                <div class="cardMetricaIcone">🛒</div>
+                <div class="cardMetricaInfo">
+                    <span class="cardMetricaValor" id="totalPedidosHoje">—</span>
+                    <span class="cardMetricaLabel">Pedidos hoje</span>
+                </div>
+            </div>
+            <div class="cardMetrica" id="cardFaturamentoHoje">
+                <div class="cardMetricaIcone">💰</div>
+                <div class="cardMetricaInfo">
+                    <span class="cardMetricaValor" id="totalFaturamentoHoje">—</span>
+                    <span class="cardMetricaLabel">Faturamento hoje</span>
+                </div>
+            </div>
+            <div class="cardMetrica" id="cardPedidosMes">
+                <div class="cardMetricaIcone">📦</div>
+                <div class="cardMetricaInfo">
+                    <span class="cardMetricaValor" id="totalPedidosMes">—</span>
+                    <span class="cardMetricaLabel">Pedidos este mês</span>
+                </div>
+            </div>
+            <div class="cardMetrica" id="cardFaturamentoMes">
+                <div class="cardMetricaIcone">📈</div>
+                <div class="cardMetricaInfo">
+                    <span class="cardMetricaValor" id="totalFaturamentoMes">—</span>
+                    <span class="cardMetricaLabel">Faturamento este mês</span>
+                </div>
+            </div>
+            <div class="cardMetrica" id="cardTotalClientes">
+                <div class="cardMetricaIcone">👥</div>
+                <div class="cardMetricaInfo">
+                    <span class="cardMetricaValor" id="totalClientes">—</span>
+                    <span class="cardMetricaLabel">Clientes cadastrados</span>
+                </div>
+            </div>
+            <div class="cardMetrica" id="cardTicketMedio">
+                <div class="cardMetricaIcone">🎯</div>
+                <div class="cardMetricaInfo">
+                    <span class="cardMetricaValor" id="ticketMedio">—</span>
+                    <span class="cardMetricaLabel">Ticket médio (mês)</span>
+                </div>
+            </div>
+        </section>
+
+        <div id="painelGrade">
+
+            <section id="secaoEmpresa">
+                <div class="secaoHeader">
+                    <h3 class="secaoTitulo">Dados da Empresa</h3>
+                    <button class="botaoEditarSecao" id="botaoEditarEmpresa">Editar</button>
+                </div>
+                <form id="formEmpresa" class="formEmpresa">
+                    <div class="campoForm">
+                        <label class="labelCampo">Nome do estabelecimento</label>
+                        <input class="inputCampo" type="text" id="empresaNome" disabled>
+                    </div>
+                    <div class="campoForm">
+                        <label class="labelCampo">CNPJ</label>
+                        <input class="inputCampo" type="text" id="empresaCNPJ" disabled>
+                    </div>
+                    <div class="campoForm">
+                        <label class="labelCampo">Telefone</label>
+                        <input class="inputCampo" type="text" id="empresaTelefone" disabled>
+                    </div>
+                    <div class="campoForm">
+                        <label class="labelCampo">Endereço</label>
+                        <input class="inputCampo" type="text" id="empresaEndereco" disabled>
+                    </div>
+                    <div class="campoForm">
+                        <label class="labelCampo">Horário de funcionamento</label>
+                        <input class="inputCampo" type="text" id="empresaHorario" disabled>
+                    </div>
+                    <div id="botoesFormEmpresa" class="escondido">
+                        <button type="submit" class="botaoSalvar" id="botaoSalvarEmpresa">Salvar</button>
+                        <button type="button" class="botaoCancelar" id="botaoCancelarEmpresa">Cancelar</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="secaoMural">
+                <div class="secaoHeader">
+                    <h3 class="secaoTitulo">Mural Interno</h3>
+                    <button class="botaoEditarSecao" id="botaoNovoAviso">+ Aviso</button>
+                </div>
+
+                <div id="formNovoAviso" class="escondido">
+                    <textarea id="textoNovoAviso" class="textareaAviso" placeholder="Escreva um aviso para a equipe..."></textarea>
+                    <div class="botoesAviso">
+                        <button id="botaoPublicarAviso" class="botaoSalvar">Publicar</button>
+                        <button id="botaoCancelarAviso" class="botaoCancelar">Cancelar</button>
+                    </div>
+                </div>
+
+                <div id="listaAvisos">
+                    <p id="muraiVazio" class="estadoVazio">Nenhum aviso publicado.</p>
+                </div>
+            </section>
+
+        </div>
+
+        <section id="secaoItensPopulares">
+            <div class="secaoHeader">
+                <h3 class="secaoTitulo">Itens mais pedidos este mês</h3>
+            </div>
+            <div id="listaItensPopulares">
+                <p class="estadoVazio" id="itensMensagem">Carregando...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="toastEmpresa"></div>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Empresa.js"></script>
+
+</body>
+</html>
