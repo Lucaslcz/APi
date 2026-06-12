@@ -314,3 +314,37 @@
     text-align: center;
     flex-shrink: 0;
 }
+
+
+/* BADGE DE CARGO */
+.tagCargo {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+}
+
+.tagChefe {
+    background: rgba(255, 213, 79, 0.12);
+    border: 1px solid rgba(255, 213, 79, 0.35);
+    color: #ffd54f;
+}
+
+.tagFuncionario {
+    background: rgba(100, 181, 246, 0.12);
+    border: 1px solid rgba(100, 181, 246, 0.35);
+    color: #64b5f6;
+}
+
+.tagCliente {
+    background: rgba(0, 230, 118, 0.1);
+    border: 1px solid rgba(0, 230, 118, 0.25);
+    color: #00e676;
+}
+
+

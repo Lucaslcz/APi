@@ -794,3 +794,141 @@ main{
 .escondido{
     display: none !important;
 }
+
+
+/* Cole no final do Global.css */
+
+/* TEMA CLARO */
+body.tema-claro {
+    background: #f5f5f5;
+    color: #121212;
+}
+
+body.tema-claro #cabecalho {
+    background: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+body.tema-claro #nomeHamburgueria {
+    color: #e69900;
+}
+
+body.tema-claro #botaoMenu {
+    color: #333;
+    border-color: transparent;
+}
+
+body.tema-claro #botaoMenu:hover {
+    color: #e69900;
+    border-color: rgba(230, 153, 0, 0.4);
+}
+
+body.tema-claro #statusLoja {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+body.tema-claro #textoStatus {
+    color: #333;
+}
+
+body.tema-claro #botaoCarrinho {
+    background: #eeeeee;
+    color: #333;
+}
+
+body.tema-claro #botaoCarrinho:hover {
+    background: #ffa500;
+    color: #fff;
+}
+
+body.tema-claro #modalConfiguracoes {
+    background: #ffffff;
+    border-color: #e0e0e0;
+}
+
+body.tema-claro #headerModalConfiguracoes {
+    border-color: #e0e0e0;
+}
+
+body.tema-claro #headerModalConfiguracoes h2 {
+    color: #121212;
+}
+
+body.tema-claro #fecharModalConfiguracoes {
+    background: #eeeeee;
+    color: #333;
+}
+
+body.tema-claro #perfilModal {
+    background: linear-gradient(135deg, rgba(76,175,80,0.08), rgba(255,213,79,0.04));
+    border-color: #e0e0e0;
+}
+
+body.tema-claro #nomePerfilModal {
+    color: #121212;
+}
+
+body.tema-claro .secaoModal {
+    border-color: #eeeeee;
+}
+
+body.tema-claro .tituloSecaoModal {
+    color: #999;
+}
+
+body.tema-claro .itemModalNome {
+    color: #121212;
+}
+
+body.tema-claro .itemModalDesc {
+    color: #888;
+}
+
+body.tema-claro .itemModalClicavel:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+body.tema-claro #seletorTema {
+    background: #eeeeee;
+}
+
+body.tema-claro .btnTema {
+    color: #888;
+}
+
+body.tema-claro .btnTema.ativo {
+    background: #ffffff;
+    color: #121212;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+body.tema-claro .sliderToggle {
+    background: #cccccc;
+}
+
+body.tema-claro #rodapeModalConfiguracoes {
+    border-color: #eeeeee;
+    color: #bbb;
+}
+
+body.tema-claro #rodapePrincipal {
+    background: #1a1a1a;
+}
+
+body.tema-claro #painelCarrinho {
+    background: #ffffff;
+    border-color: #e0e0e0;
+}
+
+body.tema-claro #cabecalhoCarrinho {
+    border-color: #eeeeee;
+}
+
+body.tema-claro #cabecalhoCarrinho h2 {
+    color: #121212;
+}
+
+body.tema-claro #fecharCarrinho {
+    background: #eeeeee;
+    color: #333;
+}
