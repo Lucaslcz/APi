@@ -347,6 +347,49 @@
 }
 .statusEtaItem.ativa-entregue span { color: #4caf50; }
 
+/* ════════════════════════════════════════
+   TEMA CLARO
+   ════════════════════════════════════════ */
+
+body.tema-claro #modalPedidoStatus {
+    background: #ffffff;
+    border-color: #ddd;
+}
+
+body.tema-claro #headerModalPedidoStatus {
+    border-color: #ddd;
+}
+
+body.tema-claro #headerModalPedidoStatus h2 {
+    color: #121212;
+}
+
+body.tema-claro #fecharModalPedidoStatus {
+    color: #555;
+}
+
+body.tema-claro .statusSumario {
+    background: #f9f9f9;
+    border-color: #ddd;
+}
+
+body.tema-claro .statusInfo {
+    color: #555;
+}
+
+body.tema-claro .statusLabel {
+    color: #999;
+}
+
+body.tema-claro .statusEtaItem .statusEtaIcone {
+    border-color: #ddd;
+    color: #999;
+}
+
+body.tema-claro .statusEtaItem span {
+    color: #777;
+}
+
 /* Etapa concluída (cinza com check) */
 .statusEtaItem.concluida .statusEtaIcone {
     background: #1f1f1f;

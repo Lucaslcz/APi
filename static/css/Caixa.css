@@ -275,6 +275,55 @@
     text-overflow: ellipsis;
 }
 
+/* ════════════════════════════════════════
+   TEMA CLARO
+   ════════════════════════════════════════ */
+
+body.tema-claro #mainCaixa {
+    color: #121212;
+}
+
+body.tema-claro #tituloCaixa {
+    color: #121212;
+}
+
+body.tema-claro #subtituloCaixa {
+    color: #777;
+}
+
+body.tema-claro .cardContador {
+    background: #ffffff;
+    border-color: #ddd;
+}
+
+body.tema-claro .cardContador:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
+}
+
+body.tema-claro #cardPix:hover {
+    box-shadow: 0 8px 25px rgba(0, 180, 216, .1);
+}
+
+body.tema-claro #cardCredito:hover {
+    box-shadow: 0 8px 25px rgba(230, 153, 0, .1);
+}
+
+body.tema-claro #cardBoleto:hover {
+    box-shadow: 0 8px 25px rgba(0, 165, 81, .1);
+}
+
+body.tema-claro .contadorNumero {
+    color: #121212;
+}
+
+body.tema-claro .contadorLabel {
+    color: #999;
+}
+
+body.tema-claro .contadorValor {
+    color: #e69900;
+}
+
 .tdValor {
     color: #00e676 !important;
     font-weight: 700;

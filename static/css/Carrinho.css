@@ -1,14 +1,14 @@
+/* ════════════════════════════════════════
+   OVERLAY — Fundo ao abrir o carrinho
+   ════════════════════════════════════════ */
+
 #overlayCarrinho {
     position: fixed;
     inset: 0;
-
     background: rgba(0, 0, 0, 0.6);
-
     opacity: 0;
     visibility: hidden;
-
     transition: 0.3s;
-
     z-index: 998;
 }
 
@@ -17,26 +17,23 @@
     visibility: visible;
 }
 
+
+/* ════════════════════════════════════════
+   PAINEL LATERAL DO CARRINHO
+   ════════════════════════════════════════ */
+
 #painelCarrinho {
     position: fixed;
-
     top: 0;
     right: -420px;
-
     width: 420px;
     max-width: 90vw;
-
     height: 100vh;
-
     background: #111111;
-
     border-left: 2px solid #2a2a2a;
-
     display: flex;
     flex-direction: column;
-
     transition: right 0.35s ease;
-
     z-index: 999;
 }
 
@@ -44,13 +41,16 @@
     right: 0;
 }
 
+
+/* ════════════════════════════════════════
+   CABEÇALHO DO CARRINHO
+   ════════════════════════════════════════ */
+
 #cabecalhoCarrinho {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 25px;
-
     border-bottom: 2px solid #ffa500;
 }
 
@@ -63,13 +63,9 @@
 #fecharCarrinho {
     background: transparent;
     border: none;
-
     color: white;
-
     font-size: 1.6rem;
-
     cursor: pointer;
-
     transition: 0.3s;
 }
 
@@ -77,40 +73,36 @@
     color: #ff4d4d;
 }
 
+
+/* ════════════════════════════════════════
+   LISTA DE ITENS DO CARRINHO
+   ════════════════════════════════════════ */
+
 #conteudoCarrinho {
     flex: 1;
-
     padding: 25px;
-
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     overflow-y: auto;
 }
 
 #mensagemCarrinhoVazio {
     text-align: center;
-
     color: #8a8a8a;
-
     font-size: 1rem;
-
     margin-top: 40px;
 }
 
-/* ITEM DO CARRINHO */
+/* Card de cada produto no carrinho */
 .itemCarrinho {
     display: flex;
     align-items: center;
     gap: 12px;
-
     background: #1b1b1b;
     border: 1px solid #2a2a2a;
     border-radius: 12px;
-
     padding: 14px 16px;
-
     transition: border-color 0.3s ease;
 }
 
@@ -126,37 +118,33 @@
     line-height: 1.3;
 }
 
-/* CONTROLES DE QUANTIDADE */
+
+/* ════════════════════════════════════════
+   CONTROLES DE QUANTIDADE (+ / -)
+   ════════════════════════════════════════ */
+
 .itemCarrinho-controles {
     display: flex;
     align-items: center;
     gap: 8px;
-
     background: #111111;
     border: 1px solid #2a2a2a;
     border-radius: 8px;
-
     padding: 4px 8px;
 }
 
 .btnQuantidade {
     background: transparent;
     border: none;
-
     color: #ffffff;
-
     font-size: 1.1rem;
     font-weight: 700;
-
     cursor: pointer;
-
     width: 22px;
     height: 22px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     transition: color 0.2s ease;
 }
 
@@ -172,7 +160,11 @@
     text-align: center;
 }
 
-/* PREÇO DO ITEM */
+
+/* ════════════════════════════════════════
+   PREÇO E REMOÇÃO DO ITEM
+   ════════════════════════════════════════ */
+
 .itemCarrinho-preco {
     color: #ffa500;
     font-size: 0.95rem;
@@ -180,39 +172,32 @@
     white-space: nowrap;
 }
 
-/* BOTÃO REMOVER */
 .btnRemover {
     background: transparent;
     border: none;
-
-    color: #555555;
-
-    font-size: 0.85rem;
-
+    color: #ff5252;
+    font-size: 1.2rem;
     cursor: pointer;
-
-    transition: color 0.2s ease;
-
-    padding: 4px;
+    transition: color 0.3s;
 }
 
 .btnRemover:hover {
     color: #ff4d4d;
 }
 
-/* RODAPÉ */
+
+/* ════════════════════════════════════════
+   RODAPÉ COM TOTAL E BOTÃO FINALIZAR
+   ════════════════════════════════════════ */
+
 #rodapeCarrinho {
     display: flex;
     flex-direction: column;
     gap: 12px;
-
     padding: 25px;
-
     border-top: 1px solid #2a2a2a;
-
     font-size: 1.2rem;
     font-weight: bold;
-
     color: white;
 }
 
@@ -248,7 +233,103 @@
     transform: translateY(-2px);
 }
 
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Carrinho lateral
+   ════════════════════════════════════════ */
+
+body.tema-claro #painelCarrinho {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
+}
+
+body.tema-claro #cabecalhoCarrinho {
+    border-color: #e8e8e8;
+    background: #fafafa;
+}
+
+body.tema-claro #cabecalhoCarrinho h2 {
+    color: #121212;
+}
+
+body.tema-claro #fecharCarrinho {
+    background: transparent;
+    color: #555;
+}
+
+body.tema-claro #fecharCarrinho:hover {
+    color: #ff4d4d;
+}
+
+/* Itens com fundo off-white e borda sutil */
+body.tema-claro .itemCarrinho {
+    background: #f9f9f9;
+    border-color: #e8e8e8;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+body.tema-claro .itemCarrinho:hover {
+    border-color: #e69900;
+    background: #ffffff;
+}
+
+body.tema-claro .itemCarrinho-nome {
+    color: #1a1a1a;
+}
+
+body.tema-claro .itemCarrinho-controles {
+    background: #eeeeee;
+    border-color: #ddd;
+}
+
+body.tema-claro .btnQuantidade {
+    color: #333;
+}
+
+body.tema-claro .btnQuantidade:hover {
+    color: #e69900;
+}
+
+body.tema-claro .itemCarrinho-quantidade {
+    color: #333;
+}
+
+body.tema-claro .itemCarrinho-preco {
+    color: #e69900;
+}
+
+body.tema-claro #mensagemCarrinhoVazio {
+    color: #aaa;
+}
+
+/* Rodapé com divisor visível */
+body.tema-claro #rodapeCarrinho {
+    border-color: #e8e8e8;
+    background: #fafafa;
+    color: #121212;
+}
+
+body.tema-claro #valorTotal {
+    color: #00a651;
+}
+
+body.tema-claro #btnFinalizarCarrinho {
+    background: linear-gradient(135deg, #e69900, #cc7a00);
+    color: #ffffff;
+}
+
+body.tema-claro #btnFinalizarCarrinho:hover {
+    background: linear-gradient(135deg, #cc7a00, #b36a00);
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════════════ */
+
 @media (max-width: 600px) {
+
     #painelCarrinho {
         width: 100%;
         max-width: 100%;

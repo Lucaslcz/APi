@@ -1,66 +1,81 @@
-/* HEADER */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+/* ════════════════════════════════════════
+   RESET E BASE
+   ════════════════════════════════════════ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 html,
-body{
-    width:100%;
-    min-height:100vh;
-    background:#121212;
-    overflow-x:hidden;
+body {
+    width: 100%;
+    min-height: 100vh;
+    background: #121212;
+    overflow-x: hidden;
 }
 
-body{
-    color:white;
+body {
+    color: white;
 }
 
-#efeitoParticulas{
-    position:fixed;
-    inset:0;
-    z-index:-1;
+/* Partículas de fundo (canvas animado) */
+#efeitoParticulas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
 }
 
-#cabecalho{
-    width:100%;
-    height:85px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 40px;
-    position:relative;
-    animation:entradaNavbar .8s ease;
+.escondido {
+    display: none !important;
 }
 
-#cabecalho::after{
-    content:'';
-    position:absolute;
-    left:0;
-    bottom:0;
-    width:100%;
-    height:1px;
-    background:linear-gradient(90deg, transparent, rgba(255,213,79,.25), rgba(76,175,80,.15), transparent);
+
+/* ════════════════════════════════════════
+   HEADER / CABEÇALHO
+   ════════════════════════════════════════ */
+
+#cabecalho {
+    width: 100%;
+    height: 85px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    position: relative;
+    animation: entradaNavbar .8s ease;
 }
 
-#logoArea{
-    display:flex;
-    align-items:center;
-    height:100%;
+/* Linha decorativa gradiente na base do header */
+#cabecalho::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 213, 79, .25), rgba(76, 175, 80, .15), transparent);
 }
 
-#nomeHamburgueria{
-    font-family:'Bebas Neue',sans-serif;
-    font-size:38px;
-    letter-spacing:3px;
-    color:#eafa0f;
-    line-height:1;
-    margin:0;
-    animation:brilhoLogo 4s ease-in-out infinite;
+#logoArea {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Nome da hamburgueria com animação de brilho */
+#nomeHamburgueria {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 38px;
+    letter-spacing: 3px;
+    color: #eafa0f;
+    line-height: 1;
+    margin: 0;
+    animation: brilhoLogo 4s ease-in-out infinite;
 }
 
 #navegacao {
@@ -69,6 +84,7 @@ body{
     gap: 15px;
 }
 
+/* Botão circular do carrinho */
 #botaoCarrinho {
     width: 50px;
     height: 50px;
@@ -86,11 +102,12 @@ body{
     transform: scale(1.08);
 }
 
+/* Indicador de status da loja (aberto/fechado) */
 #statusLoja {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(255,255,255,0.05);
+    background-color: rgba(255, 255, 255, 0.05);
     padding: 8px 14px;
     border-radius: 50px;
 }
@@ -109,86 +126,85 @@ body{
     font-weight: 600;
 }
 
+/* Botões de navegação (Menu e Login) */
 #botaoMenu,
-#botaoLogin{
-    width:120px;
-    height:48px;
-    border-radius:12px;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+#botaoLogin {
+    width: 120px;
+    height: 48px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#botaoMenu{
-    width:120px;
-    height:48px;
-    border:1px solid transparent;
-    border-radius:12px;
-    background:transparent;
-    color:#cfcfcf;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
+#botaoMenu {
+    width: 120px;
+    height: 48px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: transparent;
+    color: #cfcfcf;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
     transition:
         color .25s,
         border-color .25s,
         box-shadow .25s,
         transform .15s,
         background-color .15s;
+    position: relative;
+    overflow: hidden;
 }
 
-#botaoMenu:hover{
-    color:#ffd54f;
-    border-color:rgba(255,213,79,.5);
+#botaoMenu:hover {
+    color: #ffd54f;
+    border-color: rgba(255, 213, 79, .5);
 }
 
-#botaoMenu:active{
-    background:rgba(255,255,255,.15);
-    border-color:#ffd54f;
-    color:#ffd54f;
-    transform:scale(.96);
-    box-shadow: 0 0 12px rgba(255,213,79,.25);
+#botaoMenu:active {
+    background: rgba(255, 255, 255, .15);
+    border-color: #ffd54f;
+    color: #ffd54f;
+    transform: scale(.96);
+    box-shadow: 0 0 12px rgba(255, 213, 79, .25);
 }
 
-#botaoMenu{
-    position:relative;
-    overflow:hidden;
+/* Efeito ripple ao clicar no botão menu */
+.efeitoClique {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .35);
+    transform: scale(0);
+    animation: ripple .45s linear;
+    pointer-events: none;
 }
 
-.efeitoClique{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,.35);
-    transform:scale(0);
-    animation:ripple .45s linear;
-    pointer-events:none;
+#botaoLogin {
+    border: none;
+    color: #121212;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffd54f, #4caf50);
 }
 
-#botaoLogin{
-    border:none;
-    color:#121212;
-    font-weight:700;
-    background:linear-gradient(135deg, #ffd54f, #4caf50);
+#botaoLogin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 213, 79, .4), 0 0 25px rgba(76, 175, 80, .25);
 }
 
-#botaoLogin:hover{
-    transform:translateY(-2px);
-    box-shadow: 0 0 15px rgba(255,213,79,.4), 0 0 25px rgba(76,175,80,.25);
-}
-
-main{
-    width:100%;
+main {
+    width: 100%;
 }
 
 
+/* ════════════════════════════════════════
+   FOOTER / RODAPÉ
+   ════════════════════════════════════════ */
 
-
-
-/* FOOTER */
 #rodapePrincipal {
     position: relative;
     background: #0a0a0a;
@@ -196,15 +212,12 @@ main{
     border-top: 1px solid #222;
 }
 
+/* Luz decorativa no topo do rodapé */
 .efeito-luz {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(
-        circle,
-        rgba(255,165,0,0.12) 0%,
-        transparent 70%
-    );
+    background: radial-gradient(circle, rgba(255, 165, 0, 0.12) 0%, transparent 70%);
     top: -250px;
     left: 50%;
     transform: translateX(-50%);
@@ -216,7 +229,7 @@ main{
     margin: auto;
     padding: 80px 40px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 50px;
 }
 
@@ -242,6 +255,7 @@ main{
     position: relative;
 }
 
+/* Linha decorativa abaixo dos títulos de coluna */
 .rodapeColuna h3::after {
     content: "";
     position: absolute;
@@ -265,6 +279,7 @@ main{
     transform: translateX(8px);
 }
 
+/* Ícones das redes sociais */
 .redesSociais {
     display: flex;
     gap: 15px;
@@ -288,18 +303,7 @@ main{
 .iconeSocial:hover {
     transform: translateY(-8px) rotate(8deg);
     background: #ffa500;
-    box-shadow: 0 0 25px rgba(255,165,0,.4);
-}
-
-.rodapeInferior {
-    border-top: 1px solid #1f1f1f;
-    text-align: center;
-    padding: 25px;
-}
-
-.rodapeInferior p {
-    color: #666;
-    font-size: .9rem;
+    box-shadow: 0 0 25px rgba(255, 165, 0, .4);
 }
 
 .iconeSocial i {
@@ -312,6 +316,19 @@ main{
     color: #111111;
 }
 
+/* Barra inferior do rodapé com copyright */
+.rodapeInferior {
+    border-top: 1px solid #1f1f1f;
+    text-align: center;
+    padding: 25px;
+}
+
+.rodapeInferior p {
+    color: #666;
+    font-size: .9rem;
+}
+
+/* Imagem da seção história (usada no rodapé e na home) */
 .historiaImagem img {
     filter: sepia(100%) brightness(0.8);
 }
@@ -321,194 +338,35 @@ main{
 }
 
 
+/* ════════════════════════════════════════
+   BOTÃO VOLTAR (telas de login/cadastro)
+   ════════════════════════════════════════ */
 
-
-
-@keyframes brilhoLogo{
-    0%{
-        text-shadow: 0 0 5px rgba(255,213,79,.08);
-    }
-    50%{
-        text-shadow: 0 0 15px rgba(255,213,79,.25);
-    }
-    100%{
-        text-shadow: 0 0 5px rgba(255,213,79,.08);
-    }
+#botaoVoltar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 120px;
+    height: 45px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: #121212;
+    background: linear-gradient(135deg, #ffd54f, #4caf50);
+    transition: .3s;
+    z-index: 1000;
 }
 
-@keyframes entradaNavbar{
-    from{
-        opacity:0;
-        transform:translateY(-25px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+#botaoVoltar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 213, 79, .4), 0 0 25px rgba(76, 175, 80, .25);
 }
 
-@keyframes ripple{
-    to{
-        transform:scale(4);
-        opacity:0;
-    }
-}
-
-
-
-
-
-
-/* RESPONSIVIDADE */
-
-/* TABLETS */
-@media (max-width: 992px){
-
-    #cabecalho{
-        padding: 20px;
-        gap: 15px;
-    }
-
-    #nomeHamburgueria{
-        font-size: 30px;
-        text-align: center;
-    }
-
-    #navegacao{
-        gap: 10px;
-    }
-
-    #botaoMenu,
-    #botaoLogin{
-        width: 100px;
-        height: 45px;
-        font-size: 14px;
-    }
-
-    .rodapeContainer{
-        grid-template-columns: repeat(2, 1fr);
-        gap: 40px;
-    }
-
-}
-
-/* CELULARES */
-@media (max-width: 768px){
-
-    #cabecalho{
-        flex-direction: column;
-        height: auto;
-        padding: 20px;
-        gap: 20px;
-    }
-
-    #nomeHamburgueria{
-        font-size: 26px;
-        text-align: center;
-        letter-spacing: 1px;
-    }
-
-    #navegacao{
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    #statusLoja{
-        order: 3;
-    }
-
-    .rodapeContainer{
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 60px 25px;
-    }
-
-    .rodapeColuna h3::after{
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .redesSociais{
-        justify-content: center;
-    }
-
-    #botaoVoltar{
-        width: 100px;
-        height: 40px;
-        font-size: 14px;
-        top: 15px;
-        right: 15px;
-    }
-
-    #painelCarrinho{
-        width: 100%;
-        max-width: 100%;
-    }
-
-}
-
-/* CELULARES PEQUENOS */
-@media (max-width: 480px){
-
-    #cabecalho{
-        padding: 15px;
-    }
-
-    #nomeHamburgueria{
-        font-size: 22px;
-    }
-
-    #navegacao{
-        gap: 8px;
-    }
-
-    #botaoMenu,
-    #botaoLogin{
-        width: 90px;
-        height: 42px;
-        font-size: 13px;
-    }
-
-    #botaoCarrinho{
-        width: 45px;
-        height: 45px;
-    }
-
-    #statusLoja{
-        padding: 6px 10px;
-    }
-
-    #textoStatus{
-        font-size: 12px;
-    }
-
-    .rodapeContainer{
-        padding: 50px 20px;
-    }
-
-    .rodapeLogo{
-        font-size: 1.6rem;
-    }
-
-    .rodapeTexto{
-        font-size: .95rem;
-    }
-
-    .iconeSocial{
-        width: 45px;
-        height: 45px;
-    }
-
-}
-
-
-
-
-
-/* Coisas especificas para as telas de Login e Cadastro*/
-#botaoCadastrar, #botaoLogar {
+/* Botões de alternância entre login e cadastro */
+#botaoCadastrar,
+#botaoLogar {
     display: inline;
     color: #ffa500;
     text-decoration: none;
@@ -523,77 +381,17 @@ main{
     transition: color 0.2s ease;
 }
 
-#botaoCadastrar:hover, #botaoLogar:hover {
+#botaoCadastrar:hover,
+#botaoLogar:hover {
     color: #ffbc0d;
     text-decoration: underline;
 }
 
 
+/* ════════════════════════════════════════
+   DROPDOWN E BOTÃO DO USUÁRIO LOGADO
+   ════════════════════════════════════════ */
 
-
-
-/* Botão de voltar nas telas de login e cadastro */
-#botaoVoltar{
-    position:fixed;
-    top:20px;
-    right:20px;
-    width:120px;
-    height:45px;
-    border:none;
-    border-radius:12px;
-    cursor:pointer;
-    font-size:16px;
-    font-weight:600;
-    color:#121212;
-    background:linear-gradient(135deg, #ffd54f, #4caf50);
-    transition:.3s;
-    z-index:1000;
-}
-
-#botaoVoltar:hover{
-    transform:translateY(-2px);
-    box-shadow: 0 0 15px rgba(255,213,79,.4), 0 0 25px rgba(76,175,80,.25);
-}
-
-
-
-
-
-/* Usuario */
-#botaoUsuario {
-    width: auto;
-    min-width: 120px;
-    height: 48px;
-    padding: 0 20px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
-    color: #121212;
-    background: linear-gradient(135deg, #4caf50, #00e676);
-    box-shadow: 0 0 12px rgba(76, 175, 80, 0.35);
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-#botaoUsuario:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(76, 175, 80, 0.5);
-}
-
-#botaoUsuario::before {
-    content: '👤';
-    font-size: 14px;
-}
-
-
-
-
-
-/* Pop up do usuario */
 #wrapperUsuario {
     position: relative;
 }
@@ -627,6 +425,7 @@ main{
     font-size: 14px;
 }
 
+/* Menu suspenso do usuário */
 #dropdownUsuario {
     position: absolute;
     top: calc(100% + 10px);
@@ -673,6 +472,7 @@ main{
     background: rgba(255, 255, 255, 0.08);
 }
 
+/* Divisor entre opções do dropdown */
 #separadorDropdown {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
@@ -688,10 +488,10 @@ main{
 }
 
 
+/* ════════════════════════════════════════
+   POPUP DE LOGIN (exibido ao tentar ação sem autenticação)
+   ════════════════════════════════════════ */
 
-
-
-/* POPUP DE LOGIN */
 #popupLoginOverlay {
     position: fixed;
     inset: 0;
@@ -791,22 +591,40 @@ main{
     color: #ffffff;
 }
 
-.escondido{
-    display: none !important;
+
+/* ════════════════════════════════════════
+   ANIMAÇÕES GLOBAIS
+   ════════════════════════════════════════ */
+
+@keyframes brilhoLogo {
+    0%   { text-shadow: 0 0 5px rgba(255, 213, 79, .08); }
+    50%  { text-shadow: 0 0 15px rgba(255, 213, 79, .25); }
+    100% { text-shadow: 0 0 5px rgba(255, 213, 79, .08); }
+}
+
+@keyframes entradaNavbar {
+    from { opacity: 0; transform: translateY(-25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+    to { transform: scale(4); opacity: 0; }
 }
 
 
-/* Cole no final do Global.css */
+/* ════════════════════════════════════════
+   TEMA CLARO — Header
+   ════════════════════════════════════════ */
 
-/* TEMA CLARO */
 body.tema-claro {
-    background: #f5f5f5;
+    background: #f0f0f0;
     color: #121212;
 }
 
 body.tema-claro #cabecalho {
     background: #ffffff;
     border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 body.tema-claro #nomeHamburgueria {
@@ -841,13 +659,20 @@ body.tema-claro #botaoCarrinho:hover {
     color: #fff;
 }
 
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Modal de configurações
+   ════════════════════════════════════════ */
+
 body.tema-claro #modalConfiguracoes {
     background: #ffffff;
     border-color: #e0e0e0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
 body.tema-claro #headerModalConfiguracoes {
-    border-color: #e0e0e0;
+    border-color: #e8e8e8;
+    background: #fafafa;
 }
 
 body.tema-claro #headerModalConfiguracoes h2 {
@@ -860,8 +685,8 @@ body.tema-claro #fecharModalConfiguracoes {
 }
 
 body.tema-claro #perfilModal {
-    background: linear-gradient(135deg, rgba(76,175,80,0.08), rgba(255,213,79,0.04));
-    border-color: #e0e0e0;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.06), rgba(255, 213, 79, 0.04));
+    border-color: #eeeeee;
 }
 
 body.tema-claro #nomePerfilModal {
@@ -873,7 +698,7 @@ body.tema-claro .secaoModal {
 }
 
 body.tema-claro .tituloSecaoModal {
-    color: #999;
+    color: #aaa;
 }
 
 body.tema-claro .itemModalNome {
@@ -899,7 +724,7 @@ body.tema-claro .btnTema {
 body.tema-claro .btnTema.ativo {
     background: #ffffff;
     color: #121212;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 body.tema-claro .sliderToggle {
@@ -909,19 +734,58 @@ body.tema-claro .sliderToggle {
 body.tema-claro #rodapeModalConfiguracoes {
     border-color: #eeeeee;
     color: #bbb;
+    background: #fafafa;
 }
 
-body.tema-claro #rodapePrincipal {
-    background: #1a1a1a;
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Popup de login
+   ════════════════════════════════════════ */
+
+body.tema-claro #popupLoginCaixa {
+    background: #ffffff;
+    border-color: #ddd;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
+
+body.tema-claro #popupLoginTitulo {
+    color: #121212;
+}
+
+body.tema-claro #popupLoginMensagem {
+    color: #777;
+}
+
+body.tema-claro #popupBotaoLogin {
+    background: linear-gradient(135deg, #e69900, #cc7a00);
+    color: #fff;
+}
+
+body.tema-claro #popupBotaoFechar {
+    border-color: #ddd;
+    color: #555;
+    background: transparent;
+}
+
+body.tema-claro #popupBotaoFechar:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #121212;
+}
+
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Carrinho lateral
+   ════════════════════════════════════════ */
 
 body.tema-claro #painelCarrinho {
     background: #ffffff;
-    border-color: #e0e0e0;
+    border-color: #ddd;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
 }
 
 body.tema-claro #cabecalhoCarrinho {
-    border-color: #eeeeee;
+    border-color: #e8e8e8;
+    background: #fafafa;
 }
 
 body.tema-claro #cabecalhoCarrinho h2 {
@@ -929,6 +793,219 @@ body.tema-claro #cabecalhoCarrinho h2 {
 }
 
 body.tema-claro #fecharCarrinho {
-    background: #eeeeee;
+    background: #f0f0f0;
     color: #333;
+}
+
+body.tema-claro #listaCarrinho {
+    border-color: #ddd;
+}
+
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Rodapé
+   ════════════════════════════════════════ */
+
+body.tema-claro #rodapePrincipal {
+    background: #f9f9f9;
+    border-top: 1px solid #ddd;
+}
+
+body.tema-claro .rodapeLogo {
+    color: #e69900;
+}
+
+body.tema-claro .rodapeTexto,
+body.tema-claro .rodapeColuna a,
+body.tema-claro .rodapeColuna p {
+    color: #666;
+}
+
+body.tema-claro .rodapeColuna h3 {
+    color: #121212;
+}
+
+body.tema-claro .rodapeColuna h3::after {
+    background: #e69900;
+}
+
+body.tema-claro .rodapeColuna a:hover {
+    color: #e69900;
+}
+
+body.tema-claro .iconeSocial {
+    background: #efefef;
+    border-color: #ddd;
+}
+
+body.tema-claro .iconeSocial i {
+    color: #555;
+}
+
+body.tema-claro .iconeSocial:hover {
+    background: #e69900;
+    box-shadow: 0 0 25px rgba(230, 153, 0, .2);
+}
+
+body.tema-claro .iconeSocial:hover i {
+    color: #fff;
+}
+
+body.tema-claro .rodapeInferior {
+    border-color: #ddd;
+    background: #f5f5f5;
+}
+
+body.tema-claro .rodapeInferior p {
+    color: #999;
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE — Tablets
+   ════════════════════════════════════════ */
+
+@media (max-width: 992px) {
+
+    #cabecalho {
+        padding: 20px;
+        gap: 15px;
+    }
+
+    #nomeHamburgueria {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    #navegacao {
+        gap: 10px;
+    }
+
+    #botaoMenu,
+    #botaoLogin {
+        width: 100px;
+        height: 45px;
+        font-size: 14px;
+    }
+
+    .rodapeContainer {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE — Celulares
+   ════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+    #cabecalho {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    #nomeHamburgueria {
+        font-size: 26px;
+        text-align: center;
+        letter-spacing: 1px;
+    }
+
+    #navegacao {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #statusLoja {
+        order: 3;
+    }
+
+    .rodapeContainer {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 60px 25px;
+    }
+
+    .rodapeColuna h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .redesSociais {
+        justify-content: center;
+    }
+
+    #botaoVoltar {
+        width: 100px;
+        height: 40px;
+        font-size: 14px;
+        top: 15px;
+        right: 15px;
+    }
+
+    #painelCarrinho {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE — Celulares pequenos
+   ════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+
+    #cabecalho {
+        padding: 15px;
+    }
+
+    #nomeHamburgueria {
+        font-size: 22px;
+    }
+
+    #navegacao {
+        gap: 8px;
+    }
+
+    #botaoMenu,
+    #botaoLogin {
+        width: 90px;
+        height: 42px;
+        font-size: 13px;
+    }
+
+    #botaoCarrinho {
+        width: 45px;
+        height: 45px;
+    }
+
+    #statusLoja {
+        padding: 6px 10px;
+    }
+
+    #textoStatus {
+        font-size: 12px;
+    }
+
+    .rodapeContainer {
+        padding: 50px 20px;
+    }
+
+    .rodapeLogo {
+        font-size: 1.6rem;
+    }
+
+    .rodapeTexto {
+        font-size: .95rem;
+    }
+
+    .iconeSocial {
+        width: 45px;
+        height: 45px;
+    }
 }

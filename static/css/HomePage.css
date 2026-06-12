@@ -271,6 +271,97 @@
     overflow: hidden;
 }
 
+/* ════════════════════════════════════════
+   TEMA CLARO
+   ════════════════════════════════════════ */
+
+body.tema-claro .banner-principal {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.85)), url('/static/img/banner.jpg');
+}
+
+body.tema-claro .banner-titulo {
+    color: #121212;
+}
+
+body.tema-claro .banner-descricao {
+    color: #555;
+}
+
+body.tema-claro .badge-tag {
+    background-color: #e69900;
+    color: #fff;
+}
+
+body.tema-claro .btn-banner.btn-laranja {
+    background-color: #e69900;
+    color: #fff;
+}
+
+body.tema-claro .btn-banner.btn-verde {
+    background-color: #00a651;
+    color: #fff;
+}
+
+body.tema-claro .secaoHistoria {
+    background-color: #f9f9f9;
+}
+
+body.tema-claro .historiaSubtitulo {
+    color: #e69900;
+}
+
+body.tema-claro .historiaTitulo {
+    color: #00a651;
+}
+
+body.tema-claro .historiaTexto p {
+    color: #555;
+}
+
+body.tema-claro .secao-promocoes {
+    background-color: #f5f5f5;
+}
+
+body.tema-claro .promocoes-titulo {
+    color: #121212;
+}
+
+body.tema-claro .card-promocao {
+    background-color: #ffffff;
+    border-color: #ddd;
+}
+
+body.tema-claro .card-promocao:hover {
+    border-color: #e69900;
+    box-shadow: 0 20px 40px rgba(230, 153, 0, 0.15);
+}
+
+body.tema-claro .card-info h3 {
+    color: #121212;
+}
+
+body.tema-claro .card-info p {
+    color: #777;
+}
+
+body.tema-claro .preco-antigo {
+    color: #999;
+}
+
+body.tema-claro .preco-atual {
+    color: #e69900;
+}
+
+body.tema-claro .btn-ver-todas {
+    color: #e69900;
+    border-color: #e69900;
+}
+
+body.tema-claro .btn-ver-todas:hover {
+    background-color: #e69900;
+    color: #fff;
+}
+
 .card-valores {
     display: flex;
     align-items: center;

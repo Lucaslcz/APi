@@ -1,10 +1,5 @@
-/* ============================================================
-   FINALIZADO.CSS — Hamburgueria Calabreso
-   ============================================================ */
-
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-/* ── LAYOUT BASE ── */
 #mainFinalizar {
     max-width: 1200px;
     margin: 0 auto;
@@ -18,7 +13,6 @@
 }
 
 
-/* ── BARRA DE PROGRESSO ── */
 #barraProgresso {
     display: flex;
     align-items: center;
@@ -109,7 +103,7 @@
 }
 
 
-/* ── GRID PRINCIPAL ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ GRID PRINCIPAL Ã¢â€â‚¬Ã¢â€â‚¬ */
 #layoutFinalizar {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
@@ -117,7 +111,7 @@
     align-items: start;
 }
 
-/* ── SEÇÃO GENÉRICA ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ SEÃƒâ€¡ÃƒÆ’O GENÃƒâ€°RICA Ã¢â€â‚¬Ã¢â€â‚¬ */
 #resumoPedido,
 #secaoPagamento {
     background: #111;
@@ -156,7 +150,7 @@
 }
 
 
-/* ── ITENS DO PEDIDO ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ ITENS DO PEDIDO Ã¢â€â‚¬Ã¢â€â‚¬ */
 #listaItensPedido {
     display: flex;
     flex-direction: column;
@@ -207,7 +201,7 @@
 }
 
 
-/* ── DIVISOR & TOTAIS ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ DIVISOR & TOTAIS Ã¢â€â‚¬Ã¢â€â‚¬ */
 #divisorResumo {
     height: 1px;
     background: linear-gradient(90deg, transparent, #2f2f2f, transparent);
@@ -236,7 +230,7 @@
 .verde { color: #00e676 !important; }
 
 
-/* ── ENDEREÇO ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ ENDEREÃƒâ€¡O Ã¢â€â‚¬Ã¢â€â‚¬ */
 #blocoEndereco {
     margin-top: 24px;
     padding-top: 24px;
@@ -277,7 +271,7 @@
 .inputFinalizar::placeholder { color: #555; }
 
 
-/* ── ABAS DE PAGAMENTO ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ ABAS DE PAGAMENTO Ã¢â€â‚¬Ã¢â€â‚¬ */
 #abasPagamento {
     display: flex;
     gap: 8px;
@@ -318,7 +312,7 @@
 }
 
 
-/* ── PAINÉIS DE PAGAMENTO ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ PAINÃƒâ€°IS DE PAGAMENTO Ã¢â€â‚¬Ã¢â€â‚¬ */
 .painelPagamento {
     display: none;
     flex-direction: column;
@@ -387,7 +381,7 @@
 }
 
 
-/* ── QR CODE FAKE ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ QR CODE FAKE Ã¢â€â‚¬Ã¢â€â‚¬ */
 #qrCodeFake {
     width: 130px;
     height: 130px;
@@ -427,7 +421,7 @@
 }
 
 #qrInner::after {
-    content: '🍔';
+    content: 'Ã°Å¸Ââ€';
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%,-50%);
@@ -443,7 +437,7 @@
 }
 
 
-/* ── CHAVE PIX ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ CHAVE PIX Ã¢â€â‚¬Ã¢â€â‚¬ */
 .chavePix {
     display: flex;
     align-items: center;
@@ -477,7 +471,7 @@
 #btnCopiarPix.copiado { color: #00e676; }
 
 
-/* ── BOTÕES SOCIAIS ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ BOTÃƒâ€¢ES SOCIAIS Ã¢â€â‚¬Ã¢â€â‚¬ */
 .btnSocial {
     display: flex;
     align-items: center;
@@ -531,7 +525,7 @@
 }
 
 
-/* ── CARTÃO VISUAL ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ CARTÃƒÆ’O VISUAL Ã¢â€â‚¬Ã¢â€â‚¬ */
 #cartaoVisual {
     width: 100%;
     max-width: 340px;
@@ -627,7 +621,7 @@
 #selectParcelas:focus { border-color: #ffa500; }
 
 
-/* ── BOLETO VISUAL ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ BOLETO VISUAL Ã¢â€â‚¬Ã¢â€â‚¬ */
 #boletoVisual {
     display: flex;
     gap: 3px;
@@ -672,7 +666,7 @@
 .linhaBoleto strong { color: #fff; }
 
 
-/* ── BOTÃO CONFIRMAR ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ BOTÃƒÆ’O CONFIRMAR Ã¢â€â‚¬Ã¢â€â‚¬ */
 .btnConfirmarPagamento {
     width: 100%;
     max-width: 340px;
@@ -726,10 +720,6 @@
     to   { transform: rotate(360deg); }
 }
 
-
-/* ═══════════════════════════════════════
-   POPUP DE APROVAÇÃO
-   ═══════════════════════════════════════ */
 #overlayAprovado {
     position: fixed;
     inset: 0;
@@ -820,7 +810,7 @@
     stroke-dashoffset: 0;
 }
 
-/* Partículas do burst */
+/* PartÃƒÂ­culas do burst */
 #particlesBurst {
     position: absolute;
     inset: 0;
@@ -894,6 +884,106 @@
     align-items: center;
     justify-content: center;
     font-size: .9rem;
+}
+
+body.tema-claro #mainFinalizar {
+    color: #121212;
+}
+
+body.tema-claro #resumoPedido,
+body.tema-claro #secaoPagamento {
+    background: #ffffff;
+    border-color: #ddd;
+}
+
+body.tema-claro .secaoTitulo h2,
+body.tema-claro .secaoTitulo h3 {
+    color: #121212;
+}
+
+body.tema-claro .secaoTitulo i {
+    color: #e69900;
+}
+
+body.tema-claro .itemPedido {
+    background: #f9f9f9;
+    border-color: #ddd;
+}
+
+body.tema-claro .itemPedido:hover {
+    border-color: #e69900;
+}
+
+body.tema-claro .qtdItem {
+    background: #e69900;
+    color: #fff;
+}
+
+body.tema-claro .nomeItem {
+    color: #555;
+}
+
+body.tema-claro .precoItem {
+    color: #00a651;
+}
+
+body.tema-claro .linhaTotal {
+    color: #777;
+}
+
+body.tema-claro .linhaTotal.destaque {
+    color: #121212;
+    border-color: #ddd;
+}
+
+body.tema-claro .linhaTotal.destaque span:last-child {
+    color: #e69900;
+}
+
+body.tema-claro .inputFinalizar {
+    background: #f9f9f9;
+    border-color: #ddd;
+    color: #121212;
+}
+
+body.tema-claro .inputFinalizar:focus {
+    border-color: #e69900;
+    box-shadow: 0 0 0 3px rgba(230, 153, 0, .1);
+}
+
+body.tema-claro .inputFinalizar::placeholder {
+    color: #bbb;
+}
+
+body.tema-claro #abasPagamento {
+    background: #f9f9f9;
+    border-color: #ddd;
+}
+
+body.tema-claro .abaPagamento {
+    color: #777;
+}
+
+body.tema-claro .abaPagamento.ativa {
+    background: linear-gradient(135deg, #e69900, #cc7a00);
+    color: #fff;
+}
+
+body.tema-claro .tituloPainel {
+    color: #121212;
+}
+
+body.tema-claro .descPainel {
+    color: #666;
+}
+
+body.tema-claro .chavePix {
+    background: #f9f9f9;
+    border-color: #00a651;
+}
+
+body.tema-claro #textoChavePix {
+    color: #00a651;
     color: #555;
     transition: all .4s ease;
 }
@@ -927,7 +1017,7 @@
 }
 
 
-/* BOTÃO VOLTAR INÍCIO */
+/* BOTÃƒÆ’O VOLTAR INÃƒÂCIO */
 #btnVoltarInicio {
     width: 100%;
     padding: 16px;
@@ -955,7 +1045,7 @@
 #btnVoltarInicio:active { transform: scale(.97); }
 
 
-/* ── CONFETTI ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ CONFETTI Ã¢â€â‚¬Ã¢â€â‚¬ */
 .confettiPiece {
     position: fixed;
     top: -10px;
@@ -974,7 +1064,7 @@
 }
 
 
-/* ── TOAST ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ TOAST Ã¢â€â‚¬Ã¢â€â‚¬ */
 #toastFinalizar {
     position: fixed;
     bottom: 30px;
@@ -1000,7 +1090,7 @@
 }
 
 
-/* ── CHACOALHAR ── */
+/* Ã¢â€â‚¬Ã¢â€â‚¬ CHACOALHAR Ã¢â€â‚¬Ã¢â€â‚¬ */
 @keyframes chacoalhar {
     0%,100% { transform: translateX(0); }
     20%     { transform: translateX(-8px); }
@@ -1014,10 +1104,6 @@
     animation: chacoalhar .4s ease;
 }
 
-
-/* ═══════════════════════════════════════
-   RESPONSIVIDADE
-   ═══════════════════════════════════════ */
 @media (max-width: 900px) {
     #layoutFinalizar {
         grid-template-columns: 1fr;

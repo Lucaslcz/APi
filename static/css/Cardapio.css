@@ -1,11 +1,18 @@
-/* SEÇÃO PRINCIPAL */
+/* ════════════════════════════════════════
+   SEÇÃO PRINCIPAL DO CARDÁPIO
+   ════════════════════════════════════════ */
+
 #secaoCardapio {
     min-height: calc(100vh - 250px);
     background: #111111;
     padding: 80px 40px;
 }
 
-/* CABEÇALHO */
+
+/* ════════════════════════════════════════
+   CABEÇALHO DA PÁGINA
+   ════════════════════════════════════════ */
+
 #cabecalhoCardapio {
     text-align: center;
     margin-bottom: 60px;
@@ -32,6 +39,7 @@
     display: inline-block;
 }
 
+/* Linha decorativa abaixo do título */
 #cabecalhoCardapio h1::after {
     content: '';
     position: absolute;
@@ -50,7 +58,11 @@
     margin-top: 25px;
 }
 
-/* FILTROS */
+
+/* ════════════════════════════════════════
+   FILTROS DE CATEGORIA
+   ════════════════════════════════════════ */
+
 #filtrosCardapio {
     display: flex;
     justify-content: center;
@@ -88,7 +100,11 @@
     box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
 }
 
-/* GRADE */
+
+/* ════════════════════════════════════════
+   GRADE DE ITENS
+   ════════════════════════════════════════ */
+
 #gradeCardapio {
     max-width: 1000px;
     margin: 0 auto;
@@ -97,7 +113,11 @@
     gap: 60px;
 }
 
-/* ESTADOS (loading, erro, sem resultados) */
+
+/* ════════════════════════════════════════
+   ESTADOS: LOADING, ERRO, SEM RESULTADOS
+   ════════════════════════════════════════ */
+
 #loadingCardapio,
 #semResultados,
 #erroCardapio {
@@ -127,7 +147,11 @@
     display: none !important;
 }
 
-/* SEÇÃO DE CATEGORIA */
+
+/* ════════════════════════════════════════
+   SEÇÕES POR CATEGORIA
+   ════════════════════════════════════════ */
+
 .secaoCategoria {
     display: flex;
     flex-direction: column;
@@ -146,6 +170,7 @@
     position: relative;
 }
 
+/* Destaque laranja no início da linha do título */
 .tituloCategoria::after {
     content: '';
     position: absolute;
@@ -162,7 +187,11 @@
     gap: 12px;
 }
 
-/* CARD */
+
+/* ════════════════════════════════════════
+   CARD DE ITEM DO CARDÁPIO
+   ════════════════════════════════════════ */
+
 .cardItem {
     background: linear-gradient(145deg, #1b1b1b, #131313);
     border: 1px solid #2a2a2a;
@@ -176,14 +205,8 @@
 }
 
 @keyframes fadeInCard {
-    from {
-        opacity: 0;
-        transform: translateY(16px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .cardItem:hover {
@@ -192,13 +215,14 @@
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 165, 0, 0.1);
 }
 
+/* Itens esgotados ficam acinzentados e não clicáveis */
 .cardItem.indisponivel {
     opacity: 0.45;
     filter: grayscale(60%);
     pointer-events: none;
 }
 
-/* CORPO DO CARD — linha horizontal */
+/* Layout horizontal do card */
 .cardItem-corpo {
     padding: 20px 25px;
     display: flex;
@@ -206,7 +230,11 @@
     gap: 20px;
 }
 
-/* BADGE DE CATEGORIA */
+
+/* ════════════════════════════════════════
+   BADGES DE CATEGORIA (cores por tipo)
+   ════════════════════════════════════════ */
+
 .cardItem-badge {
     display: inline-block;
     padding: 4px 12px;
@@ -226,7 +254,11 @@
 .badge-Sobremesa  { background: rgba(233, 30, 99, 0.2);  color: #e91e63; }
 .badge-Combo      { background: rgba(156, 39, 176, 0.2); color: #9c27b0; }
 
-/* TEXTOS */
+
+/* ════════════════════════════════════════
+   TEXTOS DO CARD
+   ════════════════════════════════════════ */
+
 .cardItem-texto {
     flex: 1;
     display: flex;
@@ -252,7 +284,11 @@
     text-overflow: ellipsis;
 }
 
-/* RODAPÉ DO CARD */
+
+/* ════════════════════════════════════════
+   RODAPÉ DO CARD (preço + botão)
+   ════════════════════════════════════════ */
+
 .cardItem-rodape {
     display: flex;
     align-items: center;
@@ -281,6 +317,7 @@
     gap: 5px;
 }
 
+/* Tag de produto indisponível */
 .tag-indisponivel {
     display: inline-block;
     background: rgba(255, 82, 82, 0.2);
@@ -291,7 +328,7 @@
     border-radius: 20px;
 }
 
-/* BOTÃO ADICIONAR */
+/* Botão circular de adicionar ao carrinho */
 .btnAdicionar {
     width: 44px;
     height: 44px;
@@ -319,7 +356,7 @@
     transform: scale(1.1);
 }
 
-/* BOTÃO INÍCIO */
+/* Botão de navegação para a home */
 #botaoInicio {
     padding: 10px 18px;
     background: transparent;
@@ -339,7 +376,120 @@
     transform: translateY(-2px);
 }
 
-/* RESPONSIVIDADE */
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Cardápio
+   ════════════════════════════════════════ */
+
+body.tema-claro #secaoCardapio {
+    background: #f0f0f0;
+}
+
+body.tema-claro .cardapio-subtitulo {
+    color: #e69900;
+}
+
+body.tema-claro #cabecalhoCardapio h1 {
+    color: #121212;
+}
+
+body.tema-claro #cabecalhoCardapio h1::after {
+    background: #00a651;
+}
+
+body.tema-claro #cabecalhoCardapio p {
+    color: #666;
+}
+
+/* Filtros com fundo branco e borda cinza */
+body.tema-claro .btnFiltro {
+    border-color: #ddd;
+    color: #555;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+body.tema-claro .btnFiltro:hover {
+    border-color: #e69900;
+    color: #e69900;
+    box-shadow: 0 2px 10px rgba(230, 153, 0, 0.12);
+}
+
+body.tema-claro .btnFiltro.ativo {
+    background: #e69900;
+    border-color: #e69900;
+    color: #fff;
+}
+
+/* Títulos de seção com linha cinza e destaque amarelo */
+body.tema-claro .tituloCategoria {
+    color: #1a1a1a;
+    border-color: #e0e0e0;
+}
+
+body.tema-claro .tituloCategoria::after {
+    background: #e69900;
+}
+
+/* Cards brancos com sombra sutil */
+body.tema-claro .cardItem {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.tema-claro .cardItem:hover {
+    border-color: #e69900;
+    box-shadow: 0 6px 20px rgba(230, 153, 0, 0.12);
+}
+
+body.tema-claro .cardItem-nome {
+    color: #1a1a1a;
+}
+
+body.tema-claro .cardItem-descricao {
+    color: #777;
+}
+
+body.tema-claro .cardItem-preco {
+    color: #e69900;
+}
+
+body.tema-claro .cardItem-tempo {
+    color: #aaa;
+}
+
+body.tema-claro .btnAdicionar {
+    background: #00a651;
+    color: #fff;
+}
+
+body.tema-claro .btnAdicionar:hover {
+    background: #e69900;
+}
+
+body.tema-claro #loadingCardapio i,
+body.tema-claro #semResultados i,
+body.tema-claro #erroCardapio i {
+    color: #e69900;
+}
+
+body.tema-claro #botaoInicio {
+    border-color: #ddd;
+    color: #333;
+    background: #fff;
+}
+
+body.tema-claro #botaoInicio:hover {
+    border-color: #e69900;
+    color: #e69900;
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════════════ */
+
 @media (max-width: 768px) {
 
     #secaoCardapio {
@@ -359,10 +509,7 @@
         font-size: 0.85rem;
     }
 
-    .cardItem-descricao {
-        display: none;
-    }
-
+    .cardItem-descricao,
     .cardItem-badge {
         display: none;
     }
@@ -374,6 +521,7 @@
         font-size: 1.8rem;
     }
 
+    /* Oculta texto dos filtros, mantém só ícone */
     .btnFiltro span {
         display: none;
     }

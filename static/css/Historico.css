@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-/* BASE */
+/* ════════════════════════════════════════
+   LAYOUT PRINCIPAL DA PÁGINA
+   ════════════════════════════════════════ */
+
 #mainHistorico {
     max-width: 860px;
     margin: 0 auto;
@@ -16,7 +19,10 @@
 .escondido { display: none !important; }
 
 
-/* HERO */
+/* ════════════════════════════════════════
+   HERO — Título e ícone da página
+   ════════════════════════════════════════ */
+
 #heroHistorico {
     display: flex;
     align-items: center;
@@ -24,6 +30,7 @@
     margin-bottom: 40px;
 }
 
+/* Ícone decorativo do hero */
 #heroHistoricoIcone {
     width: 72px;
     height: 72px;
@@ -53,7 +60,10 @@
 }
 
 
-/* STATS */
+/* ════════════════════════════════════════
+   CARDS DE ESTATÍSTICAS (total gasto etc.)
+   ════════════════════════════════════════ */
+
 #statsHistorico {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -114,7 +124,10 @@
 }
 
 
-/* BUSCA */
+/* ════════════════════════════════════════
+   CAMPO DE BUSCA
+   ════════════════════════════════════════ */
+
 #filtrosHistorico {
     margin-bottom: 24px;
 }
@@ -135,7 +148,10 @@
     box-shadow: 0 0 0 3px rgba(255, 165, 0, .07);
 }
 
-#campoBusca i { color: #444; font-size: .95rem; }
+#campoBusca i {
+    color: #444;
+    font-size: .95rem;
+}
 
 #inputBusca {
     flex: 1;
@@ -147,10 +163,15 @@
     font-family: inherit;
 }
 
-#inputBusca::placeholder { color: #444; }
+#inputBusca::placeholder {
+    color: #444;
+}
 
 
-/* LISTA */
+/* ════════════════════════════════════════
+   LISTA DE PEDIDOS
+   ════════════════════════════════════════ */
+
 #listaHistorico {
     display: flex;
     flex-direction: column;
@@ -158,7 +179,10 @@
 }
 
 
-/* ESTADOS */
+/* ════════════════════════════════════════
+   ESTADOS: LOADING, VAZIO, ERRO
+   ════════════════════════════════════════ */
+
 #loadingHistorico,
 #historicoVazio,
 #erroHistorico {
@@ -173,9 +197,9 @@
     text-align: center;
 }
 
-#loadingHistorico i { color: #ffa500; font-size: 2.2rem; }
+#loadingHistorico i  { color: #ffa500; font-size: 2.2rem; }
 #historicoVazio i,
-#erroHistorico i    { color: #2a2a2a; font-size: 2.8rem; }
+#erroHistorico i     { color: #2a2a2a; font-size: 2.8rem; }
 
 #btnIrCardapio {
     margin-top: 6px;
@@ -196,7 +220,10 @@
 }
 
 
-/* CARD DO PEDIDO */
+/* ════════════════════════════════════════
+   CARD DE PEDIDO INDIVIDUAL
+   ════════════════════════════════════════ */
+
 .cardHistorico {
     background: #111;
     border: 1px solid #1e1e1e;
@@ -211,15 +238,17 @@
     transition: border-color .25s, transform .25s, box-shadow .25s;
 }
 
+/* Gradiente diagonal sutil no fundo */
 .cardHistorico::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 20px;
-    background: linear-gradient(135deg, rgba(255,213,79,.04), transparent 60%);
+    background: linear-gradient(135deg, rgba(255, 213, 79, .04), transparent 60%);
     pointer-events: none;
 }
 
+/* Barra colorida lateral esquerda */
 .cardHistorico::after {
     content: '';
     position: absolute;
@@ -234,7 +263,7 @@
 .cardHistorico:hover {
     border-color: rgba(255, 165, 0, .35);
     transform: translateY(-3px);
-    box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .4);
 }
 
 @keyframes entradaCard {
@@ -242,7 +271,9 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* topo */
+
+/* ── Topo do card: código + data ── */
+
 .cardHistorico-topo {
     display: flex;
     align-items: center;
@@ -250,6 +281,7 @@
     gap: 12px;
 }
 
+/* Badge com código do pedido */
 .cardHistorico-codigo {
     display: flex;
     align-items: center;
@@ -279,13 +311,15 @@
     white-space: nowrap;
 }
 
-/* descrição */
+
+/* ── Descrição dos itens do pedido ── */
+
 .cardHistorico-descricao {
     display: flex;
     align-items: flex-start;
     gap: 12px;
     padding: 14px 16px;
-    background: rgba(255,255,255,.02);
+    background: rgba(255, 255, 255, .02);
     border: 1px solid #1a1a1a;
     border-radius: 12px;
 }
@@ -303,7 +337,9 @@
     line-height: 1.65;
 }
 
-/* rodapé */
+
+/* ── Rodapé do card: endereço + pagamento ── */
+
 .cardHistorico-rodape {
     display: flex;
     align-items: center;
@@ -320,7 +356,7 @@
     gap: 8px;
 }
 
-.cardHistorico-endereco i { color: #00c9a7; font-size: .82rem; }
+.cardHistorico-endereco i  { color: #00c9a7; font-size: .82rem; }
 .cardHistorico-pagamento i { color: #ffd54f; font-size: .82rem; }
 
 .enderecoPedido,
@@ -329,18 +365,143 @@
     font-size: .82rem;
 }
 
+/* Pagamento vai para a direita */
 .cardHistorico-pagamento {
     margin-left: auto;
 }
 
 
-/* RESPONSIVO */
+/* ════════════════════════════════════════
+   TEMA CLARO — Histórico
+   ════════════════════════════════════════ */
+
+body.tema-claro #mainHistorico {
+    color: #121212;
+}
+
+body.tema-claro #heroHistoricoIcone {
+    background: linear-gradient(135deg, #e69900, #cc7a00);
+    color: #fff;
+}
+
+body.tema-claro #tituloHistorico {
+    color: #121212;
+}
+
+body.tema-claro #subtituloHistorico {
+    color: #777;
+}
+
+/* Cards de stats brancos com sombra */
+body.tema-claro .statCard {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.tema-claro .statCard:hover {
+    border-color: rgba(230, 153, 0, .4);
+    box-shadow: 0 4px 16px rgba(230, 153, 0, 0.1);
+}
+
+body.tema-claro .statIcone {
+    background: rgba(230, 153, 0, .08);
+    border-color: rgba(230, 153, 0, .15);
+    color: #e69900;
+}
+
+body.tema-claro .statValor {
+    color: #121212;
+}
+
+body.tema-claro .statLabel {
+    color: #999;
+}
+
+/* Campo de busca branco */
+body.tema-claro #campoBusca {
+    background: #ffffff;
+    border-color: #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+body.tema-claro #campoBusca i {
+    color: #aaa;
+}
+
+body.tema-claro #inputBusca {
+    color: #121212;
+}
+
+body.tema-claro #inputBusca::placeholder {
+    color: #bbb;
+}
+
+/* Cards de pedido brancos com divisor visível */
+body.tema-claro .cardHistorico {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.tema-claro .cardHistorico:hover {
+    border-color: rgba(230, 153, 0, .35);
+    box-shadow: 0 10px 30px rgba(230, 153, 0, 0.1);
+}
+
+body.tema-claro .codigoPedido {
+    color: #c47f00;
+}
+
+body.tema-claro .cardHistorico-data {
+    color: #aaa;
+}
+
+/* Área de descrição com fundo off-white */
+body.tema-claro .cardHistorico-descricao {
+    background: #f9f9f9;
+    border-color: #eee;
+}
+
+body.tema-claro .cardHistorico-descricao i {
+    color: #e69900;
+}
+
+body.tema-claro .descricaoPedido {
+    color: #555;
+}
+
+/* Rodapé com divisor cinza */
+body.tema-claro .cardHistorico-rodape {
+    border-color: #eeeeee;
+}
+
+body.tema-claro .enderecoPedido,
+body.tema-claro .pagamentoPedido {
+    color: #888;
+}
+
+body.tema-claro #btnIrCardapio {
+    background: linear-gradient(135deg, #e69900, #cc7a00);
+    color: #fff;
+}
+
+body.tema-claro #historicoVazio i,
+body.tema-claro #erroHistorico i {
+    color: #ccc;
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════════════ */
+
 @media (max-width: 600px) {
-    #mainHistorico { padding: 24px 16px 70px; }
-    #tituloHistorico { font-size: 1.8rem; }
-    #heroHistoricoIcone { width: 56px; height: 56px; font-size: 1.4rem; }
-    #statsHistorico { grid-template-columns: 1fr 1fr; }
-    .cardHistorico { padding: 18px 20px; }
-    .cardHistorico-topo { flex-direction: column; align-items: flex-start; gap: 8px; }
+    #mainHistorico           { padding: 24px 16px 70px; }
+    #tituloHistorico         { font-size: 1.8rem; }
+    #heroHistoricoIcone      { width: 56px; height: 56px; font-size: 1.4rem; }
+    #statsHistorico          { grid-template-columns: 1fr 1fr; }
+    .cardHistorico           { padding: 18px 20px; }
+    .cardHistorico-topo      { flex-direction: column; align-items: flex-start; gap: 8px; }
     .cardHistorico-pagamento { margin-left: 0; }
 }

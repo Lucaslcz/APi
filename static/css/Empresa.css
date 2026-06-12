@@ -44,7 +44,7 @@
     font-weight: 500;
 }
 
-/* CARDS DE MÉTRICAS */
+/* CARDS DE MÃƒâ€°TRICAS */
 #secaoCards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -112,7 +112,7 @@
     align-items: start;
 }
 
-/* CABEÇALHO DAS SEÇÕES */
+/* CABEÃƒâ€¡ALHO DAS SEÃƒâ€¡Ãƒâ€¢ES */
 .secaoHeader {
     display: flex;
     justify-content: space-between;
@@ -154,7 +154,7 @@
     color: #ffa500;
 }
 
-/* SEÇÃO DADOS DA EMPRESA */
+/* SEÃƒâ€¡ÃƒÆ’O DADOS DA EMPRESA */
 #secaoDados {
     background: #161616;
     border: 1px solid #222;
@@ -221,7 +221,7 @@
     margin-top: 4px;
 }
 
-/* SEÇÃO MURAL */
+/* SEÃƒâ€¡ÃƒÆ’O MURAL */
 #secaoMural {
     background: #161616;
     border: 1px solid #222;
@@ -312,7 +312,7 @@
     background: rgba(255, 77, 77, 0.1);
 }
 
-/* SEÇÃO POPULARES */
+/* SEÃƒâ€¡ÃƒÆ’O POPULARES */
 #secaoPopulares {
     background: #161616;
     border: 1px solid #222;
@@ -383,7 +383,7 @@
     transition: width 0.6s ease;
 }
 
-/* BOTÕES */
+/* BOTÃƒâ€¢ES */
 .btnPrimario {
     flex: 1;
     padding: 11px;
@@ -458,6 +458,61 @@
 }
 
 #bloqueioAcesso p {
+    color: #999;
+}
+
+/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
+   TEMA CLARO
+   Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
+
+body.tema-claro #mainEmpresa {
+    color: #121212;
+}
+
+body.tema-claro #labelEmpresa {
+    color: #e69900;
+}
+
+body.tema-claro #tituloEmpresa {
+    color: #121212;
+}
+
+body.tema-claro #subtituloEmpresa {
+    color: #888;
+}
+
+body.tema-claro #dataHoje {
+    color: #999;
+}
+
+body.tema-claro .cardMetrica {
+    background: #ffffff;
+    border-color: #ddd;
+}
+
+body.tema-claro .cardMetrica:hover {
+    border-color: #999;
+}
+
+body.tema-claro .cardMetricaLabel {
+    color: #777;
+}
+
+body.tema-claro .cardMetricaValor {
+    color: #121212;
+}
+
+body.tema-claro .secaoTituloWrapper {
+    color: #121212;
+}
+
+body.tema-claro .secaoTituloWrapper i {
+    color: #e69900;
+}
+
+body.tema-claro .btnSecaoAcao {
+    border-color: #ddd;
+    color: #555;
     color: #555;
     font-size: 0.95rem;
 }
@@ -508,7 +563,7 @@
     transform: translateY(0);
 }
 
-/* ANIMAÇÕES */
+/* ANIMAÃƒâ€¡Ãƒâ€¢ES */
 @keyframes entrar {
     from { opacity: 0; transform: translateY(-5px); }
     to   { opacity: 1; transform: translateY(0); }

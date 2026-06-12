@@ -1,4 +1,7 @@
-/* BANNER */
+/* ════════════════════════════════════════
+   BANNER HERO DA PÁGINA DE PROMOÇÕES
+   ════════════════════════════════════════ */
+
 #heroBanner {
     position: relative;
     min-height: 420px;
@@ -19,6 +22,7 @@
     gap: 20px;
 }
 
+/* Pill de tag acima do título */
 .heroTag {
     display: inline-flex;
     align-items: center;
@@ -43,6 +47,7 @@
     text-transform: uppercase;
 }
 
+/* Palavra em destaque com sublinhado gradiente */
 .heroDestaque {
     color: #ffa500;
     position: relative;
@@ -86,7 +91,11 @@
     box-shadow: 0 8px 30px rgba(255, 165, 0, 0.5);
 }
 
-/* Círculos decorativos do hero */
+
+/* ════════════════════════════════════════
+   CÍRCULOS DECORATIVOS DO HERO (background)
+   ════════════════════════════════════════ */
+
 #heroBannerDecoracao {
     position: absolute;
     inset: 0;
@@ -126,7 +135,10 @@
 }
 
 
-/* SEÇÃO DE CONTADORES */
+/* ════════════════════════════════════════
+   SEÇÃO DE CONTADORES (pedidos, clientes…)
+   ════════════════════════════════════════ */
+
 #contadorSection {
     background: #0d0d0d;
     border-bottom: 1px solid #1f1f1f;
@@ -139,7 +151,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0;
 }
 
 .contadorItem {
@@ -170,6 +181,7 @@
     text-align: center;
 }
 
+/* Linha vertical que separa os contadores */
 .contadorDivisor {
     width: 1px;
     height: 60px;
@@ -177,7 +189,10 @@
 }
 
 
-/* SEÇÃO DE PROMOÇÕES */
+/* ════════════════════════════════════════
+   SEÇÃO PRINCIPAL DE PROMOÇÕES
+   ════════════════════════════════════════ */
+
 #promocoesGrid {
     background: #111111;
     padding: 80px 40px;
@@ -204,6 +219,7 @@
     margin-bottom: 12px;
 }
 
+/* Linha laranja sob o título */
 #cabecalhoPromocoes h2::after {
     content: '';
     position: absolute;
@@ -223,7 +239,10 @@
 }
 
 
-/* FILTROS */
+/* ════════════════════════════════════════
+   FILTROS DE PROMOÇÃO
+   ════════════════════════════════════════ */
+
 #filtrosPromocoes {
     display: flex;
     justify-content: center;
@@ -261,13 +280,17 @@
 }
 
 
-/* GRADE E CARDS DE PROMOÇÃO */
+/* ════════════════════════════════════════
+   GRADE E CARDS DE PROMOÇÃO
+   ════════════════════════════════════════ */
+
 #gradePromocoes {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
 }
 
+/* Loading centralizado dentro da grade */
 #loadingPromocoes {
     display: flex;
     flex-direction: column;
@@ -301,14 +324,8 @@
 }
 
 @keyframes entrarCard {
-    from {
-        opacity: 0;
-        transform: translateY(24px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .cardPromo:hover {
@@ -317,7 +334,11 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 165, 0, 0.12);
 }
 
-/* Topo do card com ícone e tag */
+
+/* ════════════════════════════════════════
+   TOPO DO CARD (ícone decorativo + tag)
+   ════════════════════════════════════════ */
+
 .cardPromo-topo {
     position: relative;
     height: 140px;
@@ -327,6 +348,7 @@
     overflow: hidden;
 }
 
+/* Gradiente de fundo semitransparente */
 .cardPromo-topo::before {
     content: '';
     position: absolute;
@@ -334,6 +356,7 @@
     background: linear-gradient(135deg, rgba(255, 165, 0, 0.08), rgba(0, 230, 118, 0.05));
 }
 
+/* Badge de tipo de promoção (canto superior esquerdo) */
 .cardPromo-tag {
     position: absolute;
     top: 16px;
@@ -347,30 +370,12 @@
     z-index: 2;
 }
 
-.tag-desconto {
-    background: #ffa500;
-    color: #111111;
-    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4);
-}
+.tag-desconto { background: #ffa500; color: #111111; box-shadow: 0 4px 15px rgba(255, 165, 0, 0.4); }
+.tag-frete    { background: #00e676; color: #111111; box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4); }
+.tag-leve2    { background: linear-gradient(135deg, #9c27b0, #e91e63); color: #ffffff; box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4); }
+.tag-combo    { background: linear-gradient(135deg, #2196f3, #00bcd4); color: #ffffff; box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4); }
 
-.tag-frete {
-    background: #00e676;
-    color: #111111;
-    box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
-}
-
-.tag-leve2 {
-    background: linear-gradient(135deg, #9c27b0, #e91e63);
-    color: #ffffff;
-    box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
-}
-
-.tag-combo {
-    background: linear-gradient(135deg, #2196f3, #00bcd4);
-    color: #ffffff;
-    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
-}
-
+/* Ícone emoji grande e decorativo */
 .cardPromo-icone {
     font-size: 4rem;
     opacity: 0.3;
@@ -382,7 +387,11 @@
     transform: scale(1.15) rotate(8deg);
 }
 
-/* Corpo do card */
+
+/* ════════════════════════════════════════
+   CORPO DO CARD
+   ════════════════════════════════════════ */
+
 .cardPromo-corpo {
     padding: 24px;
 }
@@ -407,6 +416,7 @@
     overflow: hidden;
 }
 
+/* Rodapé do card: preços + botão */
 .cardPromo-rodape {
     display: flex;
     align-items: center;
@@ -434,6 +444,7 @@
     line-height: 1;
 }
 
+/* Botão circular de adicionar ao carrinho */
 .btnAdicionarPromo {
     width: 48px;
     height: 48px;
@@ -458,11 +469,13 @@
 
 .btnAdicionarPromo.adicionado {
     background: #00e676;
-    transform: scale(1.1);
 }
 
 
-/* BOTÃO INÍCIO */
+/* ════════════════════════════════════════
+   BOTÃO INÍCIO (navegação para home)
+   ════════════════════════════════════════ */
+
 #botaoMenu {
     padding: 10px 18px;
     background: transparent;
@@ -483,7 +496,138 @@
 }
 
 
-/* RESPONSIVIDADE */
+/* ════════════════════════════════════════
+   TEMA CLARO — Promoções
+   ════════════════════════════════════════ */
+
+body.tema-claro #heroBanner {
+    background: linear-gradient(135deg, #f2f2f2 0%, #efefea 50%, #eef2ee 100%);
+    border-color: #ddd;
+}
+
+body.tema-claro .heroTag {
+    background: rgba(230, 153, 0, 0.1);
+    border-color: rgba(230, 153, 0, 0.3);
+    color: #c47f00;
+}
+
+body.tema-claro #heroBannerConteudo h1 {
+    color: #121212;
+}
+
+body.tema-claro #heroBannerConteudo p {
+    color: #555;
+}
+
+body.tema-claro .heroDestaque {
+    color: #c47f00;
+}
+
+body.tema-claro .heroBotao {
+    background: linear-gradient(135deg, #e69900, #cc7a00);
+    color: #fff;
+}
+
+/* Seção de contadores com fundo e divisor visíveis */
+body.tema-claro #contadorSection {
+    background: #f9f9f9;
+    border-color: #e8e8e8;
+}
+
+body.tema-claro .contadorDivisor {
+    background: #ddd;
+}
+
+body.tema-claro .contadorLabel {
+    color: #888;
+}
+
+body.tema-claro .contadorNumero {
+    color: #1a1a1a;
+}
+
+body.tema-claro .contadorItem i {
+    color: #c47f00;
+}
+
+/* Seção de promoções com fundo levemente cinza */
+body.tema-claro #promocoesGrid {
+    background: #f0f0f0;
+}
+
+body.tema-claro #cabecalhoPromocoes h2 {
+    color: #1a1a1a;
+}
+
+body.tema-claro #cabecalhoPromocoes h2::after {
+    background: #c47f00;
+}
+
+body.tema-claro #cabecalhoPromocoes p {
+    color: #777;
+}
+
+/* Filtros com fundo branco */
+body.tema-claro .btnFiltroPromo {
+    border-color: #ddd;
+    color: #555;
+    background: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.tema-claro .btnFiltroPromo:hover {
+    border-color: #c47f00;
+    color: #c47f00;
+}
+
+body.tema-claro .btnFiltroPromo.ativo {
+    background: #c47f00;
+    border-color: #c47f00;
+    color: #fff;
+}
+
+/* Cards brancos com sombra */
+body.tema-claro .cardPromo {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.tema-claro .cardPromo:hover {
+    border-color: #c47f00;
+    box-shadow: 0 12px 30px rgba(196, 127, 0, 0.12);
+}
+
+body.tema-claro .cardPromo-nome {
+    color: #1a1a1a;
+}
+
+body.tema-claro .cardPromo-descricao {
+    color: #777;
+}
+
+body.tema-claro .cardPromo-precoAntigo {
+    color: #aaa;
+}
+
+body.tema-claro .cardPromo-precoAtual {
+    color: #c47f00;
+}
+
+body.tema-claro .btnAdicionarPromo {
+    background: #00a651;
+    color: #fff;
+}
+
+body.tema-claro .btnAdicionarPromo:hover {
+    background: #c47f00;
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════════════ */
+
 @media (max-width: 768px) {
 
     #heroBanner {
@@ -493,10 +637,6 @@
 
     #heroBannerConteudo h1 {
         font-size: 2.4rem;
-    }
-
-    #contadorContainer {
-        gap: 0;
     }
 
     .contadorNumero {
@@ -522,6 +662,7 @@
         font-size: 2rem;
     }
 
+    /* Oculta divisores em telas pequenas com flex-wrap */
     .contadorDivisor {
         display: none;
     }
@@ -530,6 +671,7 @@
         flex-wrap: wrap;
     }
 
+    /* Oculta texto dos filtros, mantém só ícone */
     .btnFiltroPromo span {
         display: none;
     }

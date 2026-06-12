@@ -1,3 +1,7 @@
+/* ════════════════════════════════════════
+   OVERLAY — Fundo escurecido do modal
+   ════════════════════════════════════════ */
+
 #overlayConfiguracoes {
     position: fixed;
     inset: 0;
@@ -13,6 +17,11 @@
     opacity: 1;
     pointer-events: all;
 }
+
+
+/* ════════════════════════════════════════
+   MODAL PRINCIPAL
+   ════════════════════════════════════════ */
 
 #modalConfiguracoes {
     position: fixed;
@@ -41,7 +50,11 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* HEADER */
+
+/* ════════════════════════════════════════
+   HEADER DO MODAL — Título e botão fechar
+   ════════════════════════════════════════ */
+
 #headerModalConfiguracoes {
     display: flex;
     align-items: center;
@@ -67,6 +80,7 @@
     color: #ffffff;
 }
 
+/* Botão X para fechar */
 #fecharModalConfiguracoes {
     width: 38px;
     height: 38px;
@@ -87,17 +101,22 @@
     transform: scale(1.08);
 }
 
-/* PERFIL */
+
+/* ════════════════════════════════════════
+   BLOCO DE PERFIL DO USUÁRIO
+   ════════════════════════════════════════ */
+
 #perfilModal {
     display: flex;
     align-items: center;
     gap: 18px;
     padding: 20px 28px;
-    background: linear-gradient(135deg, rgba(76,175,80,0.1), rgba(255,213,79,0.05));
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(255, 213, 79, 0.05));
     border-bottom: 1px solid #1e1e1e;
     flex-shrink: 0;
 }
 
+/* Avatar circular com inicial do nome */
 #avatarModal {
     width: 54px;
     height: 54px;
@@ -129,7 +148,11 @@
     font-size: 0.82rem;
 }
 
-/* CORPO SCROLLÁVEL */
+
+/* ════════════════════════════════════════
+   CORPO SCROLLÁVEL DO MODAL
+   ════════════════════════════════════════ */
+
 #corpoModalConfiguracoes {
     overflow-y: auto;
     flex: 1;
@@ -149,12 +172,17 @@
     border-radius: 4px;
 }
 
-/* SEÇÕES */
+
+/* ════════════════════════════════════════
+   SEÇÕES DE CONFIGURAÇÃO
+   ════════════════════════════════════════ */
+
 .secaoModal {
     padding: 20px 28px 8px;
     border-bottom: 1px solid #1a1a1a;
 }
 
+/* Rótulo acima de cada grupo de itens */
 .tituloSecaoModal {
     display: block;
     color: #555;
@@ -165,7 +193,11 @@
     margin-bottom: 12px;
 }
 
-/* ITENS */
+
+/* ════════════════════════════════════════
+   ITENS DE CONFIGURAÇÃO
+   ════════════════════════════════════════ */
+
 .itemModal {
     display: flex;
     align-items: center;
@@ -185,6 +217,7 @@
     background: rgba(255, 255, 255, 0.04);
 }
 
+/* Itens destrutivos (ex: sair da conta) */
 .itemModalPerigo:hover {
     background: rgba(255, 82, 82, 0.07) !important;
 }
@@ -232,7 +265,11 @@
     flex-shrink: 0;
 }
 
-/* SELETOR DE TEMA */
+
+/* ════════════════════════════════════════
+   SELETOR DE TEMA (Escuro / Claro)
+   ════════════════════════════════════════ */
+
 #seletorTema {
     display: flex;
     background: #1e1e1e;
@@ -258,10 +295,14 @@
 .btnTema.ativo {
     background: #2a2a2a;
     color: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* TOGGLE */
+
+/* ════════════════════════════════════════
+   TOGGLE (interruptores de notificação)
+   ════════════════════════════════════════ */
+
 .toggle {
     position: relative;
     width: 48px;
@@ -296,16 +337,22 @@
     transition: 0.3s;
 }
 
+/* Estado ativado: fundo verde semitransparente */
 .toggle input:checked + .sliderToggle {
     background: rgba(76, 175, 80, 0.25);
 }
 
+/* Bolinha verde e deslocada quando ativo */
 .toggle input:checked + .sliderToggle::before {
     background: #4caf50;
     transform: translateX(21px);
 }
 
-/* RODAPÉ DO MODAL */
+
+/* ════════════════════════════════════════
+   RODAPÉ DO MODAL — Versão / info
+   ════════════════════════════════════════ */
+
 #rodapeModalConfiguracoes {
     padding: 16px 28px;
     border-top: 1px solid #1e1e1e;
@@ -316,7 +363,10 @@
 }
 
 
-/* BADGE DE CARGO */
+/* ════════════════════════════════════════
+   BADGES DE CARGO DO USUÁRIO
+   ════════════════════════════════════════ */
+
 .tagCargo {
     display: inline-flex;
     align-items: center;
@@ -348,3 +398,137 @@
 }
 
 
+/* ════════════════════════════════════════
+   TEMA CLARO — Modal de configurações
+   ════════════════════════════════════════ */
+
+body.tema-claro #overlayConfiguracoes {
+    background: rgba(0, 0, 0, 0.45);
+}
+
+body.tema-claro #modalConfiguracoes {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+/* Header com fundo levemente cinza para separar do corpo */
+body.tema-claro #headerModalConfiguracoes {
+    border-color: #e8e8e8;
+    background: #fafafa;
+}
+
+body.tema-claro #headerModalConfiguracoes h2 {
+    color: #121212;
+}
+
+body.tema-claro #fecharModalConfiguracoes {
+    background: #eeeeee;
+    color: #555;
+}
+
+body.tema-claro #fecharModalConfiguracoes:hover {
+    background: #e0e0e0;
+}
+
+/* Bloco de perfil com gradiente suave */
+body.tema-claro #perfilModal {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.06), rgba(255, 213, 79, 0.04));
+    border-color: #eeeeee;
+}
+
+body.tema-claro #nomePerfilModal {
+    color: #121212;
+}
+
+body.tema-claro #tagPerfilModal {
+    color: #888;
+}
+
+/* Divisores entre seções com linha mais suave */
+body.tema-claro .secaoModal {
+    border-color: #eeeeee;
+}
+
+body.tema-claro .tituloSecaoModal {
+    color: #aaa;
+}
+
+body.tema-claro .itemModalNome {
+    color: #1a1a1a;
+}
+
+body.tema-claro .itemModalDesc {
+    color: #888;
+}
+
+body.tema-claro .itemModalClicavel:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+body.tema-claro .setaModal {
+    color: #ccc;
+}
+
+/* Seletor de tema com fundo cinza claro */
+body.tema-claro #seletorTema {
+    background: #eeeeee;
+    border: 1px solid #ddd;
+}
+
+body.tema-claro .btnTema {
+    color: #888;
+}
+
+body.tema-claro .btnTema.ativo {
+    background: #ffffff;
+    color: #121212;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Toggle no tema claro: fundo cinza médio */
+body.tema-claro .sliderToggle {
+    background: #d0d0d0;
+}
+
+body.tema-claro .sliderToggle::before {
+    background: #aaa;
+}
+
+body.tema-claro .toggle input:checked + .sliderToggle {
+    background: rgba(0, 165, 81, 0.35);
+}
+
+/* Rodapé com fundo levemente acinzentado */
+body.tema-claro #rodapeModalConfiguracoes {
+    border-color: #eeeeee;
+    color: #bbb;
+    background: #fafafa;
+}
+
+/* Badges de cargo adaptados ao tema claro */
+body.tema-claro .tagChefe {
+    background: rgba(230, 153, 0, 0.1);
+    border-color: rgba(230, 153, 0, 0.3);
+    color: #c47f00;
+}
+
+body.tema-claro .tagFuncionario {
+    background: rgba(33, 150, 243, 0.08);
+    border-color: rgba(33, 150, 243, 0.25);
+    color: #1976d2;
+}
+
+body.tema-claro .tagCliente {
+    background: rgba(0, 165, 81, 0.08);
+    border-color: rgba(0, 165, 81, 0.22);
+    color: #00a651;
+}
+
+body.tema-claro .itemModalEsquerda {
+    gap: 12px;
+}
+
+body.tema-claro .itemModalIcone {
+    font-size: 1.1rem;
+}

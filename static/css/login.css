@@ -1,173 +1,150 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+/* ════════════════════════════════════════
+   LOGIN.CSS
+   ════════════════════════════════════════ */
+
+/* ── Reset e base da tela de login ── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:#121212;
-    overflow:hidden;
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #121212;
+    overflow: hidden;
 }
 
-#efeitoParticulas{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-    pointer-events:none;
+/* Canvas de partículas flutuantes */
+#efeitoParticulas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
 }
 
-#cartaoLogin{
-    width:420px;
-    padding:40px;
-    border-radius:25px;
-    background:rgba(35,35,35,0.9);
-    backdrop-filter:blur(15px);
+/* Card central com glassmorphism */
+#cartaoLogin {
+    width: 420px;
+    padding: 40px;
+    border-radius: 25px;
+    background: rgba(35, 35, 35, 0.9);
+    backdrop-filter: blur(15px);
     box-shadow:
-    0 0 40px rgba(255,213,79,.15),
-    0 0 80px rgba(76,175,80,.1);
-    animation:animacaoEntrada 1s ease;
+        0 0 40px rgba(255, 213, 79, .15),
+        0 0 80px rgba(76, 175, 80, .1);
+    animation: animacaoEntrada 1s ease;
 }
 
-#logoHamburgueria{
-    width:90px;
-    height:90px;
-    margin:auto;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:45px;
-    background:linear-gradient(
-    135deg,
-    #ffd54f,
-    #4caf50
-    );
-    box-shadow:0 0 25px #ffd54f;
+/* Logo circular da hamburgueria */
+#logoHamburgueria {
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    background: linear-gradient(135deg, #ffd54f, #4caf50);
+    box-shadow: 0 0 25px #ffd54f;
 }
 
-#tituloHamburgueria{
-    text-align:center;
-    color:white;
-    margin-top:20px;
+#tituloHamburgueria {
+    text-align: center;
+    color: white;
+    margin-top: 20px;
 }
 
-#subtituloLogin{
-    text-align:center;
-    color:#bdbdbd;
-    margin-bottom:30px;
+#subtituloLogin {
+    text-align: center;
+    color: #bdbdbd;
+    margin-bottom: 30px;
 }
 
-.campoLogin{
-    position:relative;
-    margin-bottom:18px;
+/* Campo de input com ícone à esquerda */
+.campoLogin {
+    position: relative;
+    margin-bottom: 18px;
 }
 
-.campoLogin i{
-    position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#ffd54f;
+.campoLogin i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffd54f;
 }
 
-.campoLogin input{
-    width:100%;
-    height:55px;
-    padding-left:45px;
-    border:none;
-    outline:none;
-    border-radius:14px;
-    background:#202020;
-    color:white;
-    transition:.3s;
+.campoLogin input {
+    width: 100%;
+    height: 55px;
+    padding-left: 45px;
+    border: none;
+    outline: none;
+    border-radius: 14px;
+    background: #202020;
+    color: white;
+    transition: .3s;
 }
 
-.campoLogin input:focus{
+.campoLogin input:focus {
     box-shadow:
-    0 0 10px #ffd54f,
-    0 0 20px #4caf50;
+        0 0 10px #ffd54f,
+        0 0 20px #4caf50;
 }
 
-#botaoEntrar{
-    width:100%;
-    height:55px;
-    border:none;
-    cursor:pointer;
-    border-radius:14px;
-    font-size:18px;
-    font-weight:bold;
-    color:#121212;
-    background:linear-gradient(
-    135deg,
-    #ffd54f,
-    #4caf50
-    );
-    transition:.3s;
+/* Botão principal de login */
+#botaoEntrar {
+    width: 100%;
+    height: 55px;
+    border: none;
+    cursor: pointer;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #121212;
+    background: linear-gradient(135deg, #ffd54f, #4caf50);
+    transition: .3s;
 }
 
-#botaoEntrar:hover{
-    transform:translateY(-3px);
+#botaoEntrar:hover {
+    transform: translateY(-3px);
     box-shadow:
-    0 0 20px #ffd54f,
-    0 0 30px #4caf50;
+        0 0 20px #ffd54f,
+        0 0 30px #4caf50;
 }
 
-#areaCadastro{
-    text-align:center;
-    margin-top:20px;
-    color:white;
+#areaCadastro {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
 }
 
-@keyframes animacaoEntrada{
-    from{
-        opacity:0;
-        transform:translateY(50px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
+/* Botão de revelar senha (emoji visível) */
+#visualizarSenha {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 24px;
+    user-select: none;
+    transition: .3s;
 }
 
-.particulaHamburgueria{
-    position:absolute;
-    border-radius:50%;
-    pointer-events:none;
+#visualizarSenha:hover {
+    transform: translateY(-50%) scale(1.2);
 }
 
-
-
-
-
-/* Posiciona o emoji do macaco */
-#visualizarSenha{
-    position:absolute;
-    right:15px;
-    top:50%;
-    transform:translateY(-50%);
-    cursor:pointer;
-    font-size:24px;
-    user-select:none;
-    transition:.3s;
-}
-
-#visualizarSenha:hover{
-    transform:translateY(-50%) scale(1.2);
-}
-
-
-
-
-
-/* Mensagem erro */
+/* Mensagem de erro de autenticação */
 #mensagemErro {
     text-align: center;
     color: #ff5252;
@@ -178,4 +155,92 @@ body{
     background-color: rgba(255, 82, 82, 0.1);
     border: 1px solid rgba(255, 82, 82, 0.4);
     margin-bottom: 10px;
+}
+
+/* Animação de entrada do card */
+@keyframes animacaoEntrada {
+    from { opacity: 0; transform: translateY(50px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.particulaHamburgueria {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+
+/* ════════════════════════════════════════
+   LOGIN — TEMA CLARO
+   ════════════════════════════════════════ */
+
+body.tema-claro {
+    background: #f0f0f0;
+}
+
+body.tema-claro #efeitoParticulas {
+    opacity: 0.4;
+}
+
+body.tema-claro #cartaoLogin {
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(15px);
+    box-shadow:
+        0 0 40px rgba(230, 153, 0, .1),
+        0 4px 30px rgba(0, 0, 0, .08);
+}
+
+body.tema-claro #tituloHamburgueria {
+    color: #121212;
+}
+
+body.tema-claro #subtituloLogin {
+    color: #888;
+}
+
+body.tema-claro .campoLogin i {
+    color: #e69900;
+}
+
+body.tema-claro .campoLogin input {
+    background: #f4f4f4;
+    color: #121212;
+    border: 1px solid #e0e0e0;
+}
+
+body.tema-claro .campoLogin input:focus {
+    box-shadow:
+        0 0 10px rgba(230, 153, 0, 0.4),
+        0 0 20px rgba(0, 166, 81, 0.2);
+    border-color: #e69900;
+}
+
+body.tema-claro #botaoEntrar {
+    background: linear-gradient(135deg, #e69900, #cc7a00);
+    color: #fff;
+}
+
+body.tema-claro #botaoEntrar:hover {
+    box-shadow:
+        0 0 20px rgba(230, 153, 0, 0.4),
+        0 0 30px rgba(0, 166, 81, 0.2);
+}
+
+body.tema-claro #areaCadastro {
+    color: #333;
+}
+
+body.tema-claro #areaCadastro a {
+    color: #e69900;
+}
+
+body.tema-claro #areaCadastro a:hover {
+    text-decoration: underline;
+    color: #cc7a00;
+}
+
+body.tema-claro #mensagemErro {
+    background-color: rgba(255, 82, 82, 0.06);
+    border: 1px solid rgba(255, 82, 82, 0.25);
+    color: #cc0000;
 }
