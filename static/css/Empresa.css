@@ -1,5 +1,5 @@
-/* PAINEL PRINCIPAL */
-#painelPrincipal {
+/* LAYOUT PRINCIPAL */
+#mainEmpresa {
     max-width: 1300px;
     margin: 0 auto;
     padding: 40px 40px 80px;
@@ -9,30 +9,38 @@
 }
 
 /* TOPO */
-#painelTopo {
+#topoEmpresa {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
 }
 
-#labelPainel {
+#labelEmpresa {
     display: block;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
-    color: #ffd54f;
+    color: #ffa500;
     margin-bottom: 6px;
 }
 
-#tituloPainel {
-    font-size: 2rem;
+#tituloEmpresa {
+    font-size: 2.2rem;
     font-weight: 800;
     color: #ffffff;
+    line-height: 1;
 }
 
-#dataHojeTexto {
-    font-size: 0.9rem;
+#subtituloEmpresa {
     color: #555;
+    font-size: 0.9rem;
+    margin-top: 6px;
+    display: block;
+}
+
+#dataHoje {
+    font-size: 0.85rem;
+    color: #444;
     font-weight: 500;
 }
 
@@ -46,8 +54,8 @@
 .cardMetrica {
     background: #161616;
     border: 1px solid #222;
-    border-radius: 16px;
-    padding: 24px 20px;
+    border-radius: 18px;
+    padding: 22px 20px;
     display: flex;
     align-items: center;
     gap: 16px;
@@ -60,16 +68,22 @@
 }
 
 .cardMetricaIcone {
-    font-size: 1.8rem;
-    width: 52px;
-    height: 52px;
-    background: #1e1e1e;
-    border-radius: 12px;
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.3rem;
     flex-shrink: 0;
 }
+
+.cardMetricaIcone.laranja { background: linear-gradient(135deg, #ffa500, #ff6b00); color: #000; }
+.cardMetricaIcone.verde   { background: linear-gradient(135deg, #00e676, #00b248); color: #000; }
+.cardMetricaIcone.azul    { background: linear-gradient(135deg, #448aff, #1565c0); color: #fff; }
+.cardMetricaIcone.roxo    { background: linear-gradient(135deg, #ea80fc, #aa00ff); color: #fff; }
+.cardMetricaIcone.amarelo { background: linear-gradient(135deg, #ffd54f, #f9a825); color: #000; }
+.cardMetricaIcone.rosa    { background: linear-gradient(135deg, #ff80ab, #f50057); color: #fff; }
 
 .cardMetricaInfo {
     display: flex;
@@ -78,20 +92,20 @@
 }
 
 .cardMetricaValor {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: #ffffff;
     line-height: 1;
 }
 
 .cardMetricaLabel {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: #555;
     font-weight: 500;
 }
 
-/* GRADE CENTRAL (dados da empresa + mural) */
-#painelGrade {
+/* GRADE CENTRAL */
+#gradeEmpresa {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
@@ -103,21 +117,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
-.secaoTitulo {
+.secaoTituloWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+}
+
+.secaoTituloWrapper i {
+    color: #ffa500;
+    font-size: 1rem;
+}
+
+.secaoTituloWrapper h2 {
     font-size: 1rem;
     font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 0.5px;
 }
 
-.botaoEditarSecao {
+.btnSecaoAcao {
     background: transparent;
-    border: 1px solid #2f2f2f;
+    border: 1px solid #2a2a2a;
     border-radius: 8px;
-    color: #9c9c9c;
+    color: #777;
     font-size: 0.8rem;
     font-weight: 600;
     padding: 6px 14px;
@@ -125,20 +149,20 @@
     transition: 0.2s;
 }
 
-.botaoEditarSecao:hover {
-    border-color: #ffd54f;
-    color: #ffd54f;
+.btnSecaoAcao:hover {
+    border-color: #ffa500;
+    color: #ffa500;
 }
 
 /* SEÇÃO DADOS DA EMPRESA */
-#secaoEmpresa {
+#secaoDados {
     background: #161616;
     border: 1px solid #222;
     border-radius: 20px;
     padding: 28px;
 }
 
-.formEmpresa {
+#formDados {
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -150,40 +174,48 @@
     gap: 6px;
 }
 
-.labelCampo {
-    font-size: 0.75rem;
+.campoForm label {
+    font-size: 0.72rem;
     font-weight: 600;
     color: #555;
-    letter-spacing: 0.5px;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-.inputCampo {
+.duplo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.inputEmpresa {
     background: #1e1e1e;
     border: 1px solid #2a2a2a;
     border-radius: 10px;
     padding: 11px 14px;
     color: #cfcfcf;
-    font-size: 0.9rem;
-    transition: border-color 0.2s;
+    font-size: 0.88rem;
     outline: none;
+    transition: border-color 0.2s, color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.inputCampo:disabled {
-    opacity: 0.6;
+.inputEmpresa:disabled {
+    opacity: 0.5;
     cursor: default;
 }
 
-.inputCampo:not(:disabled) {
-    border-color: #ffd54f44;
+.inputEmpresa:not(:disabled) {
+    border-color: rgba(255, 165, 0, 0.3);
     color: #ffffff;
 }
 
-.inputCampo:not(:disabled):focus {
-    border-color: #ffd54f;
+.inputEmpresa:not(:disabled):focus {
+    border-color: #ffa500;
 }
 
-#botoesFormEmpresa {
+#acoesDados {
     display: flex;
     gap: 10px;
     margin-top: 4px;
@@ -197,26 +229,27 @@
     padding: 28px;
 }
 
-.textareaAviso {
+.textareaEmpresa {
     width: 100%;
     background: #1e1e1e;
-    border: 1px solid #ffd54f44;
+    border: 1px solid rgba(255, 165, 0, 0.3);
     border-radius: 10px;
     color: #ffffff;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     padding: 12px 14px;
     resize: vertical;
     min-height: 90px;
     outline: none;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: inherit;
     transition: border-color 0.2s;
+    box-sizing: border-box;
 }
 
-.textareaAviso:focus {
-    border-color: #ffd54f;
+.textareaEmpresa:focus {
+    border-color: #ffa500;
 }
 
-.botoesAviso {
+.acoesAviso {
     display: flex;
     gap: 10px;
     margin-top: 10px;
@@ -227,23 +260,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 280px;
+    max-height: 300px;
     overflow-y: auto;
     padding-right: 4px;
 }
 
-#listaAvisos::-webkit-scrollbar {
-    width: 4px;
-}
-
-#listaAvisos::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-#listaAvisos::-webkit-scrollbar-thumb {
-    background: #2f2f2f;
-    border-radius: 4px;
-}
+#listaAvisos::-webkit-scrollbar { width: 4px; }
+#listaAvisos::-webkit-scrollbar-track { background: transparent; }
+#listaAvisos::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 4px; }
 
 .itemAviso {
     background: #1a1a1a;
@@ -254,148 +278,161 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 12px;
-    animation: entradaAviso 0.3s ease;
+    animation: entrar 0.25s ease;
 }
 
-.itemAvisoTexto {
+.avisoConteudo { flex: 1; }
+
+.avisoTexto {
     font-size: 0.88rem;
     color: #cfcfcf;
     line-height: 1.5;
-    flex: 1;
+    margin-bottom: 4px;
 }
 
-.itemAvisoData {
+.avisoData {
     font-size: 0.72rem;
     color: #444;
-    white-space: nowrap;
-    margin-top: 2px;
 }
 
-.botaoDeletarAviso {
+.btnDeletarAviso {
     background: transparent;
     border: none;
     color: #444;
     cursor: pointer;
-    font-size: 0.9rem;
-    padding: 2px 4px;
+    font-size: 0.85rem;
+    padding: 4px 6px;
     border-radius: 6px;
-    transition: color 0.2s, background 0.2s;
+    transition: 0.2s;
     flex-shrink: 0;
 }
 
-.botaoDeletarAviso:hover {
-    color: #ff5252;
-    background: rgba(255, 82, 82, 0.1);
+.btnDeletarAviso:hover {
+    color: #ff4d4d;
+    background: rgba(255, 77, 77, 0.1);
 }
 
-/* SEÇÃO ITENS POPULARES */
-#secaoItensPopulares {
+/* SEÇÃO POPULARES */
+#secaoPopulares {
     background: #161616;
     border: 1px solid #222;
     border-radius: 20px;
     padding: 28px;
 }
 
-#listaItensPopulares {
+#listaPopulares {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 .itemPopular {
     display: flex;
     align-items: center;
     gap: 16px;
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #1e1e1e;
-    animation: entradaAviso 0.3s ease;
+    animation: entrar 0.25s ease;
 }
 
-.itemPopular:last-child {
-    border-bottom: none;
-}
+.itemPopular:last-child { border-bottom: none; }
 
-.itemPopularPosicao {
+.popularPosicao {
     font-size: 0.75rem;
     font-weight: 800;
     color: #333;
-    width: 24px;
+    width: 22px;
     text-align: center;
     flex-shrink: 0;
 }
 
-.itemPopularPosicao.top {
-    color: #ffd54f;
+.popularPosicao.top { color: #ffa500; }
+
+.popularInfo { flex: 1; }
+
+.popularTopo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
 }
 
-.itemPopularNome {
-    flex: 1;
-    font-size: 0.9rem;
+.popularNome {
+    font-size: 0.88rem;
     color: #cfcfcf;
     font-weight: 500;
 }
 
-.itemPopularQtd {
-    font-size: 0.8rem;
+.popularQtd {
+    font-size: 0.78rem;
     color: #555;
     font-weight: 600;
-    white-space: nowrap;
 }
 
-.itemPopularBarra {
-    height: 4px;
-    background: linear-gradient(90deg, #ffd54f, #4caf50);
+.popularBarra {
+    height: 3px;
+    background: #1e1e1e;
     border-radius: 99px;
-    margin-top: 4px;
+    overflow: hidden;
+}
+
+.popularBarraInner {
+    height: 100%;
+    background: linear-gradient(90deg, #ffa500, #00e676);
+    border-radius: 99px;
     transition: width 0.6s ease;
 }
 
-/* BOTÕES COMUNS */
-.botaoSalvar {
+/* BOTÕES */
+.btnPrimario {
     flex: 1;
     padding: 11px;
     border: none;
     border-radius: 10px;
     background: linear-gradient(135deg, #ffd54f, #4caf50);
     color: #121212;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 700;
     cursor: pointer;
     transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 }
 
-.botaoSalvar:hover {
+.btnPrimario:hover {
     transform: translateY(-1px);
-    box-shadow: 0 0 14px rgba(255, 213, 79, 0.3);
+    box-shadow: 0 0 14px rgba(255, 213, 79, 0.25);
 }
 
-.botaoCancelar {
+.btnSecundario {
     flex: 1;
     padding: 11px;
-    border: 1px solid #2f2f2f;
+    border: 1px solid #2a2a2a;
     border-radius: 10px;
     background: transparent;
-    color: #9c9c9c;
-    font-size: 0.9rem;
+    color: #777;
+    font-size: 0.88rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.botaoCancelar:hover {
-    background: rgba(255, 255, 255, 0.05);
+.btnSecundario:hover {
+    background: rgba(255,255,255,0.04);
     color: #ffffff;
 }
 
 /* ESTADO VAZIO */
 .estadoVazio {
-    color: #3a3a3a;
+    color: #333;
     font-size: 0.88rem;
     text-align: center;
     padding: 20px 0;
 }
 
-/* ACESSO NEGADO */
+/* ACESSO BLOQUEADO */
 #bloqueioAcesso {
     position: fixed;
     inset: 0;
@@ -404,26 +441,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 16px;
+    gap: 14px;
     z-index: 9999;
+    text-align: center;
 }
 
 #bloqueioIcone {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    color: #ff4d4d;
 }
 
-#bloqueioTitulo {
+#bloqueioAcesso h2 {
     font-size: 1.5rem;
     font-weight: 700;
     color: #ffffff;
 }
 
-#bloqueioMensagem {
+#bloqueioAcesso p {
     color: #555;
     font-size: 0.95rem;
 }
 
-#bloqueioVoltar {
+#bloqueioAcesso button {
     margin-top: 8px;
     padding: 12px 28px;
     border: none;
@@ -436,9 +475,8 @@
     transition: 0.2s;
 }
 
-#bloqueioVoltar:hover {
+#bloqueioAcesso button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 16px rgba(255, 213, 79, 0.3);
 }
 
 /* TOAST */
@@ -447,12 +485,15 @@
     bottom: 30px;
     right: 30px;
     background: #1e1e1e;
-    border: 1px solid #2f2f2f;
+    border: 1px solid #2a2a2a;
     border-radius: 12px;
-    padding: 14px 20px;
-    font-size: 0.9rem;
+    padding: 13px 20px;
+    font-size: 0.88rem;
     font-weight: 600;
     color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.3s, transform 0.3s;
@@ -460,50 +501,32 @@
     z-index: 9999;
 }
 
+#toastEmpresa i { color: #00e676; }
+
 #toastEmpresa.visivel {
     opacity: 1;
     transform: translateY(0);
 }
 
 /* ANIMAÇÕES */
-@keyframes entradaAviso {
-    from {
-        opacity: 0;
-        transform: translateY(-6px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes entrar {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* RESPONSIVIDADE */
 @media (max-width: 1024px) {
-    #secaoCards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    #painelGrade {
-        grid-template-columns: 1fr;
-    }
+    #secaoCards    { grid-template-columns: repeat(2, 1fr); }
+    #gradeEmpresa  { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
-    #painelPrincipal {
-        padding: 24px 20px 60px;
-    }
-
-    #secaoCards {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    #tituloPainel {
-        font-size: 1.5rem;
-    }
+    #mainEmpresa   { padding: 24px 20px 60px; }
+    #secaoCards    { grid-template-columns: 1fr 1fr; }
+    #tituloEmpresa { font-size: 1.6rem; }
+    .duplo         { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
-    #secaoCards {
-        grid-template-columns: 1fr;
-    }
+    #secaoCards { grid-template-columns: 1fr; }
 }

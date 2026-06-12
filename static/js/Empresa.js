@@ -1,96 +1,82 @@
-// Pega os dados do usuário salvo no localStorage
-const idUsuario = parseInt(localStorage.getItem('idUsuario'));
-const nomeUsuario = localStorage.getItem('nomeUsuario');
-const cargoUsuario = localStorage.getItem('cargoUsuario');
+// Formata número como moeda brasileira
+function formatarDinheiro(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
 
-// Bloqueia a página se o usuário não for chefe
+// Exibe toast de feedback no canto inferior direito
+function exibirToast(mensagem) {
+    const toast = document.getElementById('toastEmpresa');
+    const texto = document.getElementById('toastTexto');
+    if (!toast || !texto) return;
+    texto.textContent = mensagem;
+    toast.classList.add('visivel');
+    setTimeout(() => toast.classList.remove('visivel'), 2800);
+}
+
+// Bloqueia a página se o cargo não for chefe
 function verificarAcesso() {
-    if (cargo == 'chefe') {
+    const cargo = localStorage.getItem('cargo');
+    if (cargo !== 'chefe') {
         document.body.innerHTML = `
             <div id="bloqueioAcesso">
-                <div id="bloqueioIcone">🔒</div>
-                <h2 id="bloqueioTitulo">Acesso restrito</h2>
-                <p id="bloqueioMensagem">Só o chefe pode acessar esta área.</p>
-                <button id="bloqueioVoltar" onclick="window.location.href='/'">Voltar ao início</button>
+                <div id="bloqueioIcone"><i class="fa-solid fa-lock"></i></div>
+                <h2>Acesso restrito</h2>
+                <p>Só o chefe pode acessar esta área.</p>
+                <button onclick="window.location.href='/menu'">Voltar ao Menu</button>
             </div>
         `;
     }
 }
 
-// Exibe uma mensagem rápida no canto inferior direito
-function exibirToast(mensagem) {
-    const toast = document.getElementById('toastEmpresa');
-    if (!toast) return;
-    toast.textContent = mensagem;
-    toast.classList.add('visivel');
-    setTimeout(() => toast.classList.remove('visivel'), 2800);
-}
-
-// Formata número como dinheiro brasileiro
-function formatarDinheiro(valor) {
-    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-// Exibe a data atual no topo do painel
-function exibirDataHoje() {
-    const el = document.getElementById('dataHojeTexto');
+// Exibe a data atual no topo
+function exibirData() {
+    const el = document.getElementById('dataHoje');
     if (!el) return;
-    const agora = new Date();
-    el.textContent = agora.toLocaleDateString('pt-BR', {
-        weekday: 'long',
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric'
+    el.textContent = new Date().toLocaleDateString('pt-BR', {
+        weekday: 'long', day: '2-digit', month: 'long', year: 'numeric'
     });
 }
 
-// Carrega os cards de métricas usando os dados da caixa e dos clientes
+// Busca pedidos e clientes e preenche os cards de métricas
 async function carregarMetricas() {
     try {
         const [resCaixa, resClientes] = await Promise.all([
             fetch('/api/caixa'),
             fetch('/api/clientes')
         ]);
-
-        const pedidos = await resCaixa.json();
+        const pedidos  = await resCaixa.json();
         const clientes = await resClientes.json();
 
         const hoje = new Date().toISOString().slice(0, 10);
-        const mesAtual = new Date().toISOString().slice(0, 7);
+        const mes  = new Date().toISOString().slice(0, 7);
 
-        // Filtra pedidos de hoje
         const pedidosHoje = pedidos.filter(p => p.criado_em?.startsWith(hoje));
-        // Filtra pedidos do mês atual
-        const pedidosMes = pedidos.filter(p => p.criado_em?.startsWith(mesAtual));
+        const pedidosMes  = pedidos.filter(p => p.criado_em?.startsWith(mes));
 
-        const faturamentoHoje = pedidosHoje.reduce((acc, p) => acc + (parseFloat(p.valor) || 0), 0);
-        const faturamentoMes  = pedidosMes.reduce((acc, p) => acc + (parseFloat(p.valor) || 0), 0);
-        const ticketMedio     = pedidosMes.length > 0 ? faturamentoMes / pedidosMes.length : 0;
+        const fatHoje = pedidosHoje.reduce((s, p) => s + (parseFloat(p.valor) || 0), 0);
+        const fatMes  = pedidosMes.reduce((s, p) => s + (parseFloat(p.valor) || 0), 0);
+        const ticket  = pedidosMes.length > 0 ? fatMes / pedidosMes.length : 0;
 
-        document.getElementById('totalPedidosHoje').textContent   = pedidosHoje.length;
-        document.getElementById('totalFaturamentoHoje').textContent = formatarDinheiro(faturamentoHoje);
-        document.getElementById('totalPedidosMes').textContent    = pedidosMes.length;
-        document.getElementById('totalFaturamentoMes').textContent = formatarDinheiro(faturamentoMes);
-        document.getElementById('totalClientes').textContent      = clientes.length;
-        document.getElementById('ticketMedio').textContent        = formatarDinheiro(ticketMedio);
+        document.getElementById('statPedidosHoje').textContent     = pedidosHoje.length;
+        document.getElementById('statFaturamentoHoje').textContent  = formatarDinheiro(fatHoje);
+        document.getElementById('statPedidosMes').textContent       = pedidosMes.length;
+        document.getElementById('statFaturamentoMes').textContent   = formatarDinheiro(fatMes);
+        document.getElementById('statClientes').textContent         = clientes.length;
+        document.getElementById('statTicket').textContent           = formatarDinheiro(ticket);
 
-        // Reaplica os dados de itens populares depois de ter os pedidos carregados
-        carregarItensPopulares(pedidosMes);
-
+        carregarPopulares(pedidosMes);
     } catch (err) {
         console.error('Erro ao carregar métricas:', err);
     }
 }
 
-// Analisa as descrições dos pedidos e conta quais itens aparecem mais
-function carregarItensPopulares(pedidosMes) {
+// Analisa as descrições dos pedidos e monta o ranking de itens mais pedidos
+function carregarPopulares(pedidosMes) {
     const contagem = {};
 
     pedidosMes.forEach(pedido => {
         if (!pedido.descricao) return;
-        // A descrição vem como "2x Hamburguer Calabreso, 1x Batata Frita"
-        const partes = pedido.descricao.split(',');
-        partes.forEach(parte => {
+        pedido.descricao.split(',').forEach(parte => {
             const match = parte.trim().match(/^(\d+)x\s+(.+)$/);
             if (!match) return;
             const qtd  = parseInt(match[1]);
@@ -99,82 +85,78 @@ function carregarItensPopulares(pedidosMes) {
         });
     });
 
-    const lista = document.getElementById('listaItensPopulares');
-    const mensagem = document.getElementById('itensMensagem');
+    const lista  = document.getElementById('listaPopulares');
+    const vazio  = document.getElementById('popularesVazio');
+    const itens  = Object.entries(contagem).sort((a, b) => b[1] - a[1]).slice(0, 7);
 
-    const itensOrdenados = Object.entries(contagem).sort((a, b) => b[1] - a[1]).slice(0, 7);
-
-    if (itensOrdenados.length === 0) {
-        if (mensagem) mensagem.textContent = 'Nenhum pedido registrado este mês.';
+    if (itens.length === 0) {
+        if (vazio) vazio.textContent = 'Nenhum pedido registrado este mês.';
         return;
     }
 
-    if (mensagem) mensagem.remove();
+    if (vazio) vazio.remove();
 
-    const maximo = itensOrdenados[0][1];
-
-    itensOrdenados.forEach(([nome, qtd], index) => {
-        const porcentagem = Math.round((qtd / maximo) * 100);
+    const maximo = itens[0][1];
+    itens.forEach(([nome, qtd], i) => {
+        const pct = Math.round((qtd / maximo) * 100);
         const div = document.createElement('div');
         div.className = 'itemPopular';
         div.innerHTML = `
-            <span class="itemPopularPosicao ${index < 3 ? 'top' : ''}">${index + 1}</span>
-            <div style="flex:1">
-                <div style="display:flex;justify-content:space-between;align-items:center">
-                    <span class="itemPopularNome">${nome}</span>
-                    <span class="itemPopularQtd">${qtd} pedido${qtd !== 1 ? 's' : ''}</span>
+            <span class="popularPosicao ${i < 3 ? 'top' : ''}">${i + 1}</span>
+            <div class="popularInfo">
+                <div class="popularTopo">
+                    <span class="popularNome">${nome}</span>
+                    <span class="popularQtd">${qtd} pedido${qtd !== 1 ? 's' : ''}</span>
                 </div>
-                <div class="itemPopularBarra" style="width:${porcentagem}%"></div>
+                <div class="popularBarra"><div class="popularBarraInner" style="width:${pct}%"></div></div>
             </div>
         `;
         lista.appendChild(div);
     });
 }
 
-// Carrega os dados da empresa do banco e preenche os inputs
+// Carrega dados da empresa da API e preenche os campos
 async function carregarDadosEmpresa() {
     try {
-        const res = await fetch('/api/empresa');
+        const res   = await fetch('/api/empresa');
         const dados = await res.json();
-
-        document.getElementById('empresaNome').value     = dados.nome      || '';
-        document.getElementById('empresaCNPJ').value     = dados.cnpj      || '';
-        document.getElementById('empresaTelefone').value = dados.telefone  || '';
-        document.getElementById('empresaEndereco').value = dados.endereco  || '';
-        document.getElementById('empresaHorario').value  = dados.horario   || '';
+        document.getElementById('inputNome').value            = dados.nome     || '';
+        document.getElementById('inputCNPJ').value            = dados.cnpj     || '';
+        document.getElementById('inputTelefone').value        = dados.telefone || '';
+        document.getElementById('inputEmailEmpresa').value    = dados.email    || '';
+        document.getElementById('inputEnderecoEmpresa').value = dados.endereco || '';
+        document.getElementById('inputHorario').value         = dados.horario  || '';
     } catch (err) {
         console.error('Erro ao carregar dados da empresa:', err);
     }
 }
 
-// Ativa o modo de edição nos campos da empresa
-function ativarEdicaoEmpresa() {
-    ['empresaNome', 'empresaCNPJ', 'empresaTelefone', 'empresaEndereco', 'empresaHorario'].forEach(id => {
-        document.getElementById(id).disabled = false;
-    });
-    document.getElementById('botoesFormEmpresa').classList.remove('escondido');
-    document.getElementById('botaoEditarEmpresa').style.display = 'none';
+// Habilita os campos para edição
+function ativarEdicao() {
+    ['inputNome','inputCNPJ','inputTelefone','inputEmailEmpresa','inputEnderecoEmpresa','inputHorario']
+        .forEach(id => document.getElementById(id).disabled = false);
+    document.getElementById('acoesDados').classList.remove('escondido');
+    document.getElementById('btnEditarDados').style.display = 'none';
 }
 
-// Desativa o modo de edição sem salvar
-function cancelarEdicaoEmpresa() {
-    ['empresaNome', 'empresaCNPJ', 'empresaTelefone', 'empresaEndereco', 'empresaHorario'].forEach(id => {
-        document.getElementById(id).disabled = true;
-    });
-    document.getElementById('botoesFormEmpresa').classList.add('escondido');
-    document.getElementById('botaoEditarEmpresa').style.display = '';
+// Desativa edição sem salvar e restaura valores originais
+function cancelarEdicao() {
+    ['inputNome','inputCNPJ','inputTelefone','inputEmailEmpresa','inputEnderecoEmpresa','inputHorario']
+        .forEach(id => document.getElementById(id).disabled = true);
+    document.getElementById('acoesDados').classList.add('escondido');
+    document.getElementById('btnEditarDados').style.display = '';
     carregarDadosEmpresa();
 }
 
-// Envia os dados editados da empresa para o servidor
-async function salvarDadosEmpresa(e) {
-    e.preventDefault();
+// Envia os dados editados para a API
+async function salvarDadosEmpresa() {
     const payload = {
-        nome:     document.getElementById('empresaNome').value,
-        cnpj:     document.getElementById('empresaCNPJ').value,
-        telefone: document.getElementById('empresaTelefone').value,
-        endereco: document.getElementById('empresaEndereco').value,
-        horario:  document.getElementById('empresaHorario').value,
+        nome:     document.getElementById('inputNome').value,
+        cnpj:     document.getElementById('inputCNPJ').value,
+        telefone: document.getElementById('inputTelefone').value,
+        email:    document.getElementById('inputEmailEmpresa').value,
+        endereco: document.getElementById('inputEnderecoEmpresa').value,
+        horario:  document.getElementById('inputHorario').value,
     };
     try {
         const res = await fetch('/api/empresa/salvar', {
@@ -183,20 +165,20 @@ async function salvarDadosEmpresa(e) {
             body: JSON.stringify(payload)
         });
         if (res.ok) {
-            exibirToast('✅ Dados salvos com sucesso!');
-            cancelarEdicaoEmpresa();
+            exibirToast('Dados salvos com sucesso!');
+            cancelarEdicao();
         } else {
-            exibirToast('❌ Erro ao salvar dados.');
+            exibirToast('Erro ao salvar dados.');
         }
     } catch {
-        exibirToast('❌ Erro de conexão.');
+        exibirToast('Erro de conexão.');
     }
 }
 
-// Carrega os avisos do mural do banco e renderiza na lista
+// Busca os avisos da API e renderiza na lista
 async function carregarAvisos() {
     try {
-        const res = await fetch('/api/avisos');
+        const res    = await fetch('/api/avisos');
         const avisos = await res.json();
         renderizarAvisos(avisos);
     } catch (err) {
@@ -204,12 +186,11 @@ async function carregarAvisos() {
     }
 }
 
-// Renderiza a lista de avisos na tela
+// Renderiza os avisos na tela
 function renderizarAvisos(avisos) {
-    const lista  = document.getElementById('listaAvisos');
-    const vazio  = document.getElementById('muraiVazio');
+    const lista = document.getElementById('listaAvisos');
+    const vazio = document.getElementById('muraiVazio');
 
-    // Remove todos os itens antigos, mantém só o parágrafo de vazio
     lista.querySelectorAll('.itemAviso').forEach(el => el.remove());
 
     if (avisos.length === 0) {
@@ -224,21 +205,20 @@ function renderizarAvisos(avisos) {
         div.className = 'itemAviso';
         div.dataset.id = aviso.id;
         div.innerHTML = `
-            <div style="flex:1">
-                <p class="itemAvisoTexto">${aviso.texto}</p>
-                <span class="itemAvisoData">${new Date(aviso.criado_em).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
+            <div class="avisoConteudo">
+                <p class="avisoTexto">${aviso.texto}</p>
+                <span class="avisoData">${new Date(aviso.criado_em).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
             </div>
-            <button class="botaoDeletarAviso" title="Remover aviso">✕</button>
+            <button class="btnDeletarAviso" title="Remover"><i class="fa-solid fa-xmark"></i></button>
         `;
-        // Ao clicar no X, deleta o aviso
-        div.querySelector('.botaoDeletarAviso').addEventListener('click', () => deletarAviso(aviso.id, div));
+        div.querySelector('.btnDeletarAviso').addEventListener('click', () => deletarAviso(aviso.id, div));
         lista.appendChild(div);
     });
 }
 
-// Envia um novo aviso para o banco
+// Envia novo aviso para a API
 async function publicarAviso() {
-    const texto = document.getElementById('textoNovoAviso').value.trim();
+    const texto = document.getElementById('inputAviso').value.trim();
     if (!texto) return;
 
     try {
@@ -248,94 +228,51 @@ async function publicarAviso() {
             body: JSON.stringify({ texto })
         });
         if (res.ok) {
-            document.getElementById('textoNovoAviso').value = '';
-            document.getElementById('formNovoAviso').classList.add('escondido');
-            exibirToast('📌 Aviso publicado!');
+            document.getElementById('inputAviso').value = '';
+            document.getElementById('formAviso').classList.add('escondido');
+            exibirToast('Aviso publicado!');
             carregarAvisos();
         }
     } catch {
-        exibirToast('❌ Erro ao publicar aviso.');
+        exibirToast('Erro ao publicar aviso.');
     }
 }
 
-// Remove um aviso do banco e da tela
+// Remove aviso da API e da tela
 async function deletarAviso(id, elemento) {
     try {
         const res = await fetch(`/api/avisos/deletar/${id}`, { method: 'DELETE' });
         if (res.ok) {
             elemento.remove();
-            exibirToast('🗑️ Aviso removido.');
-            // Verifica se a lista ficou vazia depois de remover
-            const restantes = document.querySelectorAll('.itemAviso');
-            if (restantes.length === 0) {
+            exibirToast('Aviso removido.');
+            if (!document.querySelector('.itemAviso')) {
                 const vazio = document.getElementById('muraiVazio');
                 if (vazio) vazio.style.display = '';
             }
         }
     } catch {
-        exibirToast('❌ Erro ao remover aviso.');
+        exibirToast('Erro ao remover aviso.');
     }
 }
 
-// Atualiza o botão de usuário no header
-function atualizarBotaoUsuario() {
-    const botao = document.getElementById('botaoUsuario');
-    if (!botao) return;
-    if (nomeUsuario) {
-        botao.style.display = 'flex';
-        botao.textContent = nomeUsuario;
-    }
-}
-
-// Inicializa tudo quando o DOM estiver pronto
+// Inicializa a página
 document.addEventListener('DOMContentLoaded', () => {
     verificarAcesso();
-    exibirDataHoje();
-    atualizarBotaoUsuario();
+    exibirData();
     carregarMetricas();
     carregarDadosEmpresa();
     carregarAvisos();
 
-    // Botão de editar dados da empresa
-    document.getElementById('botaoEditarEmpresa')?.addEventListener('click', ativarEdicaoEmpresa);
+    document.getElementById('btnEditarDados')?.addEventListener('click', ativarEdicao);
+    document.getElementById('btnSalvarDados')?.addEventListener('click', salvarDadosEmpresa);
+    document.getElementById('btnCancelarDados')?.addEventListener('click', cancelarEdicao);
 
-    // Formulário de dados da empresa
-    document.getElementById('formEmpresa')?.addEventListener('submit', salvarDadosEmpresa);
-
-    // Cancela edição da empresa
-    document.getElementById('botaoCancelarEmpresa')?.addEventListener('click', cancelarEdicaoEmpresa);
-
-    // Abre o formulário de novo aviso
-    document.getElementById('botaoNovoAviso')?.addEventListener('click', () => {
-        document.getElementById('formNovoAviso').classList.toggle('escondido');
+    document.getElementById('btnNovoAviso')?.addEventListener('click', () => {
+        document.getElementById('formAviso').classList.toggle('escondido');
     });
-
-    // Publica o aviso
-    document.getElementById('botaoPublicarAviso')?.addEventListener('click', publicarAviso);
-
-    // Cancela o novo aviso
-    document.getElementById('botaoCancelarAviso')?.addEventListener('click', () => {
-        document.getElementById('textoNovoAviso').value = '';
-        document.getElementById('formNovoAviso').classList.add('escondido');
-    });
-
-    // Dropdown do usuário
-    const botaoUsuario     = document.getElementById('botaoUsuario');
-    const dropdownUsuario  = document.getElementById('dropdownUsuario');
-    const btnConfiguracoes = document.getElementById('btnConfiguracoes');
-    const btnSair          = document.getElementById('btnSair');
-
-    botaoUsuario?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdownUsuario?.classList.toggle('aberto');
-    });
-
-    document.addEventListener('click', () => dropdownUsuario?.classList.remove('aberto'));
-
-    btnConfiguracoes?.addEventListener('click', () => window.location.href = '/configuracoes');
-
-    btnSair?.addEventListener('click', () => {
-        localStorage.clear();
-        window.location.href = '/';
+    document.getElementById('btnPublicarAviso')?.addEventListener('click', publicarAviso);
+    document.getElementById('btnCancelarAviso')?.addEventListener('click', () => {
+        document.getElementById('inputAviso').value = '';
+        document.getElementById('formAviso').classList.add('escondido');
     });
 });

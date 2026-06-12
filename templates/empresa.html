@@ -1,140 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <title>Empresa - Hamburgueria Calabreso</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel da Empresa</title>
+
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="/static/css/Global.css">
     <link rel="stylesheet" href="/static/css/Empresa.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-    <canvas id="efeitoParticulas"></canvas>
-
     <header id="cabecalho">
-        <div id="logoArea">
-            <h1 id="nomeHamburgueria">CALABRESO</h1>
-        </div>
+        <h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1>
+
         <nav id="navegacao">
+            <button id="botaoMenu" onclick="window.location.href='/menu'">Menu</button>
+
             <div id="statusLoja">
-                <div id="bolinhaStatus"></div>
-                <span id="textoStatus">Carregando...</span>
-            </div>
-            <div id="wrapperUsuario">
-                <button id="botaoUsuario" style="display:none;"></button>
-                <div id="dropdownUsuario">
-                    <button id="btnConfiguracoes">⚙️ Configurações</button>
-                    <div id="separadorDropdown"></div>
-                    <button id="btnSair">Sair</button>
-                </div>
+                <span id="bolinhaStatus"></span>
+                <span id="textoStatus">Aberto</span>
             </div>
         </nav>
     </header>
 
-    <main id="painelPrincipal">
+    <main id="mainEmpresa">
 
-        <div id="painelTopo">
-            <div id="painelTopoEsquerda">
-                <span id="labelPainel">PAINEL DA EMPRESA</span>
-                <h2 id="tituloPainel">Visão Geral</h2>
+        <div id="topoEmpresa">
+            <div id="topoEmpresaTexto">
+                <span id="labelEmpresa">PAINEL ADMINISTRATIVO</span>
+                <h1 id="tituloEmpresa">Empresa</h1>
+                <p id="subtituloEmpresa">Visão geral, dados e avisos internos</p>
             </div>
-            <div id="painelTopoDireita">
-                <span id="dataHojeTexto"></span>
-            </div>
+            <span id="dataHoje"></span>
         </div>
 
         <section id="secaoCards">
-            <div class="cardMetrica" id="cardPedidosHoje">
-                <div class="cardMetricaIcone">🛒</div>
+            <div class="cardMetrica">
+                <div class="cardMetricaIcone laranja"><i class="fa-solid fa-receipt"></i></div>
                 <div class="cardMetricaInfo">
-                    <span class="cardMetricaValor" id="totalPedidosHoje">—</span>
+                    <span class="cardMetricaValor" id="statPedidosHoje">—</span>
                     <span class="cardMetricaLabel">Pedidos hoje</span>
                 </div>
             </div>
-            <div class="cardMetrica" id="cardFaturamentoHoje">
-                <div class="cardMetricaIcone">💰</div>
+            <div class="cardMetrica">
+                <div class="cardMetricaIcone verde"><i class="fa-solid fa-money-bill-wave"></i></div>
                 <div class="cardMetricaInfo">
-                    <span class="cardMetricaValor" id="totalFaturamentoHoje">—</span>
+                    <span class="cardMetricaValor" id="statFaturamentoHoje">—</span>
                     <span class="cardMetricaLabel">Faturamento hoje</span>
                 </div>
             </div>
-            <div class="cardMetrica" id="cardPedidosMes">
-                <div class="cardMetricaIcone">📦</div>
+            <div class="cardMetrica">
+                <div class="cardMetricaIcone azul"><i class="fa-solid fa-box-open"></i></div>
                 <div class="cardMetricaInfo">
-                    <span class="cardMetricaValor" id="totalPedidosMes">—</span>
+                    <span class="cardMetricaValor" id="statPedidosMes">—</span>
                     <span class="cardMetricaLabel">Pedidos este mês</span>
                 </div>
             </div>
-            <div class="cardMetrica" id="cardFaturamentoMes">
-                <div class="cardMetricaIcone">📈</div>
+            <div class="cardMetrica">
+                <div class="cardMetricaIcone roxo"><i class="fa-solid fa-chart-line"></i></div>
                 <div class="cardMetricaInfo">
-                    <span class="cardMetricaValor" id="totalFaturamentoMes">—</span>
+                    <span class="cardMetricaValor" id="statFaturamentoMes">—</span>
                     <span class="cardMetricaLabel">Faturamento este mês</span>
                 </div>
             </div>
-            <div class="cardMetrica" id="cardTotalClientes">
-                <div class="cardMetricaIcone">👥</div>
+            <div class="cardMetrica">
+                <div class="cardMetricaIcone amarelo"><i class="fa-solid fa-users"></i></div>
                 <div class="cardMetricaInfo">
-                    <span class="cardMetricaValor" id="totalClientes">—</span>
+                    <span class="cardMetricaValor" id="statClientes">—</span>
                     <span class="cardMetricaLabel">Clientes cadastrados</span>
                 </div>
             </div>
-            <div class="cardMetrica" id="cardTicketMedio">
-                <div class="cardMetricaIcone">🎯</div>
+            <div class="cardMetrica">
+                <div class="cardMetricaIcone rosa"><i class="fa-solid fa-bullseye"></i></div>
                 <div class="cardMetricaInfo">
-                    <span class="cardMetricaValor" id="ticketMedio">—</span>
+                    <span class="cardMetricaValor" id="statTicket">—</span>
                     <span class="cardMetricaLabel">Ticket médio (mês)</span>
                 </div>
             </div>
         </section>
 
-        <div id="painelGrade">
+        <div id="gradeEmpresa">
 
-            <section id="secaoEmpresa">
+            <section id="secaoDados">
                 <div class="secaoHeader">
-                    <h3 class="secaoTitulo">Dados da Empresa</h3>
-                    <button class="botaoEditarSecao" id="botaoEditarEmpresa">Editar</button>
+                    <div class="secaoTituloWrapper">
+                        <i class="fa-solid fa-building"></i>
+                        <h2>Dados da Empresa</h2>
+                    </div>
+                    <button id="btnEditarDados" class="btnSecaoAcao">Editar</button>
                 </div>
-                <form id="formEmpresa" class="formEmpresa">
+
+                <div id="formDados">
                     <div class="campoForm">
-                        <label class="labelCampo">Nome do estabelecimento</label>
-                        <input class="inputCampo" type="text" id="empresaNome" disabled>
-                    </div>
-                    <div class="campoForm">
-                        <label class="labelCampo">CNPJ</label>
-                        <input class="inputCampo" type="text" id="empresaCNPJ" disabled>
+                        <label>Nome do estabelecimento</label>
+                        <input type="text" id="inputNome" class="inputEmpresa" disabled>
                     </div>
                     <div class="campoForm">
-                        <label class="labelCampo">Telefone</label>
-                        <input class="inputCampo" type="text" id="empresaTelefone" disabled>
+                        <label>CNPJ</label>
+                        <input type="text" id="inputCNPJ" class="inputEmpresa" disabled>
+                    </div>
+                    <div class="duplo">
+                        <div class="campoForm">
+                            <label>Telefone</label>
+                            <input type="text" id="inputTelefone" class="inputEmpresa" disabled>
+                        </div>
+                        <div class="campoForm">
+                            <label>E-mail</label>
+                            <input type="text" id="inputEmailEmpresa" class="inputEmpresa" disabled>
+                        </div>
                     </div>
                     <div class="campoForm">
-                        <label class="labelCampo">Endereço</label>
-                        <input class="inputCampo" type="text" id="empresaEndereco" disabled>
+                        <label>Endereço</label>
+                        <input type="text" id="inputEnderecoEmpresa" class="inputEmpresa" disabled>
                     </div>
                     <div class="campoForm">
-                        <label class="labelCampo">Horário de funcionamento</label>
-                        <input class="inputCampo" type="text" id="empresaHorario" disabled>
+                        <label>Horário de funcionamento</label>
+                        <input type="text" id="inputHorario" class="inputEmpresa" disabled>
                     </div>
-                    <div id="botoesFormEmpresa" class="escondido">
-                        <button type="submit" class="botaoSalvar" id="botaoSalvarEmpresa">Salvar</button>
-                        <button type="button" class="botaoCancelar" id="botaoCancelarEmpresa">Cancelar</button>
+                    <div id="acoesDados" class="escondido">
+                        <button id="btnSalvarDados" class="btnPrimario">
+                            <i class="fa-solid fa-floppy-disk"></i> Salvar
+                        </button>
+                        <button id="btnCancelarDados" class="btnSecundario">Cancelar</button>
                     </div>
-                </form>
+                </div>
             </section>
 
             <section id="secaoMural">
                 <div class="secaoHeader">
-                    <h3 class="secaoTitulo">Mural Interno</h3>
-                    <button class="botaoEditarSecao" id="botaoNovoAviso">+ Aviso</button>
+                    <div class="secaoTituloWrapper">
+                        <i class="fa-solid fa-bell"></i>
+                        <h2>Mural Interno</h2>
+                    </div>
+                    <button id="btnNovoAviso" class="btnSecaoAcao">+ Aviso</button>
                 </div>
 
-                <div id="formNovoAviso" class="escondido">
-                    <textarea id="textoNovoAviso" class="textareaAviso" placeholder="Escreva um aviso para a equipe..."></textarea>
-                    <div class="botoesAviso">
-                        <button id="botaoPublicarAviso" class="botaoSalvar">Publicar</button>
-                        <button id="botaoCancelarAviso" class="botaoCancelar">Cancelar</button>
+                <div id="formAviso" class="escondido">
+                    <textarea id="inputAviso" class="textareaEmpresa" placeholder="Escreva um aviso para a equipe..."></textarea>
+                    <div class="acoesAviso">
+                        <button id="btnPublicarAviso" class="btnPrimario">
+                            <i class="fa-solid fa-paper-plane"></i> Publicar
+                        </button>
+                        <button id="btnCancelarAviso" class="btnSecundario">Cancelar</button>
                     </div>
                 </div>
 
@@ -145,18 +155,24 @@
 
         </div>
 
-        <section id="secaoItensPopulares">
+        <section id="secaoPopulares">
             <div class="secaoHeader">
-                <h3 class="secaoTitulo">Itens mais pedidos este mês</h3>
+                <div class="secaoTituloWrapper">
+                    <i class="fa-solid fa-fire"></i>
+                    <h2>Itens mais pedidos este mês</h2>
+                </div>
             </div>
-            <div id="listaItensPopulares">
-                <p class="estadoVazio" id="itensMensagem">Carregando...</p>
+            <div id="listaPopulares">
+                <p class="estadoVazio" id="popularesVazio">Carregando...</p>
             </div>
         </section>
 
     </main>
 
-    <div id="toastEmpresa"></div>
+    <div id="toastEmpresa">
+        <i class="fa-solid fa-check"></i>
+        <span id="toastTexto"></span>
+    </div>
 
     <script src="/static/js/Global.js"></script>
     <script src="/static/js/Empresa.js"></script>
