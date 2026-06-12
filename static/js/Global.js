@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const botaoHistorico = document.getElementById("botaoHistorico");
     const botaoCaixa = document.getElementById("botaoCaixa");
     const botaoEmpresa = document.getElementById("botaoEmpresa");
+    const botaoInicio = document.getElementById("botaoInicio");
 
     if (botaoLogin) {
         botaoLogin.addEventListener("click", () => {
@@ -171,6 +172,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (botaoEmpresa) {
         botaoEmpresa.addEventListener("click", () => {
             window.location.href = "/empresa";
+        });
+    }
+
+    if (botaoInicio) {
+        botaoInicio.addEventListener("click", () => {
+            window.location.href = "/";
         });
     }
 
