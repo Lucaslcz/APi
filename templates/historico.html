@@ -22,11 +22,11 @@
 
     <main id="mainHistorico">
 
-        <div id="cabecalhoHistorico">
-            <div id="iconeTituloHistorico">
+        <div id="heroHistorico">
+            <div id="heroHistoricoIcone">
                 <i class="fa-solid fa-clock-rotate-left"></i>
             </div>
-            <div>
+            <div id="heroHistoricoTexto">
                 <h1 id="tituloHistorico">Histórico de Pedidos</h1>
                 <p id="subtituloHistorico">Todos os seus pedidos em um só lugar</p>
             </div>
@@ -34,15 +34,19 @@
 
         <div id="statsHistorico">
             <div class="statCard">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <div>
+                <div class="statIcone">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                <div class="statTexto">
                     <span class="statValor" id="statTotalPedidos">0</span>
-                    <span class="statLabel">Pedidos</span>
+                    <span class="statLabel">Total de pedidos</span>
                 </div>
             </div>
             <div class="statCard">
-                <i class="fa-solid fa-calendar-day"></i>
-                <div>
+                <div class="statIcone">
+                    <i class="fa-solid fa-calendar-day"></i>
+                </div>
+                <div class="statTexto">
                     <span class="statValor" id="statUltimoPedido">—</span>
                     <span class="statLabel">Último pedido</span>
                 </div>
@@ -87,13 +91,15 @@
                 <i class="fa-solid fa-burger"></i>
                 <p class="descricaoPedido"></p>
             </div>
-            <div class="cardHistorico-endereco">
-                <i class="fa-solid fa-location-dot"></i>
-                <span class="enderecoPedido"></span>
-            </div>
-            <div class="cardHistorico-pagamento">
-                <i class="fa-solid fa-credit-card"></i>
-                <span class="pagamentoPedido"></span>
+            <div class="cardHistorico-rodape">
+                <div class="cardHistorico-endereco">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="enderecoPedido"></span>
+                </div>
+                <div class="cardHistorico-pagamento">
+                    <i class="fa-solid fa-credit-card"></i>
+                    <span class="pagamentoPedido"></span>
+                </div>
             </div>
         </div>
     </template>

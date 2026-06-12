@@ -1,109 +1,120 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
-/* ── BASE ── */
+/* BASE */
 #mainHistorico {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 40px 30px 80px;
-    animation: entradaMain .6s ease both;
+    padding: 48px 30px 100px;
+    animation: entradaMain .5s ease both;
 }
 
 @keyframes entradaMain {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
 .escondido { display: none !important; }
 
 
-/* ── CABEÇALHO ── */
-#cabecalhoHistorico {
+/* HERO */
+#heroHistorico {
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin-bottom: 36px;
+    gap: 22px;
+    margin-bottom: 40px;
 }
 
-#iconeTituloHistorico {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
+#heroHistoricoIcone {
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
     background: linear-gradient(135deg, #ffd54f, #ff9800);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: #121212;
     flex-shrink: 0;
-    box-shadow: 0 8px 24px rgba(255, 165, 0, .3);
+    box-shadow: 0 12px 32px rgba(255, 165, 0, .35);
 }
 
 #tituloHistorico {
-    color: #fff;
-    font-size: 1.8rem;
-    font-weight: 800;
     font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 2px;
-    line-height: 1.1;
+    font-size: 2.4rem;
+    letter-spacing: 3px;
+    color: #ffffff;
+    line-height: 1;
 }
 
 #subtituloHistorico {
-    color: #888;
+    color: #666;
     font-size: .9rem;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 
-/* ── STATS ── */
+/* STATS */
 #statsHistorico {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 16px;
-    margin-bottom: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 28px;
 }
 
 .statCard {
     background: #111;
-    border: 1px solid #2a2a2a;
-    border-radius: 16px;
-    padding: 20px;
+    border: 1px solid #1e1e1e;
+    border-radius: 18px;
+    padding: 22px 20px;
     display: flex;
     align-items: center;
-    gap: 14px;
-    transition: border-color .3s;
+    gap: 16px;
+    transition: border-color .3s, transform .2s;
 }
 
-.statCard:hover { border-color: #ffa500; }
+.statCard:hover {
+    border-color: rgba(255, 165, 0, .4);
+    transform: translateY(-2px);
+}
 
-.statCard > i {
-    font-size: 1.4rem;
+.statIcone {
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 165, 0, .08);
+    border: 1px solid rgba(255, 165, 0, .15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
     color: #ffa500;
-    width: 24px;
-    text-align: center;
+    flex-shrink: 0;
+}
+
+.statTexto {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .statValor {
-    display: block;
-    color: #fff;
-    font-size: 1.3rem;
-    font-weight: 800;
     font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 1px;
-    line-height: 1.1;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    line-height: 1;
 }
 
 .statLabel {
-    display: block;
-    color: #666;
-    font-size: .75rem;
+    font-size: .73rem;
     font-weight: 600;
+    color: #555;
     text-transform: uppercase;
     letter-spacing: .5px;
-    margin-top: 2px;
 }
 
 
-/* ── FILTROS / BUSCA ── */
+/* BUSCA */
 #filtrosHistorico {
     margin-bottom: 24px;
 }
@@ -113,15 +124,18 @@
     align-items: center;
     gap: 12px;
     background: #111;
-    border: 1px solid #2a2a2a;
-    border-radius: 14px;
-    padding: 12px 18px;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    padding: 14px 20px;
     transition: border-color .3s;
 }
 
-#campoBusca:focus-within { border-color: #ffa500; }
+#campoBusca:focus-within {
+    border-color: #ffa500;
+    box-shadow: 0 0 0 3px rgba(255, 165, 0, .07);
+}
 
-#campoBusca i { color: #555; font-size: .95rem; }
+#campoBusca i { color: #444; font-size: .95rem; }
 
 #inputBusca {
     flex: 1;
@@ -133,18 +147,18 @@
     font-family: inherit;
 }
 
-#inputBusca::placeholder { color: #555; }
+#inputBusca::placeholder { color: #444; }
 
 
-/* ── LISTA ── */
+/* LISTA */
 #listaHistorico {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 16px;
 }
 
 
-/* ── LOADING / VAZIO / ERRO ── */
+/* ESTADOS */
 #loadingHistorico,
 #historicoVazio,
 #erroHistorico {
@@ -153,23 +167,18 @@
     align-items: center;
     justify-content: center;
     gap: 14px;
-    padding: 60px 20px;
-    color: #555;
+    padding: 70px 20px;
+    color: #444;
     font-size: .95rem;
     text-align: center;
 }
 
-#loadingHistorico i,
+#loadingHistorico i { color: #ffa500; font-size: 2.2rem; }
 #historicoVazio i,
-#erroHistorico i {
-    font-size: 2.5rem;
-    color: #333;
-}
-
-#loadingHistorico i { color: #ffa500; }
+#erroHistorico i    { color: #2a2a2a; font-size: 2.8rem; }
 
 #btnIrCardapio {
-    margin-top: 8px;
+    margin-top: 6px;
     padding: 12px 28px;
     background: linear-gradient(135deg, #ffd54f, #ff9800);
     color: #121212;
@@ -177,7 +186,8 @@
     font-size: .9rem;
     border-radius: 12px;
     text-decoration: none;
-    transition: all .3s;
+    transition: all .25s;
+    display: inline-block;
 }
 
 #btnIrCardapio:hover {
@@ -186,43 +196,53 @@
 }
 
 
-/* ── CARD DO PEDIDO ── */
+/* CARD DO PEDIDO */
 .cardHistorico {
     background: #111;
-    border: 1px solid #2a2a2a;
-    border-radius: 18px;
-    padding: 22px 24px;
+    border: 1px solid #1e1e1e;
+    border-radius: 20px;
+    padding: 24px 26px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    animation: entradaCard .4s ease both;
-    transition: border-color .3s, transform .3s;
+    gap: 16px;
     position: relative;
     overflow: hidden;
+    animation: entradaCard .4s ease both;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
 }
 
 .cardHistorico::before {
     content: '';
     position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,213,79,.04), transparent 60%);
+    pointer-events: none;
+}
+
+.cardHistorico::after {
+    content: '';
+    position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 3px;
+    width: 4px;
     background: linear-gradient(180deg, #ffd54f, #ff9800);
-    border-radius: 3px 0 0 3px;
+    border-radius: 4px 0 0 4px;
 }
 
 .cardHistorico:hover {
-    border-color: #ffa500;
-    transform: translateY(-2px);
+    border-color: rgba(255, 165, 0, .35);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 40px rgba(0,0,0,.4);
 }
 
 @keyframes entradaCard {
-    from { opacity: 0; transform: translateX(-12px); }
-    to   { opacity: 1; transform: translateX(0); }
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-/* topo do card — código e data */
+/* topo */
 .cardHistorico-topo {
     display: flex;
     align-items: center;
@@ -233,24 +253,27 @@
 .cardHistorico-codigo {
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(255, 213, 79, .08);
-    border: 1px solid rgba(255, 213, 79, .2);
-    border-radius: 8px;
-    padding: 5px 12px;
+    gap: 7px;
+    background: rgba(255, 213, 79, .07);
+    border: 1px solid rgba(255, 213, 79, .18);
+    border-radius: 10px;
+    padding: 6px 14px;
 }
 
-.cardHistorico-codigo i { color: #ffd54f; font-size: .75rem; }
+.cardHistorico-codigo i {
+    color: #ffd54f;
+    font-size: .7rem;
+}
 
 .codigoPedido {
-    color: #ffd54f;
     font-family: 'Bebas Neue', monospace;
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-size: 1.05rem;
+    letter-spacing: 2.5px;
+    color: #ffd54f;
 }
 
 .cardHistorico-data {
-    color: #666;
+    color: #555;
     font-size: .78rem;
     font-weight: 500;
     white-space: nowrap;
@@ -260,7 +283,11 @@
 .cardHistorico-descricao {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,.02);
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
 }
 
 .cardHistorico-descricao i {
@@ -271,48 +298,49 @@
 }
 
 .descricaoPedido {
-    color: #ccc;
+    color: #bbb;
     font-size: .88rem;
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
-/* endereço */
-.cardHistorico-endereco {
+/* rodapé */
+.cardHistorico-rodape {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding-top: 12px;
-    border-top: 1px solid #1e1e1e;
+    gap: 20px;
+    padding-top: 14px;
+    border-top: 1px solid #1a1a1a;
+    flex-wrap: wrap;
 }
 
-.cardHistorico-endereco i {
-    color: #00c9a7;
-    font-size: .85rem;
-    flex-shrink: 0;
-}
-
-.enderecoPedido {
-    color: #888;
-    font-size: .82rem;
-}
-
-
-/* ── RESPONSIVO ── */
-@media (max-width: 600px) {
-    #mainHistorico { padding: 20px 16px 60px; }
-    #tituloHistorico { font-size: 1.4rem; }
-    #iconeTituloHistorico { width: 50px; height: 50px; font-size: 1.3rem; }
-    .cardHistorico { padding: 18px; }
-    .cardHistorico-topo { flex-direction: column; align-items: flex-start; }
-}
-
+.cardHistorico-endereco,
 .cardHistorico-pagamento {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding-top: 10px;
-    border-top: 1px solid #1e1e1e;
 }
 
-.cardHistorico-pagamento i { color: #ffd54f; font-size: .85rem; flex-shrink: 0; }
-.pagamentoPedido { color: #888; font-size: .82rem; }
+.cardHistorico-endereco i { color: #00c9a7; font-size: .82rem; }
+.cardHistorico-pagamento i { color: #ffd54f; font-size: .82rem; }
+
+.enderecoPedido,
+.pagamentoPedido {
+    color: #666;
+    font-size: .82rem;
+}
+
+.cardHistorico-pagamento {
+    margin-left: auto;
+}
+
+
+/* RESPONSIVO */
+@media (max-width: 600px) {
+    #mainHistorico { padding: 24px 16px 70px; }
+    #tituloHistorico { font-size: 1.8rem; }
+    #heroHistoricoIcone { width: 56px; height: 56px; font-size: 1.4rem; }
+    #statsHistorico { grid-template-columns: 1fr 1fr; }
+    .cardHistorico { padding: 18px 20px; }
+    .cardHistorico-topo { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .cardHistorico-pagamento { margin-left: 0; }
+}
