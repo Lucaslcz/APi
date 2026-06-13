@@ -65,14 +65,21 @@
     }
 
     function renderizarBadge(pedido) {
-        if (!badge || !pedido?.codigo) return;
-        const cfg = STATUS_CONFIG[pedido.status] || STATUS_CONFIG.preparando;
-        badge.className = "";
-        badge.classList.add("status-" + pedido.status);
-        badge.style.display = "block";
-        if (badgeCod) badgeCod.textContent = pedido.codigo;
-        if (badgeSt)  badgeSt.textContent  = cfg.badgeLabel;
+    if (!badge || !pedido?.codigo) return;
+    
+    // Se o usuário desligou o status do pedido, esconde e para
+    if (localStorage.getItem('notifPedido') === 'false') {
+        badge.style.display = 'none';
+        return;
     }
+    
+    const cfg = STATUS_CONFIG[pedido.status] || STATUS_CONFIG.preparando;
+    badge.className = "";
+    badge.classList.add("status-" + pedido.status);
+    badge.style.display = "block";
+    if (badgeCod) badgeCod.textContent = pedido.codigo;
+    if (badgeSt)  badgeSt.textContent  = cfg.badgeLabel;
+}
 
     function abrirPopupStatus() {
         const pedido = lerPedido();

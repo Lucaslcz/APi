@@ -152,6 +152,10 @@ body.tema-claro #cabecalhoMenu h1 {
     color: #c47f00;
 }
 
+body.tema-claro #botaoInicio {
+    color: #c47f00;
+}
+
 body.tema-claro #cabecalhoMenu p {
     color: #666;
 }

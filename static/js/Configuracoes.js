@@ -79,12 +79,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('togglePromocoes')?.addEventListener('change', e => {
         localStorage.setItem('notifPromocoes', e.target.checked);
     });
+
     document.getElementById('togglePedido')?.addEventListener('change', e => {
         localStorage.setItem('notifPedido', e.target.checked);
+        
+        // Aplica imediatamente sem precisar recarregar
+        const badge = document.getElementById('badgePedidoAtivo');
+        if (badge) {
+            badge.style.display = e.target.checked ? '' : 'none';
+        }
     });
+
     document.getElementById('togglePedidoRapido')?.addEventListener('change', e => {
         localStorage.setItem('pedidoRapido', e.target.checked);
     });
+    
     document.getElementById('toggleEndereco')?.addEventListener('change', e => {
         localStorage.setItem('salvarEndereco', e.target.checked);
     });

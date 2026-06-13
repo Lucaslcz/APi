@@ -483,3 +483,49 @@ def api_avisos_deletar(id_aviso):
     finally:
         cursor.close()
         conexao.close()
+
+
+
+
+
+# ROTA PARA BUSCAR ENDEREÇO SALVO DO USUÁRIO
+@app.route('/api/endereco/<int:id_usuario>')
+def api_endereco(id_usuario):
+    conexao = banco_calabreso()
+    cursor = conexao.cursor(dictionary=True)
+    try:
+        cursor.execute("SELECT endereco_salvo FROM usuarios WHERE id = %s", (id_usuario,))
+        resultado = cursor.fetchone()
+        return jsonify(resultado or {})
+    except Exception as erro:
+        return jsonify({"erro": str(erro)}), 500
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+# ROTA PARA SALVAR ENDEREÇO DO USUÁRIO
+@app.route('/api/endereco/salvar', methods=['POST'])
+def api_endereco_salvar():
+    dados      = request.get_json()
+    id_usuario = dados.get('id_usuario')
+    endereco   = dados.get('endereco')
+
+    if not id_usuario or not endereco:
+        return jsonify({"erro": "Dados inválidos"}), 400
+
+    import json
+    conexao = banco_calabreso()
+    cursor = conexao.cursor()
+    try:
+        cursor.execute(
+            "UPDATE usuarios SET endereco_salvo = %s WHERE id = %s",
+            (json.dumps(endereco, ensure_ascii=False), id_usuario)
+        )
+        conexao.commit()
+        return jsonify({"ok": True})
+    except Exception as erro:
+        return jsonify({"erro": str(erro)}), 500
+    finally:
+        cursor.close()
+        conexao.close()

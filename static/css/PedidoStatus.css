@@ -1,9 +1,13 @@
-/* ── BADGE NO HEADER ── */
+/* ════════════════════════════════════════
+   BADGE DE PEDIDO ATIVO (header da página)
+   ════════════════════════════════════════ */
+
 #badgePedidoAtivo {
     cursor: pointer;
     margin-left: auto;
 }
 
+/* Pill interno com borda e brilho animado */
 #badgePedidoInner {
     display: flex;
     align-items: center;
@@ -17,11 +21,12 @@
     overflow: hidden;
 }
 
+/* Reflexo animado que passa da esquerda para direita */
 #badgePedidoInner::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,.03), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .03), transparent);
     animation: badgeShine 3s linear infinite;
 }
 
@@ -33,9 +38,10 @@
 #badgePedidoAtivo:hover #badgePedidoInner {
     border-color: #555;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .4);
 }
 
+/* Bolinha de status (cor muda conforme o estado) */
 #badgeIconStatus {
     font-size: 1.2rem;
     line-height: 1;
@@ -49,11 +55,12 @@
     transition: background .4s ease;
 }
 
-/* Cores do ponto de status */
+/* Estado: preparando (amarelo pulsante) */
 #badgePedidoAtivo.status-preparando #badgeIconStatus {
     background: rgba(255, 213, 79, .15);
     animation: pulsarBadge 1.8s ease-in-out infinite;
 }
+
 #badgePedidoAtivo.status-preparando #badgeIconStatus::after {
     content: '';
     width: 10px;
@@ -64,10 +71,12 @@
     display: block;
 }
 
+/* Estado: em rota (azul pulsante) */
 #badgePedidoAtivo.status-rota #badgeIconStatus {
     background: rgba(33, 150, 243, .15);
     animation: pulsarBadge 1.8s ease-in-out infinite;
 }
+
 #badgePedidoAtivo.status-rota #badgeIconStatus::after {
     content: '';
     width: 10px;
@@ -78,9 +87,11 @@
     display: block;
 }
 
+/* Estado: entregue (verde estático) */
 #badgePedidoAtivo.status-entregue #badgeIconStatus {
     background: rgba(76, 175, 80, .15);
 }
+
 #badgePedidoAtivo.status-entregue #badgeIconStatus::after {
     content: '';
     width: 10px;
@@ -92,10 +103,11 @@
 }
 
 @keyframes pulsarBadge {
-    0%,100% { transform: scale(1); }
-    50%      { transform: scale(1.12); }
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.12); }
 }
 
+/* Textos do badge (rótulo + status) */
 #badgeTextos {
     display: flex;
     flex-direction: column;
@@ -122,16 +134,20 @@
     transition: color .4s;
 }
 
+/* Cores do texto de status por estado */
 #badgePedidoAtivo.status-preparando #badgeStatus { color: #ffd54f; }
 #badgePedidoAtivo.status-rota       #badgeStatus { color: #2196f3; }
 #badgePedidoAtivo.status-entregue   #badgeStatus { color: #4caf50; }
 
 
-/* ── POPUP DE STATUS ── */
+/* ════════════════════════════════════════
+   POPUP DE ACOMPANHAMENTO DO PEDIDO
+   ════════════════════════════════════════ */
+
 #overlayStatusPedido {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,.85);
+    background: rgba(0, 0, 0, .85);
     backdrop-filter: blur(6px);
     z-index: 9999;
     display: flex;
@@ -147,6 +163,7 @@
     visibility: visible;
 }
 
+/* Caixa central do popup */
 #caixaStatusPedido {
     background: #111;
     border: 1px solid #2a2a2a;
@@ -160,7 +177,7 @@
     align-items: center;
     gap: 16px;
     transform: scale(.85) translateY(20px);
-    transition: transform .4s cubic-bezier(.175,.885,.32,1.275);
+    transition: transform .4s cubic-bezier(.175, .885, .32, 1.275);
     position: relative;
     overflow: hidden;
 }
@@ -169,6 +186,7 @@
     transform: scale(1) translateY(0);
 }
 
+/* Halo colorido no fundo — muda conforme status */
 #caixaStatusPedido::before {
     content: '';
     position: absolute;
@@ -181,18 +199,19 @@
     transition: background .5s ease;
 }
 
-/* Fundo do popup muda com status */
 #overlayStatusPedido.status-preparando #caixaStatusPedido::before {
-    background: radial-gradient(circle, rgba(255,213,79,.12), transparent 70%);
-}
-#overlayStatusPedido.status-rota #caixaStatusPedido::before {
-    background: radial-gradient(circle, rgba(33,150,243,.12), transparent 70%);
-}
-#overlayStatusPedido.status-entregue #caixaStatusPedido::before {
-    background: radial-gradient(circle, rgba(76,175,80,.15), transparent 70%);
+    background: radial-gradient(circle, rgba(255, 213, 79, .12), transparent 70%);
 }
 
-/* Botão fechar topo */
+#overlayStatusPedido.status-rota #caixaStatusPedido::before {
+    background: radial-gradient(circle, rgba(33, 150, 243, .12), transparent 70%);
+}
+
+#overlayStatusPedido.status-entregue #caixaStatusPedido::before {
+    background: radial-gradient(circle, rgba(76, 175, 80, .15), transparent 70%);
+}
+
+/* Botão fechar (X) no canto superior direito */
 #btnFecharStatus {
     position: absolute;
     top: 14px;
@@ -212,9 +231,16 @@
     font-family: inherit;
 }
 
-#btnFecharStatus:hover { color: #fff; border-color: #555; }
+#btnFecharStatus:hover {
+    color: #fff;
+    border-color: #555;
+}
 
-/* SVG Check do popup */
+
+/* ════════════════════════════════════════
+   ÍCONE SVG DE CHECK ANIMADO
+   ════════════════════════════════════════ */
+
 #statusCheckIcon {
     width: 80px;
     height: 80px;
@@ -243,15 +269,20 @@
     transition: stroke .5s ease;
 }
 
-/* Cores do SVG por status */
+/* Cor do SVG muda por status */
 #overlayStatusPedido.status-preparando #statusCirculo,
 #overlayStatusPedido.status-preparando #statusTick { stroke: #ffd54f; }
 
 #overlayStatusPedido.status-rota #statusCirculo,
-#overlayStatusPedido.status-rota #statusTick { stroke: #2196f3; }
+#overlayStatusPedido.status-rota #statusTick       { stroke: #2196f3; }
 
 #overlayStatusPedido.status-entregue #statusCirculo,
-#overlayStatusPedido.status-entregue #statusTick { stroke: #4caf50; }
+#overlayStatusPedido.status-entregue #statusTick   { stroke: #4caf50; }
+
+
+/* ════════════════════════════════════════
+   TEXTOS E BADGE DE CÓDIGO DO PEDIDO
+   ════════════════════════════════════════ */
 
 #statusTitulo {
     color: #fff;
@@ -266,6 +297,7 @@
     max-width: 300px;
 }
 
+/* Plaquinha com o código do pedido */
 #statusNumeroPedido {
     background: #1a1a1a;
     border: 1px solid #2f2f2f;
@@ -282,7 +314,11 @@
     letter-spacing: 2px;
 }
 
-/* Etapas do popup de status */
+
+/* ════════════════════════════════════════
+   ETAPAS DO PEDIDO (linha do tempo)
+   ════════════════════════════════════════ */
+
 #statusEtapas {
     display: flex;
     align-items: center;
@@ -298,6 +334,7 @@
     min-width: 64px;
 }
 
+/* Bolinha de cada etapa */
 .statusEtaIcone {
     width: 38px;
     height: 38px;
@@ -320,84 +357,46 @@
     text-align: center;
 }
 
-/* Etapa ativa amarela (preparando) */
+/* Etapa ativa: preparando (amarelo) */
 .statusEtaItem.ativa-preparando .statusEtaIcone {
     background: linear-gradient(135deg, #ffd54f, #ff9800);
     border-color: #ffd54f;
     color: #121212;
-    box-shadow: 0 0 14px rgba(255,213,79,.45);
+    box-shadow: 0 0 14px rgba(255, 213, 79, .45);
 }
+
 .statusEtaItem.ativa-preparando span { color: #ffd54f; }
 
-/* Etapa ativa azul (rota) */
+/* Etapa ativa: em rota (azul) */
 .statusEtaItem.ativa-rota .statusEtaIcone {
     background: linear-gradient(135deg, #2196f3, #1565c0);
     border-color: #2196f3;
     color: #fff;
-    box-shadow: 0 0 14px rgba(33,150,243,.45);
+    box-shadow: 0 0 14px rgba(33, 150, 243, .45);
 }
+
 .statusEtaItem.ativa-rota span { color: #2196f3; }
 
-/* Etapa ativa verde (entregue / concluído) */
+/* Etapa ativa: entregue (verde) */
 .statusEtaItem.ativa-entregue .statusEtaIcone {
     background: linear-gradient(135deg, #4caf50, #00e676);
     border-color: #4caf50;
     color: #121212;
-    box-shadow: 0 0 14px rgba(76,175,80,.45);
+    box-shadow: 0 0 14px rgba(76, 175, 80, .45);
 }
+
 .statusEtaItem.ativa-entregue span { color: #4caf50; }
 
-/* ════════════════════════════════════════
-   TEMA CLARO
-   ════════════════════════════════════════ */
-
-body.tema-claro #modalPedidoStatus {
-    background: #ffffff;
-    border-color: #ddd;
-}
-
-body.tema-claro #headerModalPedidoStatus {
-    border-color: #ddd;
-}
-
-body.tema-claro #headerModalPedidoStatus h2 {
-    color: #121212;
-}
-
-body.tema-claro #fecharModalPedidoStatus {
-    color: #555;
-}
-
-body.tema-claro .statusSumario {
-    background: #f9f9f9;
-    border-color: #ddd;
-}
-
-body.tema-claro .statusInfo {
-    color: #555;
-}
-
-body.tema-claro .statusLabel {
-    color: #999;
-}
-
-body.tema-claro .statusEtaItem .statusEtaIcone {
-    border-color: #ddd;
-    color: #999;
-}
-
-body.tema-claro .statusEtaItem span {
-    color: #777;
-}
-
-/* Etapa concluída (cinza com check) */
+/* Etapa já concluída (cinza com ícone verde) */
 .statusEtaItem.concluida .statusEtaIcone {
     background: #1f1f1f;
     border-color: #3f3f3f;
     color: #4caf50;
 }
+
 .statusEtaItem.concluida span { color: #666; }
 
+/* Linha entre etapas */
 .statusEtaLinha {
     flex: 1;
     height: 2px;
@@ -407,11 +406,15 @@ body.tema-claro .statusEtaItem span {
     transition: background .5s ease;
 }
 
-.statusEtaLinha.ativa { background: #ffd54f; }
-.statusEtaLinha.azul  { background: #2196f3; }
-.statusEtaLinha.verde { background: #4caf50; }
+.statusEtaLinha.ativa  { background: #ffd54f; }
+.statusEtaLinha.azul   { background: #2196f3; }
+.statusEtaLinha.verde  { background: #4caf50; }
 
-/* Botão fechar rodapé */
+
+/* ════════════════════════════════════════
+   BOTÃO FECHAR NO RODAPÉ DO POPUP
+   ════════════════════════════════════════ */
+
 #btnFecharStatusBottom {
     width: 100%;
     padding: 14px;
@@ -435,4 +438,95 @@ body.tema-claro .statusEtaItem span {
     background: #222;
     border-color: #555;
     color: #fff;
+}
+
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Badge e popup de pedido
+   ════════════════════════════════════════ */
+
+/* Badge do header */
+body.tema-claro #badgePedidoInner {
+    background: #ffffff;
+    border-color: #ddd;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+body.tema-claro #badgePedidoAtivo:hover #badgePedidoInner {
+    border-color: #bbb;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.tema-claro #badgeLabel {
+    color: #555;
+}
+
+body.tema-claro #badgeLabel strong {
+    color: #c47f00;
+}
+
+/* Popup de status */
+body.tema-claro #overlayStatusPedido {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+body.tema-claro #caixaStatusPedido {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+body.tema-claro #statusTitulo {
+    color: #121212;
+}
+
+body.tema-claro #statusSubtitulo {
+    color: #777;
+}
+
+/* Plaquinha do código com fundo off-white */
+body.tema-claro #statusNumeroPedido {
+    background: #f5f5f5;
+    border-color: #e0e0e0;
+    color: #555;
+}
+
+/* Etapas com borda cinza visível */
+body.tema-claro .statusEtaIcone {
+    background: #f5f5f5;
+    border-color: #ddd;
+    color: #aaa;
+}
+
+body.tema-claro .statusEtaItem span {
+    color: #aaa;
+}
+
+body.tema-claro .statusEtaLinha {
+    background: #e0e0e0;
+}
+
+/* Botão fechar rodapé */
+body.tema-claro #btnFecharStatusBottom {
+    background: #f5f5f5;
+    border-color: #ddd;
+    color: #555;
+}
+
+body.tema-claro #btnFecharStatusBottom:hover {
+    background: #eeeeee;
+    border-color: #bbb;
+    color: #121212;
+}
+
+/* Botão fechar topo */
+body.tema-claro #btnFecharStatus {
+    background: #f0f0f0;
+    border-color: #ddd;
+    color: #777;
+}
+
+body.tema-claro #btnFecharStatus:hover {
+    color: #333;
+    border-color: #aaa;
 }

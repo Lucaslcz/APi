@@ -1,4 +1,7 @@
-/* LAYOUT PRINCIPAL */
+/* ════════════════════════════════════════
+   LAYOUT PRINCIPAL DO PAINEL DA EMPRESA
+   ════════════════════════════════════════ */
+
 #mainEmpresa {
     max-width: 1300px;
     margin: 0 auto;
@@ -8,7 +11,11 @@
     gap: 32px;
 }
 
-/* TOPO */
+
+/* ════════════════════════════════════════
+   TOPO DA PÁGINA (título + data)
+   ════════════════════════════════════════ */
+
 #topoEmpresa {
     display: flex;
     justify-content: space-between;
@@ -44,7 +51,11 @@
     font-weight: 500;
 }
 
-/* CARDS DE MÃƒâ€°TRICAS */
+
+/* ════════════════════════════════════════
+   CARDS DE MÉTRICAS (grid no topo)
+   ════════════════════════════════════════ */
+
 #secaoCards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -67,6 +78,7 @@
     transform: translateY(-2px);
 }
 
+/* Ícone colorido por tipo de métrica */
 .cardMetricaIcone {
     width: 50px;
     height: 50px;
@@ -104,7 +116,11 @@
     font-weight: 500;
 }
 
-/* GRADE CENTRAL */
+
+/* ════════════════════════════════════════
+   GRADE CENTRAL (dados + mural + populares)
+   ════════════════════════════════════════ */
+
 #gradeEmpresa {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -112,7 +128,7 @@
     align-items: start;
 }
 
-/* CABEÃƒâ€¡ALHO DAS SEÃƒâ€¡Ãƒâ€¢ES */
+/* Cabeçalho reutilizável de cada seção */
 .secaoHeader {
     display: flex;
     justify-content: space-between;
@@ -127,15 +143,8 @@
     color: #ffffff;
 }
 
-.secaoTituloWrapper i {
-    color: #ffa500;
-    font-size: 1rem;
-}
-
-.secaoTituloWrapper h2 {
-    font-size: 1rem;
-    font-weight: 700;
-}
+.secaoTituloWrapper i  { color: #ffa500; font-size: 1rem; }
+.secaoTituloWrapper h2 { font-size: 1rem; font-weight: 700; }
 
 .btnSecaoAcao {
     background: transparent;
@@ -154,7 +163,11 @@
     color: #ffa500;
 }
 
-/* SEÃƒâ€¡ÃƒÆ’O DADOS DA EMPRESA */
+
+/* ════════════════════════════════════════
+   SEÇÃO DE DADOS DA EMPRESA (formulário)
+   ════════════════════════════════════════ */
+
 #secaoDados {
     background: #161616;
     border: 1px solid #222;
@@ -182,6 +195,7 @@
     letter-spacing: 0.5px;
 }
 
+/* Layout de dois campos lado a lado */
 .duplo {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -221,7 +235,11 @@
     margin-top: 4px;
 }
 
-/* SEÃƒâ€¡ÃƒÆ’O MURAL */
+
+/* ════════════════════════════════════════
+   SEÇÃO DE MURAL DE AVISOS
+   ════════════════════════════════════════ */
+
 #secaoMural {
     background: #161616;
     border: 1px solid #222;
@@ -256,6 +274,7 @@
     margin-bottom: 16px;
 }
 
+/* Lista rolável de avisos publicados */
 #listaAvisos {
     display: flex;
     flex-direction: column;
@@ -265,7 +284,7 @@
     padding-right: 4px;
 }
 
-#listaAvisos::-webkit-scrollbar { width: 4px; }
+#listaAvisos::-webkit-scrollbar       { width: 4px; }
 #listaAvisos::-webkit-scrollbar-track { background: transparent; }
 #listaAvisos::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 4px; }
 
@@ -312,7 +331,11 @@
     background: rgba(255, 77, 77, 0.1);
 }
 
-/* SEÃƒâ€¡ÃƒÆ’O POPULARES */
+
+/* ════════════════════════════════════════
+   SEÇÃO DE MAIS POPULARES (ranking)
+   ════════════════════════════════════════ */
+
 #secaoPopulares {
     background: #161616;
     border: 1px solid #222;
@@ -346,6 +369,7 @@
     flex-shrink: 0;
 }
 
+/* Top 3 em laranja */
 .popularPosicao.top { color: #ffa500; }
 
 .popularInfo { flex: 1; }
@@ -357,18 +381,10 @@
     margin-bottom: 6px;
 }
 
-.popularNome {
-    font-size: 0.88rem;
-    color: #cfcfcf;
-    font-weight: 500;
-}
+.popularNome { font-size: 0.88rem; color: #cfcfcf; font-weight: 500; }
+.popularQtd  { font-size: 0.78rem; color: #555; font-weight: 600; }
 
-.popularQtd {
-    font-size: 0.78rem;
-    color: #555;
-    font-weight: 600;
-}
-
+/* Barra de progresso visual */
 .popularBarra {
     height: 3px;
     background: #1e1e1e;
@@ -383,7 +399,11 @@
     transition: width 0.6s ease;
 }
 
-/* BOTÃƒâ€¢ES */
+
+/* ════════════════════════════════════════
+   BOTÕES REUTILIZÁVEIS
+   ════════════════════════════════════════ */
+
 .btnPrimario {
     flex: 1;
     padding: 11px;
@@ -420,11 +440,10 @@
 }
 
 .btnSecundario:hover {
-    background: rgba(255,255,255,0.04);
+    background: rgba(255, 255, 255, 0.04);
     color: #ffffff;
 }
 
-/* ESTADO VAZIO */
 .estadoVazio {
     color: #333;
     font-size: 0.88rem;
@@ -432,7 +451,11 @@
     padding: 20px 0;
 }
 
-/* ACESSO BLOQUEADO */
+
+/* ════════════════════════════════════════
+   TELA DE ACESSO BLOQUEADO
+   ════════════════════════════════════════ */
+
 #bloqueioAcesso {
     position: fixed;
     inset: 0;
@@ -446,76 +469,9 @@
     text-align: center;
 }
 
-#bloqueioIcone {
-    font-size: 2.5rem;
-    color: #ff4d4d;
-}
-
-#bloqueioAcesso h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-#bloqueioAcesso p {
-    color: #999;
-}
-
-/* Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â
-   TEMA CLARO
-   Ã¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢ÂÃ¢â€¢Â */
-
-body.tema-claro #mainEmpresa {
-    color: #121212;
-}
-
-body.tema-claro #labelEmpresa {
-    color: #e69900;
-}
-
-body.tema-claro #tituloEmpresa {
-    color: #121212;
-}
-
-body.tema-claro #subtituloEmpresa {
-    color: #888;
-}
-
-body.tema-claro #dataHoje {
-    color: #999;
-}
-
-body.tema-claro .cardMetrica {
-    background: #ffffff;
-    border-color: #ddd;
-}
-
-body.tema-claro .cardMetrica:hover {
-    border-color: #999;
-}
-
-body.tema-claro .cardMetricaLabel {
-    color: #777;
-}
-
-body.tema-claro .cardMetricaValor {
-    color: #121212;
-}
-
-body.tema-claro .secaoTituloWrapper {
-    color: #121212;
-}
-
-body.tema-claro .secaoTituloWrapper i {
-    color: #e69900;
-}
-
-body.tema-claro .btnSecaoAcao {
-    border-color: #ddd;
-    color: #555;
-    color: #555;
-    font-size: 0.95rem;
-}
+#bloqueioIcone    { font-size: 2.5rem; color: #ff4d4d; }
+#bloqueioAcesso h2 { font-size: 1.5rem; font-weight: 700; color: #ffffff; }
+#bloqueioAcesso p  { color: #999; }
 
 #bloqueioAcesso button {
     margin-top: 8px;
@@ -534,7 +490,11 @@ body.tema-claro .btnSecaoAcao {
     transform: translateY(-2px);
 }
 
-/* TOAST */
+
+/* ════════════════════════════════════════
+   TOAST DE FEEDBACK (salvo, erro etc.)
+   ════════════════════════════════════════ */
+
 #toastEmpresa {
     position: fixed;
     bottom: 30px;
@@ -563,16 +523,131 @@ body.tema-claro .btnSecaoAcao {
     transform: translateY(0);
 }
 
-/* ANIMAÃƒâ€¡Ãƒâ€¢ES */
 @keyframes entrar {
     from { opacity: 0; transform: translateY(-5px); }
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* RESPONSIVIDADE */
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Empresa
+   ════════════════════════════════════════ */
+
+body.tema-claro #mainEmpresa {
+    color: #121212;
+}
+
+body.tema-claro #labelEmpresa    { color: #c47f00; }
+body.tema-claro #tituloEmpresa   { color: #121212; }
+body.tema-claro #subtituloEmpresa { color: #888; }
+body.tema-claro #dataHoje        { color: #aaa; }
+
+/* Cards de métricas brancos com sombra */
+body.tema-claro .cardMetrica {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.tema-claro .cardMetrica:hover {
+    border-color: #ccc;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+body.tema-claro .cardMetricaValor { color: #121212; }
+body.tema-claro .cardMetricaLabel { color: #888; }
+
+/* Títulos de seção */
+body.tema-claro .secaoTituloWrapper       { color: #121212; }
+body.tema-claro .secaoTituloWrapper i     { color: #c47f00; }
+body.tema-claro .btnSecaoAcao             { border-color: #ddd; color: #777; }
+body.tema-claro .btnSecaoAcao:hover       { border-color: #c47f00; color: #c47f00; }
+
+/* Seções com fundo branco e borda cinza */
+body.tema-claro #secaoDados,
+body.tema-claro #secaoMural,
+body.tema-claro #secaoPopulares {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Rótulos e inputs do formulário */
+body.tema-claro .campoForm label { color: #aaa; }
+
+body.tema-claro .inputEmpresa {
+    background: #f5f5f5;
+    border-color: #ddd;
+    color: #555;
+}
+
+body.tema-claro .inputEmpresa:not(:disabled) {
+    border-color: rgba(196, 127, 0, 0.3);
+    color: #121212;
+}
+
+body.tema-claro .inputEmpresa:not(:disabled):focus {
+    border-color: #c47f00;
+    box-shadow: 0 0 0 3px rgba(196, 127, 0, 0.08);
+}
+
+body.tema-claro .textareaEmpresa {
+    background: #f5f5f5;
+    border-color: rgba(196, 127, 0, 0.25);
+    color: #121212;
+}
+
+body.tema-claro .textareaEmpresa:focus {
+    border-color: #c47f00;
+}
+
+/* Itens de aviso */
+body.tema-claro .itemAviso {
+    background: #f9f9f9;
+    border-color: #eeeeee;
+}
+
+body.tema-claro .avisoTexto { color: #333; }
+body.tema-claro .avisoData  { color: #aaa; }
+
+/* Ranking de populares */
+body.tema-claro .itemPopular    { border-color: #eeeeee; }
+body.tema-claro .popularNome    { color: #333; }
+body.tema-claro .popularQtd     { color: #aaa; }
+body.tema-claro .popularBarra   { background: #eee; }
+body.tema-claro .popularPosicao { color: #bbb; }
+body.tema-claro .popularPosicao.top { color: #c47f00; }
+
+/* Estado vazio */
+body.tema-claro .estadoVazio { color: #bbb; }
+
+/* Botão secundário adaptado */
+body.tema-claro .btnSecundario {
+    border-color: #ddd;
+    color: #777;
+}
+
+body.tema-claro .btnSecundario:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #333;
+}
+
+/* Toast */
+body.tema-claro #toastEmpresa {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    color: #121212;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════════════ */
+
 @media (max-width: 1024px) {
-    #secaoCards    { grid-template-columns: repeat(2, 1fr); }
-    #gradeEmpresa  { grid-template-columns: 1fr; }
+    #secaoCards   { grid-template-columns: repeat(2, 1fr); }
+    #gradeEmpresa { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {

@@ -659,6 +659,11 @@ body.tema-claro #botaoCarrinho {
     color: #333;
 }
 
+body.tema-claro #botaoInicio {
+    background-color: #fff;
+    border: none;
+}
+
 body.tema-claro #botaoCarrinho:hover {
     background: #ffa500;
     color: #fff;

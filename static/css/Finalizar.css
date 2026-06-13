@@ -12,7 +12,6 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-
 #barraProgresso {
     display: flex;
     align-items: center;
@@ -102,8 +101,6 @@
     to   { transform: translateX(100%); }
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ GRID PRINCIPAL Ã¢â€â‚¬Ã¢â€â‚¬ */
 #layoutFinalizar {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
@@ -111,7 +108,6 @@
     align-items: start;
 }
 
-/* Ã¢â€â‚¬Ã¢â€â‚¬ SEÃƒâ€¡ÃƒÆ’O GENÃƒâ€°RICA Ã¢â€â‚¬Ã¢â€â‚¬ */
 #resumoPedido,
 #secaoPagamento {
     background: #111;
@@ -149,8 +145,6 @@
     font-weight: 700;
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ ITENS DO PEDIDO Ã¢â€â‚¬Ã¢â€â‚¬ */
 #listaItensPedido {
     display: flex;
     flex-direction: column;
@@ -200,8 +194,6 @@
     white-space: nowrap;
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ DIVISOR & TOTAIS Ã¢â€â‚¬Ã¢â€â‚¬ */
 #divisorResumo {
     height: 1px;
     background: linear-gradient(90deg, transparent, #2f2f2f, transparent);
@@ -229,8 +221,6 @@
 .linhaTotal.destaque span:last-child { color: #ffd54f; }
 .verde { color: #00e676 !important; }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ ENDEREÃƒâ€¡O Ã¢â€â‚¬Ã¢â€â‚¬ */
 #blocoEndereco {
     margin-top: 24px;
     padding-top: 24px;
@@ -270,8 +260,6 @@
 
 .inputFinalizar::placeholder { color: #555; }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ ABAS DE PAGAMENTO Ã¢â€â‚¬Ã¢â€â‚¬ */
 #abasPagamento {
     display: flex;
     gap: 8px;
@@ -311,8 +299,6 @@
     transform: translateY(-1px);
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ PAINÃƒâ€°IS DE PAGAMENTO Ã¢â€â‚¬Ã¢â€â‚¬ */
 .painelPagamento {
     display: none;
     flex-direction: column;
@@ -380,19 +366,15 @@
     max-width: 340px;
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ QR CODE FAKE Ã¢â€â‚¬Ã¢â€â‚¬ */
 #qrCodeFake {
-    width: 130px;
-    height: 130px;
     background: #fff;
     border-radius: 12px;
-    padding: 10px;
-    display: flex;
+    padding: 12px 12px 8px;
+    display: inline-flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     box-shadow: 0 0 20px rgba(0,201,167,.3);
     animation: pulsarQR 3s ease-in-out infinite;
 }
@@ -402,42 +384,25 @@
     50%      { box-shadow: 0 0 40px rgba(0,201,167,.6); }
 }
 
-#qrInner {
-    width: 90px;
-    height: 90px;
-    background-image:
-        repeating-linear-gradient(0deg,   #1a1a1a 0, #1a1a1a 6px, transparent 6px, transparent 9px),
-        repeating-linear-gradient(90deg,  #1a1a1a 0, #1a1a1a 6px, transparent 6px, transparent 9px);
+#qrCodeFake > img {
+    display: block !important;
+    width: 130px !important;
+    height: 130px !important;
     border-radius: 4px;
-    position: relative;
 }
 
-#qrInner::before {
-    content: '';
-    position: absolute;
-    inset: 5px;
-    background: #fff;
-    border-radius: 2px;
-}
-
-#qrInner::after {
-    content: 'Ã°Å¸Ââ€';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 1.4rem;
-    z-index: 1;
+#qrCodeFake > canvas {
+    display: none !important;
 }
 
 #qrLabel {
-    color: #333;
+    color: #555;
     font-size: .65rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ CHAVE PIX Ã¢â€â‚¬Ã¢â€â‚¬ */
 .chavePix {
     display: flex;
     align-items: center;
@@ -470,8 +435,6 @@
 #btnCopiarPix:hover { color: #00c9a7; }
 #btnCopiarPix.copiado { color: #00e676; }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ BOTÃƒâ€¢ES SOCIAIS Ã¢â€â‚¬Ã¢â€â‚¬ */
 .btnSocial {
     display: flex;
     align-items: center;
@@ -524,8 +487,6 @@
     box-shadow: 0 8px 30px rgba(0,0,0,.6);
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ CARTÃƒÆ’O VISUAL Ã¢â€â‚¬Ã¢â€â‚¬ */
 #cartaoVisual {
     width: 100%;
     max-width: 340px;
@@ -620,8 +581,6 @@
 
 #selectParcelas:focus { border-color: #ffa500; }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ BOLETO VISUAL Ã¢â€â‚¬Ã¢â€â‚¬ */
 #boletoVisual {
     display: flex;
     gap: 3px;
@@ -665,8 +624,6 @@
 
 .linhaBoleto strong { color: #fff; }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ BOTÃƒÆ’O CONFIRMAR Ã¢â€â‚¬Ã¢â€â‚¬ */
 .btnConfirmarPagamento {
     width: 100%;
     max-width: 340px;
@@ -773,8 +730,6 @@
     pointer-events: none;
 }
 
-
-/* CHECK SVG */
 #animacaoCheck { position: relative; width: 100px; height: 100px; }
 
 #svgCheck {
@@ -810,7 +765,6 @@
     stroke-dashoffset: 0;
 }
 
-/* PartÃƒÂ­culas do burst */
 #particlesBurst {
     position: absolute;
     inset: 0;
@@ -857,8 +811,6 @@
     letter-spacing: 2px;
 }
 
-
-/* ETA STATUS */
 #etaStatusPedido {
     display: flex;
     align-items: center;
@@ -884,108 +836,6 @@
     align-items: center;
     justify-content: center;
     font-size: .9rem;
-}
-
-body.tema-claro #mainFinalizar {
-    color: #121212;
-}
-
-body.tema-claro #resumoPedido,
-body.tema-claro #secaoPagamento {
-    background: #ffffff;
-    border-color: #ddd;
-}
-
-body.tema-claro .secaoTitulo h2,
-body.tema-claro .secaoTitulo h3 {
-    color: #121212;
-}
-
-body.tema-claro .secaoTitulo i {
-    color: #e69900;
-}
-
-body.tema-claro .itemPedido {
-    background: #f9f9f9;
-    border-color: #ddd;
-}
-
-body.tema-claro .itemPedido:hover {
-    border-color: #e69900;
-}
-
-body.tema-claro .qtdItem {
-    background: #e69900;
-    color: #fff;
-}
-
-body.tema-claro .nomeItem {
-    color: #555;
-}
-
-body.tema-claro .precoItem {
-    color: #00a651;
-}
-
-body.tema-claro .linhaTotal {
-    color: #777;
-}
-
-body.tema-claro .linhaTotal.destaque {
-    color: #121212;
-    border-color: #ddd;
-}
-
-body.tema-claro .linhaTotal.destaque span:last-child {
-    color: #e69900;
-}
-
-body.tema-claro .inputFinalizar {
-    background: #f9f9f9;
-    border-color: #ddd;
-    color: #121212;
-}
-
-body.tema-claro .inputFinalizar:focus {
-    border-color: #e69900;
-    box-shadow: 0 0 0 3px rgba(230, 153, 0, .1);
-}
-
-body.tema-claro .inputFinalizar::placeholder {
-    color: #bbb;
-}
-
-body.tema-claro #abasPagamento {
-    background: #f9f9f9;
-    border-color: #ddd;
-}
-
-body.tema-claro .abaPagamento {
-    color: #777;
-}
-
-body.tema-claro .abaPagamento.ativa {
-    background: linear-gradient(135deg, #e69900, #cc7a00);
-    color: #fff;
-}
-
-body.tema-claro .tituloPainel {
-    color: #121212;
-}
-
-body.tema-claro .descPainel {
-    color: #666;
-}
-
-body.tema-claro .chavePix {
-    background: #f9f9f9;
-    border-color: #00a651;
-}
-
-body.tema-claro #textoChavePix {
-    color: #00a651;
-    color: #555;
-    transition: all .4s ease;
 }
 
 .etaItem span {
@@ -1016,8 +866,6 @@ body.tema-claro #textoChavePix {
     background: #4caf50;
 }
 
-
-/* BOTÃƒÆ’O VOLTAR INÃƒÂCIO */
 #btnVoltarInicio {
     width: 100%;
     padding: 16px;
@@ -1044,8 +892,6 @@ body.tema-claro #textoChavePix {
 
 #btnVoltarInicio:active { transform: scale(.97); }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ CONFETTI Ã¢â€â‚¬Ã¢â€â‚¬ */
 .confettiPiece {
     position: fixed;
     top: -10px;
@@ -1063,8 +909,6 @@ body.tema-claro #textoChavePix {
     100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ TOAST Ã¢â€â‚¬Ã¢â€â‚¬ */
 #toastFinalizar {
     position: fixed;
     bottom: 30px;
@@ -1089,8 +933,6 @@ body.tema-claro #textoChavePix {
     transform: translateX(-50%) translateY(0);
 }
 
-
-/* Ã¢â€â‚¬Ã¢â€â‚¬ CHACOALHAR Ã¢â€â‚¬Ã¢â€â‚¬ */
 @keyframes chacoalhar {
     0%,100% { transform: translateX(0); }
     20%     { transform: translateX(-8px); }
@@ -1103,6 +945,272 @@ body.tema-claro #textoChavePix {
     border-color: #ff5252 !important;
     animation: chacoalhar .4s ease;
 }
+
+
+/* ===================== TEMA CLARO ===================== */
+
+body.tema-claro #mainFinalizar {
+    color: #121212;
+}
+
+body.tema-claro #barraProgresso .bolhaEtapa {
+    background: #f0f0f0;
+    border-color: #ccc;
+    color: #aaa;
+}
+
+body.tema-claro .etapa span {
+    color: #aaa;
+}
+
+body.tema-claro .etapa.concluida .bolhaEtapa {
+    background: linear-gradient(135deg, #4caf50, #00c853);
+    border-color: #4caf50;
+    color: #fff;
+}
+
+body.tema-claro .etapa.concluida span { color: #2e7d32; }
+
+body.tema-claro .etapa.ativa .bolhaEtapa {
+    background: linear-gradient(135deg, #ffa000, #ff6f00);
+    border-color: #ffa000;
+    color: #fff;
+}
+
+body.tema-claro .etapa.ativa span { color: #e65100; }
+
+body.tema-claro .linhaEtapa {
+    background: #ddd;
+}
+
+body.tema-claro .linhaEtapa.concluida {
+    background: #4caf50;
+}
+
+body.tema-claro #resumoPedido,
+body.tema-claro #secaoPagamento {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 2px 20px rgba(0,0,0,.06);
+}
+
+body.tema-claro #resumoPedido::before,
+body.tema-claro #secaoPagamento::before {
+    background: radial-gradient(ellipse at top left, rgba(255,165,0,.06), transparent 60%);
+}
+
+body.tema-claro .secaoTitulo h2,
+body.tema-claro .secaoTitulo h3 {
+    color: #1a1a1a;
+}
+
+body.tema-claro .secaoTitulo i {
+    color: #e69500;
+}
+
+body.tema-claro .itemPedido {
+    background: #f7f7f7;
+    border-color: #e5e5e5;
+}
+
+body.tema-claro .itemPedido:hover {
+    border-color: #e69500;
+}
+
+body.tema-claro .qtdItem {
+    background: #e69500;
+    color: #fff;
+}
+
+body.tema-claro .nomeItem {
+    color: #444;
+}
+
+body.tema-claro .precoItem {
+    color: #2e7d32;
+}
+
+body.tema-claro #divisorResumo {
+    background: linear-gradient(90deg, transparent, #ddd, transparent);
+}
+
+body.tema-claro .linhaTotal {
+    color: #777;
+}
+
+body.tema-claro .linhaTotal.destaque {
+    color: #1a1a1a;
+    border-color: #ddd;
+}
+
+body.tema-claro .linhaTotal.destaque span:last-child {
+    color: #c77800;
+}
+
+body.tema-claro .verde {
+    color: #2e7d32 !important;
+}
+
+body.tema-claro #blocoEndereco {
+    border-color: #e0e0e0;
+}
+
+body.tema-claro .inputFinalizar {
+    background: #f7f7f7;
+    border-color: #ddd;
+    color: #1a1a1a;
+}
+
+body.tema-claro .inputFinalizar:focus {
+    border-color: #e69500;
+    box-shadow: 0 0 0 3px rgba(230,149,0,.12);
+}
+
+body.tema-claro .inputFinalizar::placeholder {
+    color: #bbb;
+}
+
+body.tema-claro .inputFinalizar.erro {
+    border-color: #e53935 !important;
+}
+
+body.tema-claro #abasPagamento {
+    background: #f0f0f0;
+    border-color: #ddd;
+}
+
+body.tema-claro .abaPagamento {
+    color: #888;
+}
+
+body.tema-claro .abaPagamento:hover {
+    color: #444;
+    background: rgba(0,0,0,.05);
+}
+
+body.tema-claro .abaPagamento.ativa {
+    background: linear-gradient(135deg, #ffa000, #e65100);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(230,81,0,.2);
+}
+
+body.tema-claro .tituloPainel {
+    color: #1a1a1a;
+}
+
+body.tema-claro .descPainel {
+    color: #666;
+}
+
+body.tema-claro .chavePix {
+    background: #f0faf7;
+    border-color: #00897b;
+}
+
+body.tema-claro #textoChavePix {
+    color: #00695c;
+}
+
+body.tema-claro #btnCopiarPix {
+    color: #aaa;
+}
+
+body.tema-claro #btnCopiarPix:hover { color: #00897b; }
+body.tema-claro #btnCopiarPix.copiado { color: #2e7d32; }
+
+body.tema-claro #seletorParcelas label {
+    color: #666;
+}
+
+body.tema-claro #selectParcelas {
+    background: #f7f7f7;
+    border-color: #ddd;
+    color: #1a1a1a;
+}
+
+body.tema-claro #selectParcelas:focus { border-color: #e69500; }
+
+body.tema-claro #boletoVisual {
+    background: #f7f7f7;
+    border-color: #ddd;
+}
+
+body.tema-claro .boletoLinha {
+    background: #555;
+}
+
+body.tema-claro #infoBoleto {
+    background: #f7f7f7;
+    border-color: #ddd;
+}
+
+body.tema-claro .linhaBoleto {
+    color: #888;
+}
+
+body.tema-claro .linhaBoleto strong { color: #1a1a1a; }
+
+body.tema-claro #overlayAprovado {
+    background: rgba(255,255,255,.88);
+}
+
+body.tema-claro #caixaAprovado {
+    background: #fff;
+    border-color: #e0e0e0;
+    box-shadow: 0 8px 40px rgba(0,0,0,.12);
+}
+
+body.tema-claro #tituloAprovado {
+    color: #1a1a1a;
+}
+
+body.tema-claro #subtituloAprovado {
+    color: #777;
+}
+
+body.tema-claro #numeroPedido {
+    background: #f7f7f7;
+    border-color: #ddd;
+    color: #777;
+}
+
+body.tema-claro #numeroPedido strong {
+    color: #c77800;
+}
+
+body.tema-claro .etaItem i {
+    background: #f0f0f0;
+    border-color: #ddd;
+    color: #aaa;
+}
+
+body.tema-claro .etaItem span { color: #aaa; }
+
+body.tema-claro .etaItem.ativa i {
+    background: linear-gradient(135deg, #4caf50, #00c853);
+    border-color: #4caf50;
+    color: #fff;
+}
+
+body.tema-claro .etaItem.ativa span { color: #2e7d32; }
+
+body.tema-claro .etaLinha {
+    background: #ddd;
+}
+
+body.tema-claro .etaLinha.ativa {
+    background: #4caf50;
+}
+
+body.tema-claro #toastFinalizar {
+    background: #fff;
+    border-color: #e69500;
+    color: #1a1a1a;
+    box-shadow: 0 8px 30px rgba(0,0,0,.15);
+}
+
+
+/* ===================== RESPONSIVO ===================== */
 
 @media (max-width: 900px) {
     #layoutFinalizar {

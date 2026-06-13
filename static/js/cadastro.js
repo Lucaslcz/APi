@@ -138,6 +138,8 @@ if (parametrosURL.get('sucesso') === 'true') {
 
     // Guarda o nome no localStorage pra usar na HomePage
     localStorage.setItem('nomeUsuario', nome);
+    // Ao criar conta, status do pedido já vem ligado por padrão
+    localStorage.setItem('notifPedido', 'true');
 
     // Troca o botão pela mensagem
     const botaoCriarConta = document.getElementById('botaoCriarConta');

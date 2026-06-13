@@ -1,3 +1,7 @@
+/* ════════════════════════════════════════
+   LAYOUT PRINCIPAL DA PÁGINA DE CAIXA
+   ════════════════════════════════════════ */
+
 #mainCaixa {
     padding: 50px 40px;
     max-width: 1400px;
@@ -7,13 +11,18 @@
     gap: 35px;
 }
 
-/* CABEÇALHO */
+
+/* ════════════════════════════════════════
+   CABEÇALHO DA PÁGINA
+   ════════════════════════════════════════ */
+
 #cabecalhoCaixa {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
+/* Ícone laranja da seção */
 #iconeTituloCaixa {
     width: 70px;
     height: 70px;
@@ -40,7 +49,11 @@
     margin-top: 4px;
 }
 
-/* CONTADORES */
+
+/* ════════════════════════════════════════
+   CARDS DE CONTADORES POR MÉTODO DE PAGAMENTO
+   ════════════════════════════════════════ */
+
 #contadoresPagamento {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -62,14 +75,16 @@
     transform: translateY(-4px);
 }
 
-#cardPix        { border-top: 3px solid #00b4d8; }
-#cardCredito    { border-top: 3px solid #ffa500; }
-#cardBoleto     { border-top: 3px solid #00e676; }
+/* Borda colorida no topo por método */
+#cardPix     { border-top: 3px solid #00b4d8; }
+#cardCredito { border-top: 3px solid #ffa500; }
+#cardBoleto  { border-top: 3px solid #00e676; }
 
-#cardPix:hover      { border-color: #00b4d8; box-shadow: 0 8px 25px rgba(0,180,216,.15); }
-#cardCredito:hover  { border-color: #ffa500; box-shadow: 0 8px 25px rgba(255,165,0,.15); }
-#cardBoleto:hover   { border-color: #00e676; box-shadow: 0 8px 25px rgba(0,230,118,.15); }
+#cardPix:hover     { border-color: #00b4d8; box-shadow: 0 8px 25px rgba(0, 180, 216, .15); }
+#cardCredito:hover { border-color: #ffa500; box-shadow: 0 8px 25px rgba(255, 165, 0, .15); }
+#cardBoleto:hover  { border-color: #00e676; box-shadow: 0 8px 25px rgba(0, 230, 118, .15); }
 
+/* Ícone colorido por método */
 .contadorIcone {
     width: 55px;
     height: 55px;
@@ -81,9 +96,9 @@
     flex-shrink: 0;
 }
 
-#cardPix    .contadorIcone { background: rgba(0,180,216,.15);  color: #00b4d8; }
-#cardCredito .contadorIcone { background: rgba(255,165,0,.15); color: #ffa500; }
-#cardBoleto .contadorIcone { background: rgba(0,230,118,.15);  color: #00e676; }
+#cardPix     .contadorIcone { background: rgba(0, 180, 216, .15);  color: #00b4d8; }
+#cardCredito .contadorIcone { background: rgba(255, 165, 0, .15);  color: #ffa500; }
+#cardBoleto  .contadorIcone { background: rgba(0, 230, 118, .15);  color: #00e676; }
 
 .contadorInfo {
     display: flex;
@@ -111,7 +126,11 @@
     margin-top: 4px;
 }
 
-/* TOTAL GERAL */
+
+/* ════════════════════════════════════════
+   CARD DE TOTAL GERAL
+   ════════════════════════════════════════ */
+
 #cardTotalGeral {
     background: linear-gradient(135deg, #1a1a1a, #111);
     border: 1px solid #ffa500;
@@ -137,13 +156,18 @@
     color: #ffa500;
 }
 
+/* Valor total em verde */
 #valorTotalGeral {
     font-size: 2.2rem;
     font-weight: 800;
     color: #00e676;
 }
 
-/* HISTÓRICO */
+
+/* ════════════════════════════════════════
+   SEÇÃO DO HISTÓRICO DE PEDIDOS
+   ════════════════════════════════════════ */
+
 #secaoHistoricoCaixa {
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
@@ -174,6 +198,7 @@
     color: #ffa500;
 }
 
+/* Campo de busca inline no cabeçalho */
 #campoBuscaCaixa {
     display: flex;
     align-items: center;
@@ -207,7 +232,11 @@
     color: #555;
 }
 
-/* LOADING E ERRO */
+
+/* ════════════════════════════════════════
+   ESTADOS: LOADING E ERRO
+   ════════════════════════════════════════ */
+
 #loadingCaixa,
 #erroCaixa {
     display: flex;
@@ -226,7 +255,11 @@
     color: #ffa500;
 }
 
-/* TABELA */
+
+/* ════════════════════════════════════════
+   TABELA DE PEDIDOS
+   ════════════════════════════════════════ */
+
 #tabelaPedidos {
     overflow-x: auto;
 }
@@ -236,6 +269,7 @@
     border-collapse: collapse;
 }
 
+/* Cabeçalho fixo com destaque laranja */
 #tabelaHistorico thead tr {
     background: #111;
     border-bottom: 2px solid #ffa500;
@@ -268,6 +302,7 @@
     vertical-align: middle;
 }
 
+/* Célula de descrição com truncamento */
 .tdDescricao {
     max-width: 220px;
     white-space: nowrap;
@@ -275,61 +310,14 @@
     text-overflow: ellipsis;
 }
 
-/* ════════════════════════════════════════
-   TEMA CLARO
-   ════════════════════════════════════════ */
-
-body.tema-claro #mainCaixa {
-    color: #121212;
-}
-
-body.tema-claro #tituloCaixa {
-    color: #121212;
-}
-
-body.tema-claro #subtituloCaixa {
-    color: #777;
-}
-
-body.tema-claro .cardContador {
-    background: #ffffff;
-    border-color: #ddd;
-}
-
-body.tema-claro .cardContador:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
-}
-
-body.tema-claro #cardPix:hover {
-    box-shadow: 0 8px 25px rgba(0, 180, 216, .1);
-}
-
-body.tema-claro #cardCredito:hover {
-    box-shadow: 0 8px 25px rgba(230, 153, 0, .1);
-}
-
-body.tema-claro #cardBoleto:hover {
-    box-shadow: 0 8px 25px rgba(0, 165, 81, .1);
-}
-
-body.tema-claro .contadorNumero {
-    color: #121212;
-}
-
-body.tema-claro .contadorLabel {
-    color: #999;
-}
-
-body.tema-claro .contadorValor {
-    color: #e69900;
-}
-
+/* Valor monetário sempre em verde */
 .tdValor {
     color: #00e676 !important;
     font-weight: 700;
     white-space: nowrap;
 }
 
+/* Badge do código do pedido */
 .codigoBadge {
     background: rgba(255, 165, 0, 0.12);
     color: #ffa500;
@@ -339,6 +327,7 @@ body.tema-claro .contadorValor {
     font-weight: 700;
 }
 
+/* Badges por método de pagamento */
 .pagamentoBadge {
     padding: 4px 10px;
     border-radius: 8px;
@@ -347,12 +336,129 @@ body.tema-claro .contadorValor {
     white-space: nowrap;
 }
 
-.pagamento-pix     { background: rgba(0,180,216,.15);  color: #00b4d8; }
-.pagamento-credito { background: rgba(255,165,0,.15);  color: #ffa500; }
-.pagamento-boleto  { background: rgba(0,230,118,.15);  color: #00e676; }
+.pagamento-pix     { background: rgba(0, 180, 216, .15);  color: #00b4d8; }
+.pagamento-credito { background: rgba(255, 165, 0, .15);  color: #ffa500; }
+.pagamento-boleto  { background: rgba(0, 230, 118, .15);  color: #00e676; }
 
-/* RESPONSIVO */
+
+/* ════════════════════════════════════════
+   TEMA CLARO — Caixa
+   ════════════════════════════════════════ */
+
+body.tema-claro #mainCaixa { color: #121212; }
+body.tema-claro #tituloCaixa  { color: #121212; }
+body.tema-claro #subtituloCaixa { color: #777; }
+
+/* Cards de contador brancos */
+body.tema-claro .cardContador {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.tema-claro #cardPix:hover     { box-shadow: 0 8px 25px rgba(0, 180, 216, .1); }
+body.tema-claro #cardCredito:hover { box-shadow: 0 8px 25px rgba(230, 153, 0, .1); }
+body.tema-claro #cardBoleto:hover  { box-shadow: 0 8px 25px rgba(0, 165, 81, .1); }
+
+body.tema-claro .contadorNumero { color: #121212; }
+body.tema-claro .contadorLabel  { color: #999; }
+body.tema-claro .contadorValor  { color: #c47f00; }
+
+/* Card total geral com fundo sutilmente colorido */
+body.tema-claro #cardTotalGeral {
+    background: linear-gradient(135deg, #fffdf5, #f9f9f9);
+    border-color: #c47f00;
+    box-shadow: 0 4px 20px rgba(196, 127, 0, 0.08);
+}
+
+body.tema-claro #totalGeralEsquerda {
+    color: #1a1a1a;
+}
+
+body.tema-claro #totalGeralEsquerda i {
+    color: #c47f00;
+}
+
+body.tema-claro #valorTotalGeral {
+    color: #00a651;
+}
+
+/* Seção de histórico com fundo branco */
+body.tema-claro #secaoHistoricoCaixa {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+body.tema-claro #cabecalhoHistoricoCaixa {
+    border-color: #eeeeee;
+    background: #fafafa;
+}
+
+body.tema-claro #cabecalhoHistoricoCaixa h2 {
+    color: #121212;
+}
+
+body.tema-claro #cabecalhoHistoricoCaixa h2 i {
+    color: #c47f00;
+}
+
+/* Campo de busca branco */
+body.tema-claro #campoBuscaCaixa {
+    background: #f4f4f4;
+    border-color: #ddd;
+}
+
+body.tema-claro #campoBuscaCaixa i {
+    color: #aaa;
+}
+
+body.tema-claro #inputBuscaCaixa {
+    color: #121212;
+}
+
+body.tema-claro #inputBuscaCaixa::placeholder {
+    color: #bbb;
+}
+
+/* Tabela com cabeçalho cinza claro */
+body.tema-claro #tabelaHistorico thead tr {
+    background: #f5f5f5;
+}
+
+body.tema-claro #tabelaHistorico th {
+    color: #c47f00;
+    border-color: #c47f00;
+}
+
+body.tema-claro #tabelaHistorico tbody tr {
+    border-color: #eeeeee;
+}
+
+body.tema-claro #tabelaHistorico tbody tr:hover {
+    background: rgba(196, 127, 0, 0.04);
+}
+
+body.tema-claro #tabelaHistorico td {
+    color: #444;
+}
+
+body.tema-claro .tdValor {
+    color: #00a651 !important;
+}
+
+body.tema-claro .codigoBadge {
+    background: rgba(196, 127, 0, 0.1);
+    color: #c47f00;
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════════════ */
+
 @media (max-width: 900px) {
+
     #contadoresPagamento {
         grid-template-columns: 1fr;
     }

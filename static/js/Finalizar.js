@@ -2,7 +2,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
     iniciarParticulas();
 
-    // ── VENCIMENTO DO BOLETO ──
+    // QR CODE REAL
+    const scriptQR = document.createElement("script");
+    scriptQR.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+    scriptQR.onload = () => {
+        const wrapper = document.getElementById("qrCodeFake");
+        if (!wrapper) return;
+        wrapper.innerHTML = "";
+        new QRCode(wrapper, {
+            text: "@lucas_c_d21",
+            width: 130,
+            height: 130,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+        const label = document.createElement("div");
+        label.id = "qrLabel";
+        label.textContent = "Chave PIX";
+        wrapper.appendChild(label);
+    };
+    document.head.appendChild(scriptQR);
+
+    // VENCIMENTO DO BOLETO
     const venc = document.getElementById("vencimentoBoleto");
     if (venc) {
         const d = new Date();
@@ -10,8 +32,50 @@ document.addEventListener("DOMContentLoaded", () => {
         venc.textContent = d.toLocaleDateString("pt-BR");
     }
 
+    // ENDEREÇO SALVO
+    const idUsuario      = localStorage.getItem('idUsuario');
+    const salvarEndereco = localStorage.getItem('salvarEndereco') !== 'false';
 
-    // RESUMO DO PEDIDO — lê do localStorage
+    if (idUsuario && salvarEndereco) {
+        fetch(`/api/endereco/${idUsuario}`)
+            .then(r => r.json())
+            .then(dados => {
+                const end = dados.endereco_salvo;
+                if (!end) return;
+
+                // banco pode retornar string ou objeto, trata os dois casos
+                const endereco = typeof end === 'string' ? JSON.parse(end) : end;
+
+                const rua         = document.getElementById('inputRua');
+                const numero      = document.getElementById('inputNumero');
+                const complemento = document.getElementById('inputComplemento');
+                const bairro      = document.getElementById('inputBairro');
+
+                if (rua)         rua.value         = endereco.rua         || '';
+                if (numero)      numero.value      = endereco.numero      || '';
+                if (complemento) complemento.value = endereco.complemento || '';
+                if (bairro)      bairro.value      = endereco.bairro      || '';
+            })
+            .catch(() => {});
+    }
+
+    function salvarEnderecoNoBanco() {
+        if (!idUsuario || !salvarEndereco) return;
+        const endereco = {
+            rua:         document.getElementById('inputRua')?.value.trim()         || '',
+            numero:      document.getElementById('inputNumero')?.value.trim()      || '',
+            complemento: document.getElementById('inputComplemento')?.value.trim() || '',
+            bairro:      document.getElementById('inputBairro')?.value.trim()      || ''
+        };
+        fetch('/api/endereco/salvar', {
+            method:  'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body:    JSON.stringify({ id_usuario: idUsuario, endereco })
+        }).catch(() => {});
+    }
+
+
+    // RESUMO DO PEDIDO
     const itens = JSON.parse(localStorage.getItem("carrinhoCalabreso") || "[]");
 
     const listaEl       = document.getElementById("listaItensPedido");
@@ -49,8 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const subtotal = itens.reduce((acc, i) => acc + i.preco * i.quantidade, 0);
 
-            if (subtotalEl)   subtotalEl.textContent  = formatar(subtotal);
-            if (totalFinalEl) totalFinalEl.textContent = formatar(subtotal);
+            if (subtotalEl)    subtotalEl.textContent   = formatar(subtotal);
+            if (totalFinalEl)  totalFinalEl.textContent  = formatar(subtotal);
             if (boletoValorEl) boletoValorEl.textContent = formatar(subtotal);
 
             if (parcelasEl) {
@@ -200,36 +264,36 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         localStorage.setItem("pedidoAtivoCalabreso", JSON.stringify(pedido));
+        salvarEnderecoNoBanco();
         localStorage.removeItem("carrinhoCalabreso");
 
         if (numPedido) numPedido.textContent = codigo;
 
         overlay.classList.add("visivel");
 
-        // Salva no histórico do banco
-        const idUsuario = localStorage.getItem("idUsuario");
-        if (idUsuario) {
+        const idUsuarioAtual = localStorage.getItem("idUsuario");
+        if (idUsuarioAtual) {
             const descricao = itens.map(i => `${i.quantidade}x ${i.nome}`).join(", ");
             const endereco  = `${document.getElementById("inputRua")?.value}, ${document.getElementById("inputNumero")?.value}`;
-            const subtotal = itens.reduce((acc, i) => acc + i.preco * i.quantidade, 0);
+            const subtotal  = itens.reduce((acc, i) => acc + i.preco * i.quantidade, 0);
 
             fetch("/api/salvar-historico", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    id_usuario: idUsuario, 
-                    codigo_pedido: codigo, 
-                    descricao, 
+                body: JSON.stringify({
+                    id_usuario:      idUsuarioAtual,
+                    codigo_pedido:   codigo,
+                    descricao,
                     endereco,
-                    forma_pagamento:  document.querySelector(".abaPagamento.ativa")?.dataset.metodo || "pix",
-                    valor: subtotal
+                    forma_pagamento: document.querySelector(".abaPagamento.ativa")?.dataset.metodo || "pix",
+                    valor:           subtotal
                 })
             });
         }
 
-        setTimeout(() => animarEtapas(),    1500);
-        setTimeout(() => dispararConfetti(), 800);
-        setTimeout(() => burstParticulas(),  600);
+        setTimeout(() => animarEtapas(),     1500);
+        setTimeout(() => dispararConfetti(),  800);
+        setTimeout(() => burstParticulas(),   600);
     }
 
     const btnVoltarInicio = document.getElementById("btnVoltarInicio");
@@ -238,6 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "/";
         });
     }
+
 
     // ANIMAÇÃO ETAPAS ETA
     function animarEtapas() {
@@ -251,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }, i * 600);
         });
     }
+
 
     // CONFETTI
     const cores = ["#ffd54f", "#4caf50", "#ff9800", "#00e676", "#ff5722", "#2196f3", "#e91e63"];
@@ -279,6 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.appendChild(el);
         setTimeout(() => el.remove(), parseFloat(dur) * 1000 + 200);
     }
+
 
     // BURST DE PARTÍCULAS NO CHECK
     function burstParticulas() {
@@ -309,6 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+
     // TOAST
     function mostrarToast(msg) {
         const existing = document.getElementById("toastFinalizar");
@@ -330,6 +398,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 3000);
     }
 
+
     // CHACOALHAR CAMPO INVÁLIDO
     function chacoalharCampo(id) {
         const el = document.getElementById(id);
@@ -338,6 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
         el.focus();
         setTimeout(() => el.classList.remove("erro"), 1500);
     }
+
 
     // PARTÍCULAS DE FUNDO
     function iniciarParticulas() {
@@ -385,6 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         loop();
     }
+
 
     // BOTÃO VOLTAR
     const botaoVoltar = document.getElementById("botaoVoltar");
