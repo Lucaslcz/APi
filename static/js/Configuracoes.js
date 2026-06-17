@@ -97,4 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('toggleEndereco')?.addEventListener('change', e => {
         localStorage.setItem('salvarEndereco', e.target.checked);
     });
+
+    document.getElementById('btnHistoricoPedidos')?.addEventListener('click', () => {
+        window.location.href = '/historico';
+    });
 });
