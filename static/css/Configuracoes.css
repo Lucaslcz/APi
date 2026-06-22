@@ -399,6 +399,43 @@
 
 
 /* ════════════════════════════════════════
+   TOAST DE AVISO DO MODAL DE CONFIGURAÇÕES
+   ════════════════════════════════════════ */
+
+#toastConfiguracoes {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1a1a1a;
+    border: 1px solid #ffa500;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: .9rem;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transition: all .3s ease;
+    max-width: 90vw;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,.5);
+}
+
+#toastConfiguracoes.visivel {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+body.tema-claro #toastConfiguracoes {
+    background: #fff;
+    border-color: #e69500;
+    color: #1a1a1a;
+    box-shadow: 0 8px 30px rgba(0,0,0,.15);
+}
+
+
+/* ════════════════════════════════════════
    TEMA CLARO — Modal de configurações
    ════════════════════════════════════════ */
 

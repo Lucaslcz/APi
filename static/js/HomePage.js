@@ -96,10 +96,14 @@ if (nomeUsuario && botaoLogin) {
         }
     });
 
-    // Botão Sair — limpa o localStorage e recarrega
-    document.getElementById('btnSair').addEventListener('click', () => {
+    // Botão Sair — encerra a sessão no servidor e limpa o localStorage
+    document.getElementById('btnSair').addEventListener('click', async () => {
+        try {
+            await fetch('/logout', { method: 'POST' });
+        } catch {}
         localStorage.removeItem('nomeUsuario');
         localStorage.removeItem('idUsuario');
+        localStorage.removeItem('cargo');
         window.location.reload();
     });
 

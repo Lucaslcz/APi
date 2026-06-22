@@ -38,7 +38,6 @@ function abrirConfiguracoes() {
     // Aplica estado salvo dos toggles
     document.getElementById('togglePromocoes').checked    = localStorage.getItem('notifPromocoes') !== 'false';
     document.getElementById('togglePedido').checked       = localStorage.getItem('notifPedido') !== 'false';
-    document.getElementById('togglePedidoRapido').checked = localStorage.getItem('pedidoRapido') === 'true';
     document.getElementById('toggleEndereco').checked     = localStorage.getItem('salvarEndereco') !== 'false';
 
     // Aplica tema ativo
@@ -57,6 +56,116 @@ function fecharConfiguracoes() {
     document.getElementById('overlayConfiguracoes').classList.remove('visivel');
     document.getElementById('modalConfiguracoes').classList.remove('visivel');
     document.body.style.overflow = '';
+}
+
+// Repete o último pedido do histórico, adicionando os itens de volta ao carrinho
+async function repetirUltimoPedido() {
+    const idUsuario = localStorage.getItem('idUsuario');
+
+    if (!idUsuario) {
+        fecharConfiguracoes();
+        criarPopupLogin();
+        return;
+    }
+
+    const item = document.getElementById('btnRepetirPedido');
+
+    try {
+        if (item) item.style.opacity = '0.6';
+
+        const respHistorico = await fetch(`/api/historico/${idUsuario}`);
+        if (!respHistorico.ok) throw new Error();
+        const pedidos = await respHistorico.json();
+
+        if (!pedidos || pedidos.length === 0) {
+            mostrarToastConfig('Você ainda não fez nenhum pedido. 🍔');
+            return;
+        }
+
+        const ultimoPedido = pedidos[0]; // já vem ordenado DESC por criado_em
+
+        // Quebra a descrição em itens: "2x Classic Burger, 1x Coca-Cola Lata"
+        const partes = ultimoPedido.descricao.split(',').map(p => p.trim());
+
+        const itensDesejados = partes.map(parte => {
+            const match = parte.match(/^(\d+)x\s+(.+)$/i);
+            if (!match) return null;
+            return { quantidade: parseInt(match[1], 10), nome: match[2].trim() };
+        }).filter(Boolean);
+
+        if (itensDesejados.length === 0) {
+            mostrarToastConfig('Não conseguimos reconhecer os itens desse pedido.');
+            return;
+        }
+
+        // Busca o cardápio atual pra reconstruir os itens com preço e tempo de preparo certos
+        const respCardapio = await fetch('/api/cardapio');
+        if (!respCardapio.ok) throw new Error();
+        const cardapio = await respCardapio.json();
+
+        const itensMontados      = [];
+        const itensIndisponiveis = [];
+
+        itensDesejados.forEach(desejado => {
+            const itemCardapio = cardapio.find(c =>
+                c.nome.trim().toLowerCase() === desejado.nome.toLowerCase()
+            );
+
+            if (!itemCardapio || itemCardapio.disponivel === 'Nao') {
+                itensIndisponiveis.push(desejado.nome);
+                return;
+            }
+
+            itensMontados.push({
+                id:            itemCardapio.id,
+                nome:          itemCardapio.nome,
+                preco:         itemCardapio.preco,
+                quantidade:    desejado.quantidade,
+                tempo_preparo: itemCardapio.tempo_preparo,
+                categoria:     itemCardapio.categoria
+            });
+        });
+
+        if (itensMontados.length === 0) {
+            mostrarToastConfig('Os itens desse pedido não estão mais disponíveis. 😕');
+            return;
+        }
+
+        // Salva no carrinho (substitui o carrinho atual)
+        localStorage.setItem('carrinhoCalabreso', JSON.stringify(itensMontados));
+
+        if (itensIndisponiveis.length > 0) {
+            mostrarToastConfig(`Pedido repetido! Indisponíveis: ${itensIndisponiveis.join(', ')}`);
+            setTimeout(() => { window.location.href = '/finalizar'; }, 2200);
+        } else {
+            window.location.href = '/finalizar';
+        }
+
+    } catch {
+        mostrarToastConfig('Não foi possível repetir o pedido. Tente novamente.');
+    } finally {
+        if (item) item.style.opacity = '1';
+    }
+}
+
+// Toast simples pra avisos do modal de configurações
+function mostrarToastConfig(msg) {
+    const existente = document.getElementById('toastConfiguracoes');
+    if (existente) existente.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'toastConfiguracoes';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => toast.classList.add('visivel'));
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('visivel');
+        setTimeout(() => toast.remove(), 300);
+    }, 3500);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -90,13 +199,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.getElementById('togglePedidoRapido')?.addEventListener('change', e => {
-        localStorage.setItem('pedidoRapido', e.target.checked);
-    });
-    
     document.getElementById('toggleEndereco')?.addEventListener('change', e => {
         localStorage.setItem('salvarEndereco', e.target.checked);
     });
+
+    document.getElementById('btnRepetirPedido')?.addEventListener('click', repetirUltimoPedido);
 
     document.getElementById('btnHistoricoPedidos')?.addEventListener('click', () => {
         window.location.href = '/historico';

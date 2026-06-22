@@ -1,8 +1,78 @@
+import secrets
+from datetime import datetime, timezone, timedelta
 from main import app
 from flask import render_template, request, redirect, jsonify
 from database import banco_calabreso
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import timezone, timedelta
+
+
+# ────────────────────────────────────────────
+# HELPER DE SESSÃO
+# ────────────────────────────────────────────
+def usuario_da_sessao():
+    token = request.cookies.get('token_sessao')
+    if not token:
+        return None
+
+    conexao = banco_calabreso()
+    cursor = conexao.cursor(dictionary=True)
+    try:
+        cursor.execute("""
+            SELECT u.id, u.nome, u.email, c.cargo, s.expira_em
+            FROM sessoes_login s
+            JOIN usuarios u ON u.id = s.id_usuario
+            JOIN cargos c   ON c.id_usuario = u.id
+            WHERE s.token = %s
+        """, (token,))
+        sessao = cursor.fetchone()
+
+        if not sessao:
+            return None
+
+        if sessao['expira_em'] < datetime.now():
+            cursor.execute("DELETE FROM sessoes_login WHERE token = %s", (token,))
+            conexao.commit()
+            return None
+
+        return sessao
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+# ROTA PARA O FRONT CONSULTAR SE A SESSÃO AINDA É VÁLIDA
+@app.route('/api/me')
+def api_me():
+    usuario = usuario_da_sessao()
+    if not usuario:
+        return jsonify({"logado": False}), 401
+
+    return jsonify({
+        "logado": True,
+        "id":     usuario['id'],
+        "nome":   usuario['nome'],
+        "cargo":  usuario['cargo']
+    })
+
+
+# ROTA DE LOGOUT
+@app.route('/logout', methods=['POST'])
+def logout():
+    token = request.cookies.get('token_sessao')
+
+    if token:
+        conexao = banco_calabreso()
+        cursor = conexao.cursor()
+        try:
+            cursor.execute("DELETE FROM sessoes_login WHERE token = %s", (token,))
+            conexao.commit()
+        finally:
+            cursor.close()
+            conexao.close()
+
+    resposta = jsonify({"ok": True})
+    resposta.set_cookie('token_sessao', '', expires=0)
+    return resposta
 
 
 #ROTAS HTML
@@ -92,8 +162,9 @@ def cadastro_usuario():
 # ROTA DO BANCO PARA O LOGIN
 @app.route('/logar', methods=['POST'])
 def login_usuario():
-    email = request.form.get('email')
-    senha = request.form.get('senha')
+    email   = request.form.get('email')
+    senha   = request.form.get('senha')
+    lembrar = request.form.get('lembrar') == 'on'
 
     conexao = banco_calabreso()
     cursor = conexao.cursor()
@@ -115,7 +186,30 @@ def login_usuario():
         if not check_password_hash(senha_banco, senha):
             return redirect('/login?erro=senha_incorreta')
 
-        return redirect(f'/?logado=true&nome={nome_banco}&id={id_banco}&cargo={cargo_banco}')
+        # Gera o token de sessão e salva no banco
+        token = secrets.token_hex(32)
+        dias_validade = 30 if lembrar else 1
+        expira_em = datetime.now() + timedelta(days=dias_validade)
+
+        cursor_token = conexao.cursor()
+        cursor_token.execute(
+            "INSERT INTO sessoes_login (token, id_usuario, expira_em) VALUES (%s, %s, %s)",
+            (token, id_banco, expira_em)
+        )
+        conexao.commit()
+        cursor_token.close()
+
+        resposta = redirect(f'/?logado=true&nome={nome_banco}&id={id_banco}&cargo={cargo_banco}')
+
+        resposta.set_cookie(
+            'token_sessao',
+            token,
+            httponly=True,
+            samesite='Lax',
+            secure=True,
+            max_age=(dias_validade * 86400) if lembrar else None
+        )
+        return resposta
 
     except Exception as erro:
         return f"Houve um erro: {erro}"
@@ -155,7 +249,7 @@ def alterar_cargo():
     id_alvo        = dados.get('id_alvo')
     novo_cargo     = dados.get('cargo')
 
-    if novo_cargo not in ('funcionario', 'cliente'):
+    if novo_cargo not in ('chefe', 'funcionario', 'cliente'):
         return jsonify({"erro": "Cargo inválido"}), 400
 
     conexao = banco_calabreso()
@@ -198,6 +292,53 @@ def api_cardapio():
     except Exception as erro:
         return jsonify({"erro": str(erro)}), 500
 
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+# ROTA PARA CRIAR UM NOVO PRODUTO NO CARDÁPIO
+# Só chefe e funcionário podem criar — validado pela sessão real (cookie), não pelo localStorage.
+@app.route('/api/cardapio/criar', methods=['POST'])
+def criar_produto():
+    usuario = usuario_da_sessao()
+    if not usuario or usuario['cargo'] not in ('chefe', 'funcionario'):
+        return jsonify({"erro": "Sem permissão para criar produtos."}), 403
+
+    dados = request.get_json() or {}
+
+    nome          = (dados.get('nome') or '').strip()
+    preco         = dados.get('preco')
+    tempo_preparo = dados.get('tempo_preparo')  # já vem em segundos do front
+    descricao     = (dados.get('descricao') or '').strip()
+    categoria     = dados.get('categoria')
+    disponivel    = 'Sim' if dados.get('disponivel', True) else 'Nao'
+
+    categorias_validas = ('Hamburguer', 'Frango', 'Vegano', 'Bebida', 'Sobremesa', 'Combo')
+
+    if not nome or not preco or not tempo_preparo or categoria not in categorias_validas:
+        return jsonify({"erro": "Preencha nome, preço, tempo de preparo e uma categoria válida."}), 400
+
+    try:
+        preco = float(preco)
+        tempo_preparo = int(tempo_preparo)
+        if preco <= 0 or tempo_preparo <= 0:
+            raise ValueError()
+    except (ValueError, TypeError):
+        return jsonify({"erro": "Preço ou tempo de preparo inválido."}), 400
+
+    conexao = banco_calabreso()
+    cursor = conexao.cursor()
+    try:
+        cursor.execute(
+            """INSERT INTO cardapio (nome, preco, tempo_preparo, descricao, categoria, disponivel)
+               VALUES (%s, %s, %s, %s, %s, %s)""",
+            (nome, preco, tempo_preparo, descricao, categoria, disponivel)
+        )
+        conexao.commit()
+        return jsonify({"ok": True, "id": cursor.lastrowid})
+    except Exception as erro:
+        return jsonify({"erro": str(erro)}), 500
     finally:
         cursor.close()
         conexao.close()

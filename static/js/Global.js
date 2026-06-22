@@ -1,3 +1,29 @@
+// Sincroniza o localStorage com a sessão real do servidor.
+// Se o token expirou ou foi removido, desloga o usuário no front também.
+async function sincronizarSessao() {
+    try {
+        const resposta = await fetch('/api/me');
+
+        if (resposta.status === 401) {
+            localStorage.removeItem('nomeUsuario');
+            localStorage.removeItem('idUsuario');
+            localStorage.removeItem('cargo');
+            return;
+        }
+
+        const dados = await resposta.json();
+
+        if (dados.logado) {
+            localStorage.setItem('nomeUsuario', dados.nome);
+            localStorage.setItem('idUsuario', dados.id);
+            localStorage.setItem('cargo', dados.cargo);
+        }
+    } catch {
+        // Falha de rede: mantém o que já está salvo no localStorage
+    }
+}
+
+
 // Efeito de clique no botão de menu
 const botaoMenu = document.getElementById("botaoMenu");
 
@@ -102,6 +128,8 @@ function protegerBotao(seletor, acao) {
 
 // Rotas para o flask
 document.addEventListener("DOMContentLoaded", () => {
+
+    sincronizarSessao();
 
     const botaoLogin     = document.getElementById("botaoLogin");
     const botaoCadastrar = document.getElementById("botaoCadastrar");
