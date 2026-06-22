@@ -267,9 +267,12 @@
 
         <div id="perfilModal">
             <div id="avatarModal"></div>
-            <div id="infoPerfilModal">
-                <span id="nomePerfilModal"></span>
-                <span id="tagPerfilModal">Membro Calabreso 🍔</span>
+                <div id="infoPerfilModal">
+                    <div id="linhaNomeCargo">
+                        <span id="nomePerfilModal"></span>
+                        <span id="tagPerfilModal"></span>
+                    </div>
+                <span id="textoMembroCalabreso">🍔 Membro Calabreso</span>
             </div>
         </div>
 
@@ -379,12 +382,12 @@
                     <span class="setaModal">›</span>
                 </div>
 
-                <div class="itemModal itemModalClicavel itemModalPerigo" id="btnExcluirConta">
+                <div class="itemModal itemModalClicavel itemModalPerigo" id="btnSairConfig">
                     <div class="itemModalEsquerda">
-                        <span class="itemModalIcone">🗑️</span>
+                        <span class="itemModalIcone">🚪</span>
                         <div class="itemModalTexto">
-                            <span class="itemModalNome">Excluir conta</span>
-                            <span class="itemModalDesc">Remove permanentemente sua conta e todos os seus dados</span>
+                            <span class="itemModalNome">Sair</span>
+                            <span class="itemModalDesc">Encerrar sua sessão neste dispositivo</span>
                         </div>
                     </div>
                     <span class="setaModal">›</span>
@@ -395,6 +398,20 @@
 
         <div id="rodapeModalConfiguracoes">
             Hamburgueria Calabreso • v1.0
+        </div>
+    </div>
+
+    <div id="overlayConfirmSair"></div>
+
+    <div id="popupConfirmSair">
+        <div id="iconeConfirmSair">
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </div>
+        <h2 id="tituloConfirmSair">Encerrar sessão</h2>
+        <p id="mensagemConfirmSair">Tem certeza que deseja encerrar sua sessão?</p>
+        <div id="botoesConfirmSair">
+            <button id="btnConfirmarSair">Encerrar sessão</button>
+            <button id="btnCancelarSair">Cancelar</button>
         </div>
     </div>
 

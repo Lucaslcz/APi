@@ -278,6 +278,51 @@ def alterar_cargo():
 
 
 
+# ROTA PARA ALTERAR A SENHA DO USUÁRIO LOGADO
+@app.route('/api/senha/alterar', methods=['POST'])
+def alterar_senha():
+    usuario = usuario_da_sessao()
+    if not usuario:
+        return jsonify({"erro": "Você precisa estar logado."}), 401
+
+    dados       = request.get_json() or {}
+    senha_atual = dados.get('senha_atual', '')
+    nova_senha  = dados.get('nova_senha', '')
+
+    if not senha_atual or not nova_senha:
+        return jsonify({"erro": "Preencha todos os campos."}), 400
+
+    if len(nova_senha) < 6:
+        return jsonify({"erro": "A nova senha deve ter pelo menos 6 caracteres."}), 400
+
+    conexao = banco_calabreso()
+    cursor = conexao.cursor(dictionary=True)
+    try:
+        cursor.execute("SELECT senha FROM usuarios WHERE id = %s", (usuario['id'],))
+        registro = cursor.fetchone()
+
+        if not registro or not check_password_hash(registro['senha'], senha_atual):
+            return jsonify({"erro": "Senha atual incorreta."}), 400
+
+        nova_hash = generate_password_hash(nova_senha)
+
+        cursor2 = conexao.cursor()
+        cursor2.execute("UPDATE usuarios SET senha = %s WHERE id = %s", (nova_hash, usuario['id']))
+        conexao.commit()
+        cursor2.close()
+
+        return jsonify({"ok": True})
+
+    except Exception as erro:
+        return jsonify({"erro": str(erro)}), 500
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+
+
+
 #ROTA DO BANCO PARA O CARDAPIO
 @app.route('/api/cardapio')
 def api_cardapio():

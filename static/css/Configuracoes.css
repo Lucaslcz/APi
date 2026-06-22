@@ -569,3 +569,436 @@ body.tema-claro .itemModalEsquerda {
 body.tema-claro .itemModalIcone {
     font-size: 1.1rem;
 }
+
+/* MODAL DE ALTERAR SENHA */
+
+#overlayAlterarSenha {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 9100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+#overlayAlterarSenha.visivel {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#modalAlterarSenha {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.97);
+    width: 90%;
+    max-width: 440px;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 24px;
+    z-index: 9101;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+#modalAlterarSenha.visivel {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#headerModalAlterarSenha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 26px;
+    border-bottom: 1px solid #222;
+}
+
+#tituloModalAlterarSenha {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+#iconeModalAlterarSenha {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #ffd54f, #4caf50);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: #121212;
+    flex-shrink: 0;
+}
+
+#headerModalAlterarSenha h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#headerModalAlterarSenha p {
+    color: #777;
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+#fecharModalAlterarSenha {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #2a2a2a;
+    color: #ffffff;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#fecharModalAlterarSenha:hover {
+    background: #3a3a3a;
+}
+
+#corpoModalAlterarSenha {
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.campoSenhaModal {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campoSenhaModal label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.inputComOlho {
+    position: relative;
+}
+
+.inputComOlho input {
+    width: 100%;
+    background: #1e1e1e;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 11px 42px 11px 14px;
+    color: #ffffff;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.inputComOlho input:focus {
+    border-color: #ffa500;
+}
+
+.olhoSenha {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.1rem;
+    user-select: none;
+    transition: 0.2s;
+}
+
+.olhoSenha:hover {
+    transform: translateY(-50%) scale(1.15);
+}
+
+#mensagemErroSenha {
+    color: #ff5252;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background: rgba(255, 82, 82, 0.1);
+    border: 1px solid rgba(255, 82, 82, 0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+#rodapeModalAlterarSenha {
+    display: flex;
+    gap: 10px;
+    padding: 18px 26px;
+    border-top: 1px solid #222;
+}
+
+#btnSalvarSenha {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffd54f, #4caf50);
+    color: #121212;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnSalvarSenha:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 16px rgba(255, 213, 79, 0.3);
+}
+
+#btnSalvarSenha:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+#btnCancelarSenha {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #2f2f2f;
+    border-radius: 12px;
+    background: transparent;
+    color: #9c9c9c;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnCancelarSenha:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+/* TEMA CLARO */
+
+body.tema-claro #modalAlterarSenha {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+body.tema-claro #headerModalAlterarSenha {
+    border-color: #e8e8e8;
+    background: #fafafa;
+}
+
+body.tema-claro #headerModalAlterarSenha h2 {
+    color: #121212;
+}
+
+body.tema-claro #headerModalAlterarSenha p {
+    color: #888;
+}
+
+body.tema-claro #fecharModalAlterarSenha {
+    background: #eeeeee;
+    color: #555;
+}
+
+body.tema-claro .campoSenhaModal label {
+    color: #999;
+}
+
+body.tema-claro .inputComOlho input {
+    background: #f5f5f5;
+    border-color: #ddd;
+    color: #121212;
+}
+
+body.tema-claro .inputComOlho input:focus {
+    border-color: #e69900;
+}
+
+body.tema-claro #rodapeModalAlterarSenha {
+    border-color: #eeeeee;
+}
+
+body.tema-claro #btnCancelarSenha {
+    border-color: #ddd;
+    color: #555;
+}
+
+body.tema-claro #btnCancelarSenha:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: #121212;
+}
+
+/* POPUP DE CONFIRMAÇÃO DE LOGOUT */
+
+#overlayConfirmSair {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 9200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#overlayConfirmSair.visivel {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#popupConfirmSair {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.95);
+    width: 90%;
+    max-width: 380px;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 22px;
+    padding: 38px 32px;
+    z-index: 9201;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+#popupConfirmSair.visivel {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#iconeConfirmSair {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 82, 82, 0.12);
+    border: 2px solid #ff5252;
+    color: #ff5252;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+#tituloConfirmSair {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+#mensagemConfirmSair {
+    color: #9c9c9c;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+#botoesConfirmSair {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+#btnConfirmarSair {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: #ff5252;
+    color: #ffffff;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnConfirmarSair:hover {
+    background: #ff3b3b;
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(255, 82, 82, 0.35);
+}
+
+#btnCancelarSair {
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #ff5252;
+    border-radius: 12px;
+    background: #0a0a0a;
+    color: #ff5252;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnCancelarSair:hover {
+    background: rgba(255, 82, 82, 0.08);
+}
+
+/* TEMA CLARO */
+
+body.tema-claro #popupConfirmSair {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+body.tema-claro #tituloConfirmSair {
+    color: #121212;
+}
+
+body.tema-claro #mensagemConfirmSair {
+    color: #777;
+}
+
+body.tema-claro #btnCancelarSair {
+    background: #ffffff;
+    border-color: #ff5252;
+    color: #ff5252;
+}
+
+body.tema-claro #btnCancelarSair:hover {
+    background: rgba(255, 82, 82, 0.06);
+}
+
+/* PERFIL — Cargo ao lado do nome */
+
+#linhaNomeCargo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+#textoMembroCalabreso {
+    color: #777;
+    font-size: 0.82rem;
+    margin-top: 2px;
+}
+
+body.tema-claro #textoMembroCalabreso {
+    color: #888;
+}

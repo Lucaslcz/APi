@@ -96,15 +96,10 @@ if (nomeUsuario && botaoLogin) {
         }
     });
 
-    // Botão Sair — encerra a sessão no servidor e limpa o localStorage
-    document.getElementById('btnSair').addEventListener('click', async () => {
-        try {
-            await fetch('/logout', { method: 'POST' });
-        } catch {}
-        localStorage.removeItem('nomeUsuario');
-        localStorage.removeItem('idUsuario');
-        localStorage.removeItem('cargo');
-        window.location.reload();
+    // Botão Sair — abre a confirmação (mesmo popup usado dentro das Configurações)
+    document.getElementById('btnSair').addEventListener('click', () => {
+        dropdown.classList.remove('aberto');
+        abrirConfirmacaoSair();
     });
 
     document.getElementById('btnConfiguracoes').addEventListener('click', () => {

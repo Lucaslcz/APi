@@ -24,12 +24,12 @@ function abrirConfiguracoes() {
     document.getElementById('avatarModal').textContent = nomeCompleto.charAt(0).toUpperCase();
     document.getElementById('nomePerfilModal').textContent = nomeCompleto;
 
-    // Exibe o cargo com badge colorida
+    // Exibe o cargo como badge ao lado do nome
     const tagPerfil = document.getElementById('tagPerfilModal');
     const cargosConfig = {
-        chefe:       { label: 'Chefe',            emoji: '👑', classe: 'tagChefe' },
-        funcionario: { label: 'Funcionário',       emoji: '🧑‍🍳', classe: 'tagFuncionario' },
-        cliente:     { label: 'Membro Calabreso',  emoji: '🍔', classe: 'tagCliente' },
+        chefe:       { label: 'Chefe',        emoji: '👑', classe: 'tagChefe' },
+        funcionario: { label: 'Funcionário',  emoji: '🧑‍🍳', classe: 'tagFuncionario' },
+        cliente:     { label: 'Cliente',      emoji: '🍔', classe: 'tagCliente' },
     };
     const cfg = cargosConfig[cargo] || cargosConfig.cliente;
     tagPerfil.textContent = `${cfg.emoji} ${cfg.label}`;
@@ -56,6 +56,46 @@ function fecharConfiguracoes() {
     document.getElementById('overlayConfiguracoes').classList.remove('visivel');
     document.getElementById('modalConfiguracoes').classList.remove('visivel');
     document.body.style.overflow = '';
+}
+
+// ── MODAL DE ALTERAR SENHA ──
+function abrirModalAlterarSenha() {
+    fecharConfiguracoes();
+    document.getElementById('overlayAlterarSenha')?.classList.add('visivel');
+    document.getElementById('modalAlterarSenha')?.classList.add('visivel');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharModalAlterarSenha() {
+    document.getElementById('overlayAlterarSenha')?.classList.remove('visivel');
+    document.getElementById('modalAlterarSenha')?.classList.remove('visivel');
+    document.body.style.overflow = '';
+    document.getElementById('formAlterarSenha')?.reset();
+    document.getElementById('mensagemErroSenha')?.classList.add('escondido');
+}
+
+// ── CONFIRMAÇÃO DE LOGOUT (usada pelo modal de Configurações e pelo dropdown do header) ──
+function abrirConfirmacaoSair() {
+    fecharConfiguracoes();
+    document.getElementById('overlayConfirmSair')?.classList.add('visivel');
+    document.getElementById('popupConfirmSair')?.classList.add('visivel');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharConfirmacaoSair() {
+    document.getElementById('overlayConfirmSair')?.classList.remove('visivel');
+    document.getElementById('popupConfirmSair')?.classList.remove('visivel');
+    document.body.style.overflow = '';
+}
+
+async function executarLogout() {
+    try {
+        await fetch('/logout', { method: 'POST' });
+    } catch {}
+    localStorage.removeItem('nomeUsuario');
+    localStorage.removeItem('idUsuario');
+    localStorage.removeItem('cargo');
+    window.location.href = '/';
 }
 
 // Repete o último pedido do histórico, adicionando os itens de volta ao carrinho
@@ -208,4 +248,89 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnHistoricoPedidos')?.addEventListener('click', () => {
         window.location.href = '/historico';
     });
+
+
+    // ── ALTERAR SENHA ──
+    document.getElementById('btnAlterarSenha')?.addEventListener('click', abrirModalAlterarSenha);
+    document.getElementById('fecharModalAlterarSenha')?.addEventListener('click', fecharModalAlterarSenha);
+    document.getElementById('btnCancelarSenha')?.addEventListener('click', fecharModalAlterarSenha);
+
+    document.getElementById('overlayAlterarSenha')?.addEventListener('click', (e) => {
+        if (e.target.id === 'overlayAlterarSenha') fecharModalAlterarSenha();
+    });
+
+    // Botões de mostrar/esconder senha (mesmo padrão 🙈/🐵 do login)
+    document.querySelectorAll('.olhoSenha').forEach(olho => {
+        olho.addEventListener('click', () => {
+            const input = document.getElementById(olho.dataset.target);
+            if (!input) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                olho.textContent = '🐵';
+            } else {
+                input.type = 'password';
+                olho.textContent = '🙈';
+            }
+        });
+    });
+
+    document.getElementById('formAlterarSenha')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const mensagemErro = document.getElementById('mensagemErroSenha');
+        mensagemErro.classList.add('escondido');
+
+        const senhaAtual = document.getElementById('inputSenhaAtual').value;
+        const novaSenha  = document.getElementById('inputNovaSenha').value;
+        const confirmar  = document.getElementById('inputConfirmarNovaSenha').value;
+
+        if (novaSenha !== confirmar) {
+            mensagemErro.textContent = 'As novas senhas não coincidem.';
+            mensagemErro.classList.remove('escondido');
+            return;
+        }
+
+        if (novaSenha.length < 6) {
+            mensagemErro.textContent = 'A nova senha deve ter pelo menos 6 caracteres.';
+            mensagemErro.classList.remove('escondido');
+            return;
+        }
+
+        const btn = document.getElementById('btnSalvarSenha');
+        btn.disabled = true;
+
+        try {
+            const resposta = await fetch('/api/senha/alterar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ senha_atual: senhaAtual, nova_senha: novaSenha })
+            });
+
+            const resultado = await resposta.json();
+
+            if (!resposta.ok || resultado.erro) {
+                throw new Error(resultado.erro || 'Erro ao alterar senha.');
+            }
+
+            fecharModalAlterarSenha();
+            mostrarToastConfig('Senha alterada com sucesso! 🔐');
+
+        } catch (erro) {
+            mensagemErro.textContent = erro.message;
+            mensagemErro.classList.remove('escondido');
+        } finally {
+            btn.disabled = false;
+        }
+    });
+
+
+    // ── CONFIRMAÇÃO DE LOGOUT ──
+    document.getElementById('btnSairConfig')?.addEventListener('click', abrirConfirmacaoSair);
+    document.getElementById('btnCancelarSair')?.addEventListener('click', fecharConfirmacaoSair);
+    document.getElementById('btnConfirmarSair')?.addEventListener('click', executarLogout);
+
+    document.getElementById('overlayConfirmSair')?.addEventListener('click', (e) => {
+        if (e.target.id === 'overlayConfirmSair') fecharConfirmacaoSair();
+    });
+
 });
