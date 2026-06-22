@@ -13,19 +13,30 @@ function exibirToast(mensagem) {
     setTimeout(() => toast.classList.remove('visivel'), 2800);
 }
 
-// Bloqueia a página se o cargo não for chefe
+// Bloqueia a página se o cargo não for chefe ou funcionário
 function verificarAcesso() {
     const cargo = localStorage.getItem('cargo');
-    if (cargo !== 'chefe') {
+    if (cargo !== 'chefe' && cargo !== 'funcionario') {
         document.body.innerHTML = `
             <div id="bloqueioAcesso">
                 <div id="bloqueioIcone"><i class="fa-solid fa-lock"></i></div>
                 <h2>Acesso restrito</h2>
-                <p>Só o chefe pode acessar esta área.</p>
+                <p>Essa área é exclusiva para a equipe da hamburgueria.</p>
                 <button onclick="window.location.href='/menu'">Voltar ao Menu</button>
             </div>
         `;
+        return false;
     }
+    return true;
+}
+
+// Funcionário só visualiza: esconde todos os botões de ação da página
+function aplicarPermissoesEmpresa() {
+    const cargo = localStorage.getItem('cargo');
+    if (cargo === 'chefe') return; // chefe mantém acesso total
+
+    document.getElementById('btnEditarDados')?.remove();
+    document.getElementById('btnNovoAviso')?.remove();
 }
 
 // Exibe a data atual no topo
@@ -144,7 +155,9 @@ function cancelarEdicao() {
     ['inputNome','inputCNPJ','inputTelefone','inputEmailEmpresa','inputEnderecoEmpresa','inputHorario']
         .forEach(id => document.getElementById(id).disabled = true);
     document.getElementById('acoesDados').classList.add('escondido');
-    document.getElementById('btnEditarDados').style.display = '';
+    if (document.getElementById('btnEditarDados')) {
+        document.getElementById('btnEditarDados').style.display = '';
+    }
     carregarDadosEmpresa();
 }
 
@@ -188,8 +201,9 @@ async function carregarAvisos() {
 
 // Renderiza os avisos na tela
 function renderizarAvisos(avisos) {
-    const lista = document.getElementById('listaAvisos');
-    const vazio = document.getElementById('muraiVazio');
+    const lista     = document.getElementById('listaAvisos');
+    const vazio     = document.getElementById('muraiVazio');
+    const ehChefe   = localStorage.getItem('cargo') === 'chefe';
 
     lista.querySelectorAll('.itemAviso').forEach(el => el.remove());
 
@@ -209,9 +223,11 @@ function renderizarAvisos(avisos) {
                 <p class="avisoTexto">${aviso.texto}</p>
                 <span class="avisoData">${new Date(aviso.criado_em).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' })}</span>
             </div>
-            <button class="btnDeletarAviso" title="Remover"><i class="fa-solid fa-xmark"></i></button>
+            ${ehChefe ? `<button class="btnDeletarAviso" title="Remover"><i class="fa-solid fa-xmark"></i></button>` : ''}
         `;
-        div.querySelector('.btnDeletarAviso').addEventListener('click', () => deletarAviso(aviso.id, div));
+        if (ehChefe) {
+            div.querySelector('.btnDeletarAviso').addEventListener('click', () => deletarAviso(aviso.id, div));
+        }
         lista.appendChild(div);
     });
 }
@@ -257,7 +273,9 @@ async function deletarAviso(id, elemento) {
 
 // Inicializa a página
 document.addEventListener('DOMContentLoaded', () => {
-    verificarAcesso();
+    if (!verificarAcesso()) return;
+
+    aplicarPermissoesEmpresa();
     exibirData();
     carregarMetricas();
     carregarDadosEmpresa();

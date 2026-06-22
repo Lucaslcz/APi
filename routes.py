@@ -582,9 +582,15 @@ def api_empresa():
         cursor.close()
         conexao.close()
 
+
 # Salva os dados editados da empresa
+# Só o chefe pode salvar — funcionário acessa a página, mas não tem permissão de editar.
 @app.route('/api/empresa/salvar', methods=['POST'])
 def api_empresa_salvar():
+    usuario = usuario_da_sessao()
+    if not usuario or usuario['cargo'] != 'chefe':
+        return jsonify({"erro": "Sem permissão."}), 403
+
     dados = request.get_json()
     conexao = banco_calabreso()
     cursor = conexao.cursor()
@@ -612,7 +618,6 @@ def api_empresa_salvar():
 
 
 
-
 #ROTA PARA OS AVISOS
 @app.route('/api/avisos')
 def api_avisos():
@@ -621,12 +626,12 @@ def api_avisos():
     try:
         cursor.execute("SELECT id, texto, criado_em FROM avisos ORDER BY criado_em DESC")
         avisos = cursor.fetchall()
- 
+
         brasilia = timezone(timedelta(hours=-3))
         for aviso in avisos:
             if aviso.get('criado_em'):
                 aviso['criado_em'] = aviso['criado_em'].astimezone(brasilia).strftime('%Y-%m-%d %H:%M:%S')
- 
+
         return jsonify(avisos)
     except Exception as erro:
         return jsonify({"erro": str(erro)}), 500
@@ -634,15 +639,20 @@ def api_avisos():
         cursor.close()
         conexao.close()
 
-# Cria um novo aviso
+
+# Cria um novo aviso — só o chefe pode publicar
 @app.route('/api/avisos/criar', methods=['POST'])
 def api_avisos_criar():
+    usuario = usuario_da_sessao()
+    if not usuario or usuario['cargo'] != 'chefe':
+        return jsonify({"erro": "Sem permissão."}), 403
+
     dados = request.get_json()
     texto = dados.get('texto', '').strip()
- 
+
     if not texto:
         return jsonify({"erro": "Texto vazio"}), 400
- 
+
     conexao = banco_calabreso()
     cursor = conexao.cursor()
     try:
@@ -655,9 +665,14 @@ def api_avisos_criar():
         cursor.close()
         conexao.close()
 
-# Deleta um aviso pelo id
+
+# Deleta um aviso pelo id — só o chefe pode remover
 @app.route('/api/avisos/deletar/<int:id_aviso>', methods=['DELETE'])
 def api_avisos_deletar(id_aviso):
+    usuario = usuario_da_sessao()
+    if not usuario or usuario['cargo'] != 'chefe':
+        return jsonify({"erro": "Sem permissão."}), 403
+
     conexao = banco_calabreso()
     cursor = conexao.cursor()
     try:
