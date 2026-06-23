@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Fila de Pedidos — Hamburgueria Calabreso</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/static/img/burguer.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/Global.css">
+    <link rel="stylesheet" href="/static/css/Fila.css">
+</head>
+<body>
+
+    <canvas id="efeitoParticulas"></canvas>
+
+    <header id="cabecalho">
+        <button id="botaoInicio"><h1 id="nomeHamburgueria">HAMBURGUERIA CALABRESO</h1></button>
+        <nav id="navegacao">
+            <button id="botaoMenu">← Menu</button>
+            <div id="statusLoja">
+                <span id="bolinhaStatus"></span>
+                <span id="textoStatus">Aberto</span>
+            </div>
+        </nav>
+    </header>
+
+    <main id="mainFila">
+
+        <div id="cabecalhoFila">
+            <div id="iconeTituloFila">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div>
+                <h1 id="tituloFila">Fila de Pedidos</h1>
+                <p id="subtituloFila">Pedidos em preparo e em rota neste momento</p>
+            </div>
+        </div>
+
+        <div id="contadoresFila">
+            <div class="cardContadorFila" id="cardPreparandoFila">
+                <i class="fa-solid fa-fire-burner"></i>
+                <div>
+                    <span class="contadorFilaNumero" id="qtdPreparando">0</span>
+                    <span class="contadorFilaLabel">Preparando</span>
+                </div>
+            </div>
+            <div class="cardContadorFila" id="cardRotaFila">
+                <i class="fa-solid fa-motorcycle"></i>
+                <div>
+                    <span class="contadorFilaNumero" id="qtdRota">0</span>
+                    <span class="contadorFilaLabel">Em rota</span>
+                </div>
+            </div>
+            <div class="cardContadorFila" id="cardCanceladoFila">
+                <i class="fa-solid fa-ban"></i>
+                <div>
+                    <span class="contadorFilaNumero" id="qtdCancelado">0</span>
+                    <span class="contadorFilaLabel">Cancelados</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="listaFila">
+            <div id="loadingFila">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                <span>Carregando fila de pedidos...</span>
+            </div>
+            <div id="filaVazia" class="escondido">
+                <i class="fa-solid fa-mug-hot"></i>
+                <p>Nenhum pedido em andamento agora.</p>
+            </div>
+            <div id="erroFila" class="escondido">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <p>Não foi possível carregar a fila.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <template id="templateCardFila">
+        <div class="cardFila">
+            <div class="cardFila-topo">
+                <div class="cardFila-codigo">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span class="codigoFilaPedido"></span>
+                </div>
+                <span class="statusFilaBadge"></span>
+            </div>
+            <div class="cardFila-cliente">
+                <i class="fa-solid fa-user"></i>
+                <span class="nomeClienteFila"></span>
+            </div>
+            <div class="cardFila-descricao">
+                <i class="fa-solid fa-burger"></i>
+                <p class="descricaoFilaPedido"></p>
+            </div>
+            <div class="cardFila-rodape">
+                <div class="cardFila-info">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="enderecoFilaPedido"></span>
+                </div>
+                <div class="cardFila-info">
+                    <i class="fa-regular fa-clock"></i>
+                    <span class="horaFilaPedido"></span>
+                </div>
+                <span class="valorFilaPedido"></span>
+            </div>
+            <button class="btnCancelarFila escondido">
+                <i class="fa-solid fa-ban"></i> Cancelar Pedido
+            </button>
+        </div>
+    </template>
+
+    <div id="overlayConfirmCancelarFila"></div>
+
+    <div id="popupConfirmCancelarFila">
+        <div id="iconeConfirmCancelarFila">
+            <i class="fa-solid fa-ban"></i>
+        </div>
+        <h2 id="tituloConfirmCancelarFila">Cancelar pedido</h2>
+        <p id="mensagemConfirmCancelarFila">Tem certeza que deseja cancelar o pedido <strong id="codigoConfirmCancelarFila"></strong>? O cliente será notificado.</p>
+        <div id="botoesConfirmCancelarFila">
+            <button id="btnConfirmarCancelarFila">Cancelar Pedido</button>
+            <button id="btnVoltarCancelarFila">Voltar</button>
+        </div>
+    </div>
+
+    <div id="toastFilaPedidos"></div>
+
+    <script src="/static/js/Global.js"></script>
+    <script src="/static/js/Fila.js"></script>
+    <script src="/static/js/Configuracoes.js"></script>
+</body>
+</html>

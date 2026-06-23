@@ -1,0 +1,518 @@
+/* ════════════════════════════════════════
+   LAYOUT PRINCIPAL
+   ════════════════════════════════════════ */
+
+#mainFila {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 30px 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.escondido { display: none !important; }
+
+
+/* ════════════════════════════════════════
+   CABEÇALHO
+   ════════════════════════════════════════ */
+
+#cabecalhoFila {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#iconeTituloFila {
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, #ffd54f, #ff9800);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: #121212;
+    flex-shrink: 0;
+    box-shadow: 0 0 22px rgba(255, 165, 0, 0.3);
+}
+
+#tituloFila {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+#subtituloFila {
+    color: #9c9c9c;
+    font-size: 0.92rem;
+    margin-top: 4px;
+}
+
+
+/* ════════════════════════════════════════
+   CONTADORES
+   ════════════════════════════════════════ */
+
+#contadoresFila {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.cardContadorFila {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.cardContadorFila i {
+    font-size: 1.3rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#cardPreparandoFila i { background: rgba(255, 213, 79, .12); color: #ffd54f; }
+#cardRotaFila i       { background: rgba(33, 150, 243, .12); color: #2196f3; }
+#cardCanceladoFila i  { background: rgba(255, 82, 82, .12);  color: #ff5252; }
+
+.contadorFilaNumero {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.contadorFilaLabel {
+    font-size: 0.78rem;
+    color: #888;
+    font-weight: 600;
+}
+
+
+/* ════════════════════════════════════════
+   ESTADOS: LOADING, VAZIO, ERRO
+   ════════════════════════════════════════ */
+
+#loadingFila,
+#filaVazia,
+#erroFila {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 70px 20px;
+    color: #444;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+#loadingFila i { color: #ffa500; font-size: 2.2rem; }
+#filaVazia i,
+#erroFila i    { color: #2a2a2a; font-size: 2.8rem; }
+
+
+/* ════════════════════════════════════════
+   LISTA E CARD DE PEDIDO
+   ════════════════════════════════════════ */
+
+#listaFila {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cardFila {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 18px;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    animation: entradaCardFila 0.35s ease both;
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.cardFila:hover {
+    border-color: rgba(255, 165, 0, 0.35);
+    transform: translateY(-2px);
+}
+
+@keyframes entradaCardFila {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.cardFila-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardFila-codigo {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255, 213, 79, .07);
+    border: 1px solid rgba(255, 213, 79, .18);
+    border-radius: 10px;
+    padding: 6px 14px;
+}
+
+.cardFila-codigo i { color: #ffd54f; font-size: .7rem; }
+
+.codigoFilaPedido {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: #ffd54f;
+}
+
+.statusFilaBadge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.statusFilaBadge.status-preparando { background: rgba(255, 213, 79, .15); color: #ffd54f; }
+.statusFilaBadge.status-rota       { background: rgba(33, 150, 243, .15); color: #2196f3; }
+.statusFilaBadge.status-cancelado  { background: rgba(255, 82, 82, .15);  color: #ff5252; }
+
+.cardFila-cliente {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #cfcfcf;
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.cardFila-cliente i { color: #ffa500; }
+
+.cardFila-descricao {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, .02);
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+}
+
+.cardFila-descricao i {
+    color: #ffa500;
+    font-size: .85rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.descricaoFilaPedido {
+    color: #bbb;
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.cardFila-rodape {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    border-top: 1px solid #1a1a1a;
+}
+
+.cardFila-info {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #777;
+    font-size: 0.8rem;
+}
+
+.cardFila-info i { color: #555; font-size: .8rem; }
+
+.valorFilaPedido {
+    margin-left: auto;
+    color: #00e676;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.btnCancelarFila {
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 10px 20px;
+    border: 1px solid #ff5252;
+    border-radius: 10px;
+    background: rgba(255, 82, 82, 0.08);
+    color: #ff5252;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btnCancelarFila:hover {
+    background: #ff5252;
+    color: #fff;
+}
+
+
+/* ════════════════════════════════════════
+   POPUP DE CONFIRMAÇÃO DE CANCELAMENTO
+   ════════════════════════════════════════ */
+
+#overlayConfirmCancelarFila {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(5px);
+    z-index: 9200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#overlayConfirmCancelarFila.visivel {
+    opacity: 1;
+    pointer-events: all;
+}
+
+#popupConfirmCancelarFila {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -48%) scale(0.95);
+    width: 90%;
+    max-width: 400px;
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 22px;
+    padding: 38px 32px;
+    z-index: 9201;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+#popupConfirmCancelarFila.visivel {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#iconeConfirmCancelarFila {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(255, 82, 82, 0.12);
+    border: 2px solid #ff5252;
+    color: #ff5252;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+#tituloConfirmCancelarFila {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+#mensagemConfirmCancelarFila {
+    color: #9c9c9c;
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+#mensagemConfirmCancelarFila strong { color: #ffd54f; }
+
+#botoesConfirmCancelarFila {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+#btnConfirmarCancelarFila {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 12px;
+    background: #ff5252;
+    color: #ffffff;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnConfirmarCancelarFila:hover {
+    background: #ff3b3b;
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(255, 82, 82, 0.35);
+}
+
+#btnVoltarCancelarFila {
+    flex: 1;
+    padding: 13px;
+    border: 1px solid #2f2f2f;
+    border-radius: 12px;
+    background: transparent;
+    color: #9c9c9c;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnVoltarCancelarFila:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+
+/* ════════════════════════════════════════
+   TOAST
+   ════════════════════════════════════════ */
+
+#toastFilaPedidos {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1a1a1a;
+    border: 1px solid #ffa500;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-size: .9rem;
+    font-weight: 600;
+    z-index: 9999;
+    opacity: 0;
+    transition: all .3s ease;
+    max-width: 90vw;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,.5);
+}
+
+#toastFilaPedidos.visivel {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+
+/* ════════════════════════════════════════
+   TEMA CLARO
+   ════════════════════════════════════════ */
+
+body.tema-claro #mainFila { color: #121212; }
+body.tema-claro #tituloFila { color: #121212; }
+body.tema-claro #subtituloFila { color: #777; }
+
+body.tema-claro .cardContadorFila {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+body.tema-claro .contadorFilaNumero { color: #121212; }
+body.tema-claro .contadorFilaLabel { color: #999; }
+
+body.tema-claro .cardFila {
+    background: #ffffff;
+    border-color: #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+body.tema-claro .cardFila-cliente { color: #333; }
+body.tema-claro .codigoFilaPedido { color: #c47f00; }
+
+body.tema-claro .cardFila-descricao {
+    background: #f9f9f9;
+    border-color: #eee;
+}
+
+body.tema-claro .descricaoFilaPedido { color: #555; }
+body.tema-claro .cardFila-rodape { border-color: #eee; }
+body.tema-claro .cardFila-info { color: #888; }
+body.tema-claro .valorFilaPedido { color: #00a651; }
+
+body.tema-claro #popupConfirmCancelarFila {
+    background: #ffffff;
+    border-color: #e0e0e0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+body.tema-claro #tituloConfirmCancelarFila { color: #121212; }
+body.tema-claro #mensagemConfirmCancelarFila { color: #777; }
+
+body.tema-claro #btnVoltarCancelarFila {
+    border-color: #ddd;
+    color: #555;
+}
+
+body.tema-claro #btnVoltarCancelarFila:hover {
+    background: rgba(0,0,0,0.04);
+    color: #121212;
+}
+
+body.tema-claro #toastFilaPedidos {
+    background: #fff;
+    border-color: #e69500;
+    color: #1a1a1a;
+    box-shadow: 0 8px 30px rgba(0,0,0,.15);
+}
+
+
+/* ════════════════════════════════════════
+   RESPONSIVIDADE
+   ════════════════════════════════════════ */
+
+@media (max-width: 700px) {
+    #contadoresFila {
+        grid-template-columns: 1fr;
+    }
+
+    #mainFila {
+        padding: 30px 18px 70px;
+    }
+
+    .cardFila-rodape {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .valorFilaPedido {
+        margin-left: 0;
+    }
+}

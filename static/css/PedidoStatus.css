@@ -530,3 +530,37 @@ body.tema-claro #btnFecharStatus:hover {
     color: #333;
     border-color: #aaa;
 }
+
+/* ════════════════════════════════════════
+   ESTADO: CANCELADO (badge do header)
+   ════════════════════════════════════════ */
+
+#badgePedidoAtivo.status-cancelado #badgeIconStatus {
+    background: rgba(255, 82, 82, .15);
+}
+
+#badgePedidoAtivo.status-cancelado #badgeIconStatus::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff5252;
+    box-shadow: 0 0 8px #ff5252;
+    display: block;
+}
+
+#badgePedidoAtivo.status-cancelado #badgeStatus { color: #ff5252; }
+
+
+/* ════════════════════════════════════════
+   ESTADO: CANCELADO (popup de acompanhamento)
+   ════════════════════════════════════════ */
+
+#overlayStatusPedido.status-cancelado #caixaStatusPedido::before {
+    background: radial-gradient(circle, rgba(255, 82, 82, .15), transparent 70%);
+}
+
+#overlayStatusPedido.status-cancelado #statusCirculo,
+#overlayStatusPedido.status-cancelado #statusTick {
+    stroke: #ff5252;
+}

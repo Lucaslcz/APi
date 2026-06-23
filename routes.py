@@ -40,6 +40,27 @@ def usuario_da_sessao():
         conexao.close()
 
 
+# ────────────────────────────────────────────
+# HELPER DE STATUS DO PEDIDO
+# Calcula o status "real" do pedido com base no tempo decorrido,
+# a não ser que ele já tenha sido marcado como cancelado no banco
+# (cancelamento sempre tem prioridade e é definitivo).
+# ────────────────────────────────────────────
+def calcular_status_pedido(criado_em, tempo_total_segundos, status_armazenado):
+    if status_armazenado == 'cancelado':
+        return 'cancelado'
+
+    agora = datetime.now()
+    elapsed = (agora - criado_em).total_seconds()
+
+    if elapsed < tempo_total_segundos:
+        return 'preparando'
+    elif elapsed < tempo_total_segundos + 20:
+        return 'rota'
+    else:
+        return 'entregue'
+
+
 # ROTA PARA O FRONT CONSULTAR SE A SESSÃO AINDA É VÁLIDA
 @app.route('/api/me')
 def api_me():
@@ -115,6 +136,10 @@ def caixa():
 @app.route('/empresa')
 def empresa():
     return render_template('empresa.html')
+
+@app.route('/fila')
+def fila():
+    return render_template('fila.html')
 
 
 
@@ -456,6 +481,8 @@ def api_caixa():
 
 
 # ROTA PARA O SALVAMENTO DO HISTORICO
+# Agora também recebe e grava o tempo total de preparo (em segundos), usado
+# para calcular o status real do pedido (preparando/rota/entregue) no servidor.
 @app.route('/api/salvar-historico', methods=['POST'])
 def salvar_historico():
     dados = request.get_json()
@@ -464,19 +491,125 @@ def salvar_historico():
     try:
         cursor.execute(
             """INSERT INTO historico 
-               (id_usuario, codigo_pedido, descricao, endereco, forma_pagamento, valor) 
-               VALUES (%s, %s, %s, %s, %s, %s)""",
+               (id_usuario, codigo_pedido, descricao, endereco, forma_pagamento, valor, tempo_total_segundos) 
+               VALUES (%s, %s, %s, %s, %s, %s, %s)""",
             (
                 dados['id_usuario'],
                 dados['codigo_pedido'],
                 dados['descricao'],
                 dados['endereco'],
                 dados['forma_pagamento'],
-                dados.get('valor', 0)
+                dados.get('valor', 0),
+                dados.get('tempo_total_segundos', 600)
             )
         )
         conexao.commit()
         return jsonify({"ok": True})
+    except Exception as erro:
+        return jsonify({"erro": str(erro)}), 500
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+# ROTA PARA LISTAR OS PEDIDOS ATIVOS NA FILA (visível pra funcionário e chefe)
+@app.route('/api/fila/pedidos')
+def api_fila_pedidos():
+    usuario = usuario_da_sessao()
+    if not usuario or usuario['cargo'] not in ('chefe', 'funcionario'):
+        return jsonify({"erro": "Sem permissão."}), 403
+
+    conexao = banco_calabreso()
+    cursor = conexao.cursor(dictionary=True)
+    try:
+        cursor.execute("""
+            SELECT
+                h.id,
+                h.codigo_pedido,
+                h.descricao,
+                h.endereco,
+                h.forma_pagamento,
+                h.valor,
+                h.criado_em,
+                h.status,
+                h.tempo_total_segundos,
+                u.nome AS nome_cliente
+            FROM historico h
+            JOIN usuarios u ON u.id = h.id_usuario
+            WHERE h.criado_em >= (NOW() - INTERVAL 12 HOUR)
+            ORDER BY h.criado_em DESC
+        """)
+        pedidos = cursor.fetchall()
+
+        brasilia = timezone(timedelta(hours=-3))
+        ativos = []
+
+        for pedido in pedidos:
+            status_calculado = calcular_status_pedido(
+                pedido['criado_em'], pedido['tempo_total_segundos'], pedido['status']
+            )
+
+            # Só entra na fila quem ainda está em andamento ou foi cancelado.
+            # Pedidos já entregues somem da lista automaticamente.
+            if status_calculado not in ('preparando', 'rota', 'cancelado'):
+                continue
+
+            pedido['status']     = status_calculado
+            pedido['criado_em']  = pedido['criado_em'].astimezone(brasilia).strftime('%Y-%m-%d %H:%M:%S')
+            ativos.append(pedido)
+
+        return jsonify(ativos)
+    except Exception as erro:
+        return jsonify({"erro": str(erro)}), 500
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+# ROTA PARA O CHEFE CANCELAR UM PEDIDO DA FILA
+@app.route('/api/fila/cancelar/<codigo_pedido>', methods=['POST'])
+def api_fila_cancelar(codigo_pedido):
+    usuario = usuario_da_sessao()
+    if not usuario or usuario['cargo'] != 'chefe':
+        return jsonify({"erro": "Apenas o chefe pode cancelar pedidos."}), 403
+
+    conexao = banco_calabreso()
+    cursor = conexao.cursor()
+    try:
+        cursor.execute(
+            "UPDATE historico SET status = 'cancelado' WHERE codigo_pedido = %s",
+            (codigo_pedido,)
+        )
+        conexao.commit()
+        return jsonify({"ok": True})
+    except Exception as erro:
+        return jsonify({"erro": str(erro)}), 500
+    finally:
+        cursor.close()
+        conexao.close()
+
+
+# ROTA PARA O CLIENTE CONSULTAR O STATUS REAL DO PRÓPRIO PEDIDO
+# (usada pelo badge/popup da Home pra detectar cancelamento feito pelo chefe)
+@app.route('/api/pedido/status/<codigo_pedido>')
+def api_pedido_status(codigo_pedido):
+    conexao = banco_calabreso()
+    cursor = conexao.cursor(dictionary=True)
+    try:
+        cursor.execute(
+            "SELECT criado_em, status, tempo_total_segundos FROM historico WHERE codigo_pedido = %s",
+            (codigo_pedido,)
+        )
+        pedido = cursor.fetchone()
+
+        if not pedido:
+            return jsonify({"erro": "Pedido não encontrado."}), 404
+
+        status_calculado = calcular_status_pedido(
+            pedido['criado_em'], pedido['tempo_total_segundos'], pedido['status']
+        )
+
+        return jsonify({"status": status_calculado})
     except Exception as erro:
         return jsonify({"erro": str(erro)}), 500
     finally:

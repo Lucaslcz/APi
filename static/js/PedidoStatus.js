@@ -17,6 +17,11 @@
             titulo:     "Pedido Entregue! 🎉",
             subtitulo:  "Bom apetite! Esperamos que esteja delicioso. Obrigado pela preferência! 🍔",
         },
+        cancelado: {
+            badgeLabel: "Cancelado ✕",
+            titulo:     "Pedido Cancelado",
+            subtitulo:  "Seu pedido foi cancelado pelo estabelecimento. Pedimos desculpas pelo transtorno — qualquer valor pago será revertido.",
+        },
     };
 
     const ETAPAS_POR_STATUS = {
@@ -40,6 +45,7 @@
     const subtitulo  = document.getElementById("statusSubtitulo");
     const btnFechar1 = document.getElementById("btnFecharStatus");
     const btnFechar2 = document.getElementById("btnFecharStatusBottom");
+    const etapasWrap = document.getElementById("statusEtapas");
 
     const etapaEls = [
         document.getElementById("setapa0"),
@@ -64,46 +70,58 @@
         }
     }
 
-    function renderizarBadge(pedido) {
-    if (!badge || !pedido?.codigo) return;
-    
-    // Se o usuário desligou o status do pedido, esconde e para
-    if (localStorage.getItem('notifPedido') === 'false') {
-        badge.style.display = 'none';
-        return;
+    function salvarPedido(pedido) {
+        localStorage.setItem("pedidoAtivoCalabreso", JSON.stringify(pedido));
     }
-    
-    const cfg = STATUS_CONFIG[pedido.status] || STATUS_CONFIG.preparando;
-    badge.className = "";
-    badge.classList.add("status-" + pedido.status);
-    badge.style.display = "block";
-    if (badgeCod) badgeCod.textContent = pedido.codigo;
-    if (badgeSt)  badgeSt.textContent  = cfg.badgeLabel;
-}
+
+    function renderizarBadge(pedido) {
+        if (!badge || !pedido?.codigo) return;
+
+        // Se o usuário desligou o status do pedido, esconde e para
+        if (localStorage.getItem('notifPedido') === 'false') {
+            badge.style.display = 'none';
+            return;
+        }
+
+        const cfg = STATUS_CONFIG[pedido.status] || STATUS_CONFIG.preparando;
+        badge.className = "";
+        badge.classList.add("status-" + pedido.status);
+        badge.style.display = "block";
+        if (badgeCod) badgeCod.textContent = pedido.codigo;
+        if (badgeSt)  badgeSt.textContent  = cfg.badgeLabel;
+    }
 
     function abrirPopupStatus() {
         const pedido = lerPedido();
         if (!pedido) return;
 
-        const cfg    = STATUS_CONFIG[pedido.status] || STATUS_CONFIG.preparando;
-        const etapas = ETAPAS_POR_STATUS[pedido.status] || ETAPAS_POR_STATUS.preparando;
-        const linhas = LINHAS_POR_STATUS[pedido.status] || LINHAS_POR_STATUS.preparando;
+        const cfg = STATUS_CONFIG[pedido.status] || STATUS_CONFIG.preparando;
 
         if (codigoVal) codigoVal.textContent = pedido.codigo;
         if (titulo)    titulo.textContent    = cfg.titulo;
         if (subtitulo) subtitulo.textContent = cfg.subtitulo;
 
-        etapaEls.forEach((el, i) => {
-            if (!el) return;
-            el.className = "statusEtaItem";
-            if (etapas[i]) el.classList.add(etapas[i]);
-        });
+        // Pedido cancelado: esconde a linha do tempo, não faz sentido mostrar etapas
+        if (pedido.status === "cancelado") {
+            etapasWrap?.classList.add("escondido");
+        } else {
+            etapasWrap?.classList.remove("escondido");
 
-        linhaEls.forEach((el, i) => {
-            if (!el) return;
-            el.className = "statusEtaLinha";
-            if (linhas[i]) el.classList.add(linhas[i]);
-        });
+            const etapas = ETAPAS_POR_STATUS[pedido.status] || ETAPAS_POR_STATUS.preparando;
+            const linhas = LINHAS_POR_STATUS[pedido.status] || LINHAS_POR_STATUS.preparando;
+
+            etapaEls.forEach((el, i) => {
+                if (!el) return;
+                el.className = "statusEtaItem";
+                if (etapas[i]) el.classList.add(etapas[i]);
+            });
+
+            linhaEls.forEach((el, i) => {
+                if (!el) return;
+                el.className = "statusEtaLinha";
+                if (linhas[i]) el.classList.add(linhas[i]);
+            });
+        }
 
         overlay.className = "";
         overlay.classList.add("status-" + pedido.status);
@@ -112,6 +130,28 @@
 
     function fecharPopup() {
         overlay?.classList.remove("visivel");
+    }
+
+    // Consulta o status real no servidor. Isso é o que garante que um
+    // cancelamento feito pelo chefe na fila apareça pro cliente, mesmo que
+    // os timers locais ainda não tivessem chegado em "entregue".
+    async function sincronizarComServidor() {
+        const pedido = lerPedido();
+        if (!pedido?.codigo) return;
+
+        try {
+            const resposta = await fetch(`/api/pedido/status/${pedido.codigo}`);
+            if (!resposta.ok) return;
+
+            const dados = await resposta.json();
+
+            if (dados.status && dados.status !== pedido.status) {
+                pedido.status = dados.status;
+                salvarPedido(pedido);
+            }
+        } catch {
+            // Falha de rede: mantém o status local, tenta de novo no próximo ciclo
+        }
     }
 
     function init() {
@@ -126,19 +166,28 @@
             if (e.target === overlay) fecharPopup();
         });
 
-        // Único intervalo — avança status baseado nos timestamps salvos
+        // Avança status localmente baseado nos timestamps salvos (efeito visual suave)
         setInterval(() => {
             const p = lerPedido();
             if (!p) return;
+
+            // Pedido cancelado é definitivo: não avança mais nada
+            if (p.status === "cancelado") {
+                if (ultimoStatus !== "cancelado") {
+                    ultimoStatus = "cancelado";
+                    renderizarBadge(p);
+                }
+                return;
+            }
 
             const agora = Date.now();
 
             if (p.status === "preparando" && agora >= p.tsRota) {
                 p.status = "rota";
-                localStorage.setItem("pedidoAtivoCalabreso", JSON.stringify(p));
+                salvarPedido(p);
             } else if (p.status === "rota" && agora >= p.tsEntregue) {
                 p.status = "entregue";
-                localStorage.setItem("pedidoAtivoCalabreso", JSON.stringify(p));
+                salvarPedido(p);
             } else if (p.status === "entregue" && agora >= p.tsSumirEm) {
                 localStorage.removeItem("pedidoAtivoCalabreso");
                 if (badge) badge.style.display = "none";
@@ -151,6 +200,9 @@
                 renderizarBadge(p);
             }
         }, 2000);
+
+        // Confirma com o servidor periodicamente — é essa checagem que detecta cancelamento
+        setInterval(sincronizarComServidor, 6000);
     }
 
     if (document.readyState === "loading") {

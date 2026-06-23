@@ -272,24 +272,25 @@ document.addEventListener("DOMContentLoaded", () => {
         overlay.classList.add("visivel");
 
         const idUsuarioAtual = localStorage.getItem("idUsuario");
-        if (idUsuarioAtual) {
-            const descricao = itens.map(i => `${i.quantidade}x ${i.nome}`).join(", ");
-            const endereco  = `${document.getElementById("inputRua")?.value}, ${document.getElementById("inputNumero")?.value}`;
-            const subtotal  = itens.reduce((acc, i) => acc + i.preco * i.quantidade, 0);
+            if (idUsuarioAtual) {
+                const descricao = itens.map(i => `${i.quantidade}x ${i.nome}`).join(", ");
+                const endereco  = `${document.getElementById("inputRua")?.value}, ${document.getElementById("inputNumero")?.value}`;
+                const subtotal  = itens.reduce((acc, i) => acc + i.preco * i.quantidade, 0);
 
-            fetch("/api/salvar-historico", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    id_usuario:      idUsuarioAtual,
-                    codigo_pedido:   codigo,
-                    descricao,
-                    endereco,
-                    forma_pagamento: document.querySelector(".abaPagamento.ativa")?.dataset.metodo || "pix",
-                    valor:           subtotal
-                })
-            });
-        }
+                fetch("/api/salvar-historico", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        id_usuario:      idUsuarioAtual,
+                        codigo_pedido:   codigo,
+                        descricao,
+                        endereco,
+                        forma_pagamento: document.querySelector(".abaPagamento.ativa")?.dataset.metodo || "pix",
+                        valor:           subtotal,
+                        tempo_total_segundos: Math.round(tempoPreparo / 1000)
+                    })
+                });
+            }
 
         setTimeout(() => animarEtapas(),     1500);
         setTimeout(() => dispararConfetti(),  800);
